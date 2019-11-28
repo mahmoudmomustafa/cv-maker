@@ -28666,8 +28666,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 new Vue({
-  el: '#app',
-  router: _routes__WEBPACK_IMPORTED_MODULE_1__["default"]
+  el: '#app' // router
+
 });
 
 /***/ }),
@@ -28695,8 +28695,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a; // Vue.use(VueRouter)
+
 window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_2___default.a;
 window.axios = axios__WEBPACK_IMPORTED_MODULE_1___default.a;
 axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
