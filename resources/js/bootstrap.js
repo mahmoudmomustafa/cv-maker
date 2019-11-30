@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import 'tailwindcss/dist/tailwind.min.css'
 
 window.Vue = Vue;
-// Vue.use(VueRouter)
+Vue.use(VueRouter)
 
 window.$ = window.jQuery = jQuery;
 window.axios = axios;

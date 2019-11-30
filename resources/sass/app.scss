@@ -1,1 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Philosopher|Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merienda+One&display=swap');
+$fontColor:#3f4253;
+$aColor:#0053a9;
+$aColorHover:#32759c;
 
+body {
+    background-color: #f2f2f2;
+    // background-image: url("../img/bg.svg");
+    min-width: max-content;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23d1cfd6' fill-opacity='0.28'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+
+    // right side form
+    .form {
+        background: white;
+        font-family: 'Raleway';
+        transition: 500ms ease;
+
+        // register
+        nav {
+            overflow: auto;
+            font-size: .9rem;
+            color: $fontColor;
+
+            a {
+                color: $aColor;
+                cursor: pointer;
+
+                &:hover {
+                    color: $aColorHover;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        //form header
+        .header {
+            h3 {
+                font-size: 1.9rem;
+                color: #fe494c;
+                font-family: 'Merienda One', cursive;
+            }
+        }
+
+        // social links
+        .social {
+            a {
+                color: $fontColor;
+                padding: 8px 4px;
+                background: #e7e7e7;
+                box-shadow: 0 0 3px #adadad;
+                transition: 500ms ease;
+                margin: 5px 10px;
+                font-weight: 300;
+
+                i {
+                    padding: 0 8px;
+                }
+
+                span {
+                    padding: 0 10px;
+                }
+            }
+
+            .social-active {
+                color: white !important;
+                background: #178ce9;
+            }
+
+            .or span {
+                color: $fontColor;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    background: #3f425338;
+                    width: 10%;
+                    height: 1px;
+                    top: 50%;
+                    right: 35%;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    background: #3f425338;
+                    width: 10%;
+                    height: 1px;
+                    top: 50%;
+                    left: 35%;
+                }
+            }
+        }
+
+        //form
+        .body {
+            .form-group {
+
+                .form-control {
+                    border: 0;
+                    background: #f2f2f2;
+                }
+
+                .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+                    background-color: #fe494c;
+                }
+
+                .btn-primary {
+                    border: 0;
+                    font-weight: 800;
+                    background: #fe494c;
+                    transition: 500ms ease;
+
+                    &:hover {
+                        transform: scale(0.9);
+                    }
+                }
+            }
+
+            .section {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
+
+            .arrows {
+                .arrow {
+                    cursor: pointer;
+
+                    i {
+                        background: #e7e7e7;
+                        box-shadow: 0 0 5px #80808085;
+                        padding: .5rem .8rem;
+                        font-size: 1.4rem;
+                        border-radius: 50px;
+                        transition: 500ms ease;
+
+                        &:hover {
+                            color: white;
+                            background: #fe494c;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
