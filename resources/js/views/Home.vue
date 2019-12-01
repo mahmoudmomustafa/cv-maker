@@ -9,7 +9,7 @@
           <div class="m-4 flex shadow">
             <div class="w-full md:w-1/2">
               <div class="p-3 welcome">
-                <h2 class="text-3xl font-bold m-1 px-2 py-3">Welcome Mahmoud</h2>
+                <h2 class="text-3xl font-bold m-1 px-2 py-3">Welcome {{user.name}}</h2>
                 <h3 class="text-xl font-bold m-1 p-3 text-gray-800">Build your own Cv by one tap ..</h3>
                 <p class="text-lg font-bold m-1 p-3 text-gray-800">Easy, Right !</p>
                 <button class="btn btn-primary m-3">Create Cv</button>
@@ -66,7 +66,9 @@ export default {
     NavComp
   },
   data() {
-    return {};
+    return {
+      user: app.user
+    };
   },
   methods: {}
 };

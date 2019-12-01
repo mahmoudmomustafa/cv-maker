@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="add-edu"
-    aria-hidden="true"
-  >
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="add-edu" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content border-0">
         <div class="modal-header">
@@ -15,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-         <slot name="body"></slot>
+          <slot name="body"></slot>
         </div>
         <div class="modal-footer border-0">
           <slot name="save"></slot>
@@ -33,9 +27,7 @@
 <script>
 export default {
   name: "modelcomp",
-  props:[
-    'modelHead'
-  ],
+  props: ["modelHead"],
   data() {
     return {};
   },

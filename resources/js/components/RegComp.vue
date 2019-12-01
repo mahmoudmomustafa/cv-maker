@@ -14,7 +14,8 @@
             class="text-sm"
             data-toggle="tooltip"
             data-placement="bottom"
-            title="Login" @click="log"
+            title="Login"
+            @click="log"
           >Have an account</a>
         </div>
       </nav>
@@ -28,9 +29,7 @@
           <!-- {{-- name --}} -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="name" class="text-gray-800 text-sm font-bold">
-                Full Name
-              </label>
+              <label for="name" class="text-gray-800 text-sm font-bold">Full Name</label>
               <input
                 id="name"
                 type="text"
@@ -77,6 +76,17 @@
               />
             </div>
           </div>
+          <!-- errors -->
+          <div
+            class="alert alert-danger alert-dismissible fade show border-0"
+            role="alert"
+            v-if="errors"
+          >
+            <strong v-text="errors"></strong>
+            <button type="button" class="close">
+              <span aria-hidden="true" @click="close">&times;</span>
+            </button>
+          </div>
           <!-- {{-- submit btn --}} -->
           <div class="form-group mb-0">
             <div class="col-md-8 m-auto text-center">
@@ -97,24 +107,29 @@ export default {
   name: "register",
   data() {
     return {
-      name:"",
+      name: "",
       email: "",
       password: "",
-      errors: []
+      errors: ""
     };
   },
   methods: {
-    log(){
-      this.$parent.login = !this.$parent.login
+    log() {
+      this.$parent.login = !this.$parent.login;
     },
     close() {
-      this.errors = [];
+      this.errors = "";
     },
-    register() {},
-    error() {
-      setTimeout(() => {
-        // this.errors = [];
-      }, 15000);
+    register() {
+      axios
+        .post("/register", this.$data)
+        .then(response => {
+          app.user = response.data;
+          this.$router.replace("/dashboard");
+        })
+        .catch(error => {
+          this.errors = error.response.data.message;
+        });
     }
   }
 };

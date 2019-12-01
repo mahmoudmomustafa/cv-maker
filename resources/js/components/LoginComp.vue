@@ -13,7 +13,8 @@
             class="text-sm"
             data-toggle="tooltip"
             data-placement="bottom"
-            title="Register" @click="reg"
+            title="Register"
+            @click="reg"
           >Create an account</a>
         </div>
       </nav>
@@ -25,7 +26,7 @@
       <!-- {{-- login form --}} -->
       <div class="body wow fadeIn" data-wow-duration="2s" data-wow-delay="0s">
         <form method="POST" @submit.prevent="login">
-          <!-- {{-- email --}} -->
+          <!-- email  -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
               <label for="email" class="text-gray-800 text-sm font-bold">
@@ -44,7 +45,7 @@
               />
             </div>
           </div>
-          <!-- {{-- password --}} -->
+          <!-- password  -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
               <label for="password" class="text-gray-800 text-sm font-bold">Password</label>
@@ -59,7 +60,18 @@
               />
             </div>
           </div>
-          <!-- {{-- submit btn --}} -->
+          <!-- errors -->
+          <div
+            class="alert alert-danger alert-dismissible fade show border-0"
+            role="alert"
+            v-if="errors"
+          >
+            <strong v-text="errors"></strong>
+            <button type="button" class="close">
+              <span aria-hidden="true" @click="close">&times;</span>
+            </button>
+          </div>
+          <!-- submit btn-->
           <div class="form-group mb-0">
             <div class="col-md-8 m-auto text-center">
               <button type="submit" class="btn btn-primary w-100 heartbeat">
@@ -77,28 +89,31 @@
 <script>
 export default {
   name: "login",
-  props:{
-
-  },
+  props: {},
   data() {
     return {
       email: "",
       password: "",
-      errors: []
+      errors: ""
     };
   },
   methods: {
-    reg(){
-      this.$parent.login = !this.$parent.login
+    reg() {
+      this.$parent.login = !this.$parent.login;
     },
     close() {
-      this.errors = [];
+      this.errors = "";
     },
-    login() {},
-    error() {
-      setTimeout(() => {
-        // this.errors = [];
-      }, 15000);
+    login() {
+      axios
+        .post("/login", this.$data)
+        .then(response => {
+          app.user = response.data;
+          this.$router.replace("dashboard");
+        })
+        .catch(error => {
+          this.errors = error.response.data.error;
+        });
     }
   }
 };

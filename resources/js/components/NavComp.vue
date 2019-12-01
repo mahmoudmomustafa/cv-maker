@@ -21,17 +21,18 @@
         <ul class="navbar-nav ml-auto">
           <!-- Authentication Links -->
           <li class="nav-item">
-            <a class="nav-link text-sm text-gray-300" href="/">Mahmoud</a>
+            <a class="nav-link text-sm text-gray-300" v-text="user.name">Mahmoud</a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link pl-0"
-              href="/"
-              onclick="event.preventDefault();document.getElementById('logout-form').submit();" data-toggle="tooltip" data-placement="bottom" title="Log Out"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Log Out"
+              @click="logout"
             >
               <i class="ml-1 fas fa-sign-out-alt"></i>
             </a>
-            <form id="logout-form" action="/logout" method="POST" style="display: none;"></form>
           </li>
         </ul>
       </div>
@@ -43,9 +44,18 @@
 export default {
   name: "navbar",
   data() {
-    return {};
+    return {
+      user: app.user
+    };
   },
-  methods: {}
+  methods: {
+    logout() {
+      axios.get("/init").then(response => {
+        app.user = null;
+        this.$router.replace("auth");
+      });
+    }
+  }
 };
 </script>
 

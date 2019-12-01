@@ -10,3 +10,8 @@ Vue.use(VueRouter)
 window.$ = window.jQuery = jQuery;
 window.axios = axios;
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
