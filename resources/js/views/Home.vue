@@ -37,10 +37,21 @@ export default {
   },
   data() {
     return {
-      user: app.user
+      user: []
     };
   },
-  methods: {}
+  created() {
+    axios
+      .get("/init", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        this.user = response.data;
+      })
+      .catch(error => {});
+  }
 };
 </script>
 

@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: "login",
   props: {},
@@ -108,7 +110,8 @@ export default {
       axios
         .post("/login", this.$data)
         .then(response => {
-          app.user = response.data;
+          store.commit("loginUser");
+          localStorage.setItem("token", response.data.access_token);
           this.$router.replace("dashboard");
         })
         .catch(error => {

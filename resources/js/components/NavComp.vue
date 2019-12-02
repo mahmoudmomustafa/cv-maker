@@ -52,19 +52,32 @@
 </template>
 
 <script>
+import store from "../store";
+
 export default {
   name: "navbar",
   data() {
     return {
-      user: app.user
+      user: []
     };
+  },
+  created() {
+    axios
+      .get("/init", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(response => {
+        this.user = response.data;
+      })
+      .catch(error => {});
   },
   methods: {
     logout() {
-      axios.get("/init").then(response => {
-        app.user = null;
-        this.$router.replace("auth");
-      });
+      localStorage.removeItem("token");
+      store.commit("logoutUser");
+      this.$router.push({ name: "auth" });
     }
   }
 };

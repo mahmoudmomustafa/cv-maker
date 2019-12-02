@@ -1,5 +1,6 @@
 import './bootstrap'
-import './app'
+// import './app'
+import store from './store'
 import VueRouter from 'vue-router'
 import Auth from "./views/Auth.vue";
 import Home from "./views/Home.vue";
@@ -29,7 +30,7 @@ const routes = [{
         meta: {
             requiresAuth: true
         }
-    },  {
+    }, {
         path: '/cvs/:cvId/edit',
         name: 'cv',
         component: Show,
@@ -40,7 +41,7 @@ const routes = [{
     {
         path: '/cvs/create',
         component: Create,
-        name:"create",
+        name: "create",
         meta: {
             requiresAuth: true
         },
@@ -53,12 +54,17 @@ let router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    const currentUser = app.user;
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-
-    if (!currentUser && requiresAuth) next("auth");
-    else if (currentUser && !requiresAuth) next("dashboard");
-    else next();
+    // redirect to login page
+    if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
+        next('auth')
+        return
+    }
+    // if logged in redirect to dashboard
+    if (to.path === '/auth' && store.state.isLoggedIn) {
+        next('dashboard')
+        return
+    }
+    next()
 });
 
 export default router;
