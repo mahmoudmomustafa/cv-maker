@@ -260,8 +260,8 @@
               </SectionComp>
               <!-- btn submit -->
               <div class="form-group mb-0">
-                <div class="col-md-8 m-auto text-center">
-                  <button type="submit" class="btn btn-primary w-100 heartbeat">Create Cv</button>
+                <div class="col-md-8">
+                  <button type="submit" class="btn btn-primary w-100">Edit</button>
                 </div>
               </div>
             </div>
@@ -275,7 +275,7 @@
                       placeholder="Summary Description"
                       class="form-control"
                       id="summary-des"
-                      v-model="cv.info.summary_des"
+                      v-model="cv.info.summary"
                     ></textarea>
                   </div>
                 </div>
@@ -392,7 +392,7 @@
                           name="job_title"
                           placeholder="Job title"
                           autocomplete="none"
-                          v-model="job.job_title"
+                          v-model="job.title"
                         />
                       </div>
                     </div>
@@ -406,7 +406,7 @@
                           name="company_name"
                           placeholder="Company"
                           autocomplete="none"
-                          v-model="job.company_name"
+                          v-model="job.company"
                         />
                       </div>
                     </div>
@@ -417,7 +417,7 @@
                           placeholder="Education Description"
                           class="form-control"
                           id="job-des"
-                          v-model="job.job_des"
+                          v-model="job.desc"
                         ></textarea>
                       </div>
                     </div>
@@ -428,10 +428,10 @@
                           id="job_start_date"
                           type="text"
                           class="form-control"
-                          name="job_start_date"
+                          name="start_date"
                           placeholder="Start date"
                           autocomplete="none"
-                          v-model="job.job_start_date"
+                          v-model="job.start_date"
                         />
                       </div>
                     </div>
@@ -442,10 +442,10 @@
                           id="job_end_date"
                           type="text"
                           class="form-control"
-                          name="job_end_date"
+                          name="end_date"
                           placeholder="End date"
                           autocomplete="none"
-                          v-model="job.job_end_date"
+                          v-model="job.end_date"
                         />
                       </div>
                     </div>
@@ -459,14 +459,14 @@
                   </template>
                 </ModelComp>
                 <!-- edu div -->
-                <div class="p-1" v-for="(val ,key) in jobs" :key="key">
-                  <h4 class="text-sm font-bold" v-if="val.job_title" v-text="val.job_title"></h4>
+                <div class="p-1" v-for="(val ,key) in cv.experiences" :key="key">
+                  <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
-                    v-if="val.company_name"
-                    v-text="val.company_name"
+                    v-if="val.company"
+                    v-text="val.company"
                   ></h5>
-                  <div class="inline text-sm" v-text="val.job_start_date +'-'+ val.job_end_date"></div>
+                  <div class="inline text-sm" v-text="val.start_date +'-'+ val.end_date"></div>
                 </div>
                 <!-- add -->
                 <div class="add flex justify-end">
@@ -501,7 +501,7 @@ import ModelComp from "../components/ModelComp.vue";
 import SectionComp from "../components/SectionComp.vue";
 
 export default {
-  name: "create",
+  name: "edit",
   components: {
     NavComp,
     ModelComp,
@@ -518,19 +518,11 @@ export default {
           location: "",
           website: "",
           website2: "",
-          summary_des: ""
+          summary: ""
         },
         experiences: {},
         educations: {}
       },
-      // name: "",
-      // number: "",
-      // email: "",
-      // title: "",
-      // location: "",
-      // website: "",
-      // website2: "",
-      // summary_des: "",
       educations: [],
       edu: {
         degree_name: "",
@@ -539,15 +531,13 @@ export default {
         edu_start_date: "",
         edu_end_date: ""
       },
-      jobs: [],
       job: {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       },
-      skills: "",
       sections: [],
       newSec: {
         secHeading: "",
@@ -568,6 +558,10 @@ export default {
     // hide add section
     $(".dropmenu").slideUp();
   },
+  created() {
+    // get cv data
+    this.getCv();
+  },
   methods: {
     // show dropmenu
     drop() {
@@ -575,7 +569,7 @@ export default {
     },
     // add education
     addEdu() {
-      this.educations.push(this.edu);
+      this.cv.educations.push(this.edu);
       this.edu = {
         degree_name: "",
         school_name: "",
@@ -586,13 +580,13 @@ export default {
     },
     // adding new job
     addJob() {
-      this.jobs.push(this.job);
+      this.cv.experiences.push(this.job);
       this.job = {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       };
     },
     // add text sections
@@ -615,13 +609,11 @@ export default {
         endDate: ""
       };
     },
-    createCv() {
+    getCv() {
       axios
-        .post("/cvs/create", this.cv)
+        .get("/cvs/" + this.$route.params.cvId + "/edit")
         .then(response => {
-          // this.$router.replace("/dashboard");
-          this.$router.push({ name: 'cvs' })
-          console.log(response);
+          this.cv = response.data;
         })
         .catch(error => {
           console.log(error.response);
@@ -646,6 +638,17 @@ main {
     &:hover {
       color: rgb(88, 88, 88);
       background: rgb(247, 247, 247);
+    }
+  }
+  .btn-primary {
+    border: none;
+    cursor: pointer;
+    transition: 500ms ease;
+    background: #735c87;
+    padding: 0.7rem 2rem;
+    box-shadow: 5px 4px 0px #673ab7;
+    &:hover {
+      box-shadow: none;
     }
   }
   .form-control {

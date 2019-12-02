@@ -2056,6 +2056,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
   data: function data() {
@@ -2346,6 +2357,91 @@ __webpack_require__.r(__webpack_exports__);
     log: function log() {
       this.log = !this.log;
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/CVS.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/NavComp.vue */ "./resources/js/components/NavComp.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "cvs",
+  components: {
+    NavComp: _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      cvs: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/cvs").then(function (response) {
+      _this.cvs = response.data;
+    })["catch"](function (error) {
+      console.log(error.response);
+    });
+  },
+  methods: {
+    getCvs: function getCvs() {}
   }
 });
 
@@ -2852,6 +2948,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2864,14 +2968,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: "",
-      number: "",
-      email: "",
-      title: "",
-      location: "",
-      website: "",
-      website2: "",
-      summary_des: "",
+      cv: {
+        info: {
+          name: "",
+          number: "",
+          email: "",
+          title: "",
+          location: "",
+          website: "",
+          website2: "",
+          summary_des: ""
+        },
+        experiences: {},
+        educations: {}
+      },
+      // name: "",
+      // number: "",
+      // email: "",
+      // title: "",
+      // location: "",
+      // website: "",
+      // website2: "",
+      // summary_des: "",
       educations: [],
       edu: {
         degree_name: "",
@@ -2955,6 +3073,20 @@ __webpack_require__.r(__webpack_exports__);
         startDate: "",
         endDate: ""
       };
+    },
+    createCv: function createCv() {
+      var _this = this;
+
+      axios.post("/cvs/create", this.cv).then(function (response) {
+        // this.$router.replace("/dashboard");
+        _this.$router.push({
+          name: 'cvs'
+        });
+
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
     }
   }
 });
@@ -3000,6 +3132,501 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "home",
+  components: {
+    NavComp: _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      user: app.user
+    };
+  },
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/NavComp.vue */ "./resources/js/components/NavComp.vue");
+/* harmony import */ var _components_ModelComp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ModelComp.vue */ "./resources/js/components/ModelComp.vue");
+/* harmony import */ var _components_SectionComp_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SectionComp.vue */ "./resources/js/components/SectionComp.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3031,17 +3658,127 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "home",
+  name: "edit",
   components: {
-    NavComp: _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    NavComp: _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ModelComp: _components_ModelComp_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SectionComp: _components_SectionComp_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
-      user: app.user
+      cv: {
+        info: {
+          name: "",
+          number: "",
+          email: "",
+          title: "",
+          location: "",
+          website: "",
+          website2: "",
+          summary: ""
+        },
+        experiences: {},
+        educations: {}
+      },
+      educations: [],
+      edu: {
+        degree_name: "",
+        school_name: "",
+        edu_des: "",
+        edu_start_date: "",
+        edu_end_date: ""
+      },
+      job: {
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
+      },
+      sections: [],
+      newSec: {
+        secHeading: "",
+        secDesc: ""
+      },
+      datedSections: [],
+      newDateSec: {
+        datedHeading: "",
+        datedTitle: "",
+        datedOrg: "",
+        dateDesc: "",
+        startDate: "",
+        endDate: ""
+      }
     };
   },
-  methods: {}
+  mounted: function mounted() {
+    // hide add section
+    $(".dropmenu").slideUp();
+  },
+  created: function created() {
+    // get cv data
+    this.getCv();
+  },
+  methods: {
+    // show dropmenu
+    drop: function drop() {
+      $(".dropmenu").slideToggle();
+    },
+    // add education
+    addEdu: function addEdu() {
+      this.cv.educations.push(this.edu);
+      this.edu = {
+        degree_name: "",
+        school_name: "",
+        edu_des: "",
+        edu_start_date: "",
+        edu_end_date: ""
+      };
+    },
+    // adding new job
+    addJob: function addJob() {
+      this.cv.experiences.push(this.job);
+      this.job = {
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
+      };
+    },
+    // add text sections
+    addSec: function addSec() {
+      this.sections.push(this.newSec);
+      this.newSec = {
+        secHeading: "",
+        secDesc: ""
+      };
+    },
+    // add dated sections
+    addDatedSec: function addDatedSec() {
+      this.datedSections.push(this.newDateSec);
+      this.newDateSec = {
+        datedHeading: "",
+        datedTitle: "",
+        datedOrg: "",
+        dateDesc: "",
+        startDate: "",
+        endDate: ""
+      };
+    },
+    getCv: function getCv() {
+      var _this = this;
+
+      axios.get("/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
+        _this.cv = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3077,7 +3814,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "nav[data-v-cd941992] {\n  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);\n}\nnav .navbar-brand[data-v-cd941992] {\n  font-family: \"Merienda One\", cursive;\n}", ""]);
+exports.push([module.i, "nav[data-v-cd941992] {\n  background: white;\n  padding-top: 0;\n  padding-bottom: 0;\n}\nnav .navbar-brand[data-v-cd941992] {\n  font-family: \"Merienda One\", cursive;\n  color: #735c87;\n}\nnav .navbar-brand[data-v-cd941992]:hover {\n  color: #735c87 !important;\n}\nnav .navbar-toggler[data-v-cd941992] {\n  color: #735c87 !important;\n  border-color: none;\n  box-shadow: none;\n  outline: none;\n}\nnav .nav-link[data-v-cd941992] {\n  color: #735c87 !important;\n  font-weight: 600;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  border-radius: 2px;\n  margin: 0.5rem;\n  background: aliceblue;\n  padding: 0.3rem 1rem !important;\n  box-shadow: 3px 3px;\n}\nnav .nav-link[data-v-cd941992]:hover {\n  background: #c6a4e4;\n  color: #2c2c2c !important;\n  box-shadow: none;\n}", ""]);
 
 // exports
 
@@ -3141,6 +3878,25 @@ exports.push([module.i, ".log-img {\n  position: relative;\n  background-image: 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
+
+// module
+exports.push([module.i, "main[data-v-1a00d1de] {\n  font-family: \"Raleway\", sans-serif;\n}\nsection .body .create[data-v-1a00d1de] {\n  min-height: 300px;\n  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n}\nsection .body .create[data-v-1a00d1de]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #fda085 !important;\n}\nsection .body .cv[data-v-1a00d1de] {\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n}\nsection .body .cv[data-v-1a00d1de]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #8d8d8d !important;\n}\nsection .body .cv .px-6[data-v-1a00d1de] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  height: 100%;\n}\nsection a[data-v-1a00d1de]:hover {\n  color: #252525;\n  text-decoration: none;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& ***!
@@ -3172,7 +3928,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-63cd6604] {\n  font-family: \"Raleway\", sans-serif;\n}\nheader[data-v-63cd6604] {\n  min-height: 300px;\n}\nheader .flex[data-v-63cd6604] {\n  background-image: -webkit-gradient(linear, left bottom, left top, from(#e6e9f0), to(#eef1f5));\n  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);\n  border-radius: 10px;\n  flex-wrap: wrap;\n}\nheader .flex .welcome .btn[data-v-63cd6604] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #735c87;\n}\nheader .flex .welcome .btn[data-v-63cd6604]:hover {\n  -webkit-transform: scale(0.98);\n          transform: scale(0.98);\n}\nheader .flex .img[data-v-63cd6604] {\n  background-image: url(/imgs/cv.jpg);\n  height: 300px;\n  background-size: cover;\n  border-radius: 10px;\n  background-repeat: no-repeat;\n  background-position: center;\n  margin: 0.5rem;\n}\nsection .body .create[data-v-63cd6604] {\n  min-height: 300px;\n  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n}\nsection .body .create[data-v-63cd6604]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #fda085 !important;\n}\nsection .body .cv[data-v-63cd6604] {\n  min-height: 300px;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n  min-height: 300px;\n}\nsection .body .cv[data-v-63cd6604]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #8d8d8d !important;\n}", ""]);
+exports.push([module.i, "main[data-v-63cd6604] {\n  font-family: \"Raleway\", sans-serif;\n}\nheader[data-v-63cd6604] {\n  min-height: 300px;\n}\nheader .flex[data-v-63cd6604] {\n  background-image: -webkit-gradient(linear, left bottom, left top, from(#e6e9f0), to(#eef1f5));\n  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);\n  border-radius: 10px;\n  flex-wrap: wrap;\n  background-color: #ebebeb;\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%23ebebeb' width='11' height='11'/%3E%3Crect fill='%23eaebeb' x='10' width='11' height='11'/%3E%3Crect fill='%23eaebeb' y='10' width='11' height='11'/%3E%3Crect fill='%23e9ebeb' x='20' width='11' height='11'/%3E%3Crect fill='%23e8ebeb' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%23e7ebeb' y='20' width='11' height='11'/%3E%3Crect fill='%23e7ebeb' x='30' width='11' height='11'/%3E%3Crect fill='%23e6ebeb' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23e5ebeb' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23e5eceb' y='30' width='11' height='11'/%3E%3Crect fill='%23e4eceb' x='40' width='11' height='11'/%3E%3Crect fill='%23e3eceb' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23e2eceb' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23e2eceb' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23e1eceb' y='40' width='11' height='11'/%3E%3Crect fill='%23e0eceb' x='50' width='11' height='11'/%3E%3Crect fill='%23dfeceb' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23dfeceb' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23deeceb' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23ddeceb' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23dceceb' y='50' width='11' height='11'/%3E%3Crect fill='%23dceceb' x='60' width='11' height='11'/%3E%3Crect fill='%23dbeceb' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23daeceb' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23d9eceb' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23d9eceb' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23d8eceb' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23d7edeb' x='70' width='11' height='11'/%3E%3Crect fill='%23d6edeb' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23d6edeb' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23d5edea' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23d4edea' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23d3edea' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23d3edea' x='80' width='11' height='11'/%3E%3Crect fill='%23d2edea' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23d1edea' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23d0edea' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23d0edea' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23cfedea' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23ceedea' x='90' width='11' height='11'/%3E%3Crect fill='%23cdedea' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23ccedea' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23ccedea' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23cbedea' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23caedea' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23c9edea' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23c9edea' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23c8edea' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23c7eeea' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23c6eeea' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23c5eeea' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23c5eeea' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23c4eeea' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23c3eeea' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23c2eeea' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23c1eeea' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23c0eeea' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23c0eeea' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23bfeeea' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23beeeea' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E\");\n  background-size: cover;\n}\nheader .welcome .btn[data-v-63cd6604] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #735c87;\n  padding: 0.7rem 2rem;\n  box-shadow: 5px 4px 0px #673ab7;\n}\nheader .welcome .btn[data-v-63cd6604]:hover {\n  box-shadow: none;\n}\nheader .img[data-v-63cd6604] {\n  background-image: url(/imgs/dash.gif);\n  height: 400px;\n  background-size: cover;\n  border-radius: 10px;\n  background-repeat: no-repeat;\n  background-position: center;\n  margin: 0.5rem;\n}\nsection .body .create[data-v-63cd6604] {\n  min-height: 300px;\n  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n}\nsection .body .create[data-v-63cd6604]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #fda085 !important;\n}\nsection .body .cv[data-v-63cd6604] {\n  min-height: 300px;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  margin: 0.5rem;\n  min-height: 300px;\n}\nsection .body .cv[data-v-63cd6604]:hover {\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n  box-shadow: 5px 6px 0px #8d8d8d !important;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
+
+// module
+exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #735c87;\n  padding: 0.7rem 2rem;\n  box-shadow: 5px 4px 0px #673ab7;\n}\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -14460,6 +15235,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& ***!
@@ -14499,6 +15304,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=style&index=0&id=63cd6604&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Home.vue?vue&type=style&index=0&id=63cd6604&scoped=true&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -15476,14 +16311,12 @@ var render = function() {
   return _c(
     "nav",
     {
-      staticClass: "navbar navbar-expand-md navbar-dark bg-dark shadow-sm",
+      staticClass: "navbar navbar-expand-md navbar-dark shadow-sm",
       attrs: { id: "navbar" }
     },
     [
       _c("div", { staticClass: "container" }, [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-          _vm._v("Loki")
-        ]),
+        _c("a", { staticClass: "navbar-brand" }, [_vm._v("Loki")]),
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
@@ -15494,9 +16327,48 @@ var render = function() {
             attrs: { id: "navbarSupportedContent" }
           },
           [
-            _c("ul", { staticClass: "navbar-nav mr-auto" }),
+            _c("ul", { staticClass: "navbar-nav mr-auto flex flex-row" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/dashboard" } },
+                    [_vm._v("Dashboard")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/cvs" } },
+                    [_vm._v("CVS")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/cvs/create" } },
+                    [_vm._v("Create")]
+                  )
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
-            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c("ul", { staticClass: "navbar-nav ml-auto flex flex-row" }, [
               _c("li", { staticClass: "nav-item" }, [
                 _c(
                   "a",
@@ -15513,6 +16385,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "nav-link pl-0",
+                    staticStyle: { padding: ".2rem .5rem !important" },
                     attrs: {
                       "data-toggle": "tooltip",
                       "data-placement": "bottom",
@@ -15548,7 +16421,7 @@ var staticRenderFns = [
           "aria-label": "Toggle navigation"
         }
       },
-      [_c("i", { staticClass: "lni-angle-double-down" })]
+      [_c("i", { staticClass: "fas fa-bars" })]
     )
   }
 ]
@@ -15992,6 +16865,144 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "main" },
+    [
+      _c("NavComp"),
+      _vm._v(" "),
+      _c("main", [
+        _c("div", { staticClass: "container" }, [
+          _c("section", [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "body p-4 flex flex-wrap" },
+              [
+                _vm.cvs !== []
+                  ? _c(
+                      "div",
+                      { staticClass: "div flex flex-wrap" },
+                      _vm._l(_vm.cvs, function(cv) {
+                        return _c(
+                          "div",
+                          {
+                            key: cv.id,
+                            staticClass:
+                              "w-full md:w-64 rounded overflow-hidden shadow-lg bg-white cv"
+                          },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "link",
+                                attrs: {
+                                  to: { name: "cv", params: { cvId: cv.id } }
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "px-6 py-4" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "font-bold text-xl mb-2" },
+                                    [_vm._v("ID : " + _vm._s(cv.id))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("p", {
+                                    staticClass:
+                                      "text-black text-3xl font-bold",
+                                    domProps: { textContent: _vm._s(cv.title) }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "text-gray-700 text-xs font-bold mt-3"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Updated at : " + _vm._s(cv.updated_at)
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: "/cvs/create" } }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "w-64 bg-white rounded overflow-hidden shadow create"
+                    },
+                    [
+                      _c("div", { staticClass: "px-6 py-4 text-center" }, [
+                        _c(
+                          "div",
+                          { staticClass: "font-bold text-xl font-bold mb-2" },
+                          [_vm._v("New Cv")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "font-bold text-xl mb-2" }, [
+                          _c("i", { staticClass: "fas fa-plus" })
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header" }, [
+      _c("div", { staticClass: "p-4" }, [
+        _c("h2", { staticClass: "text-2xl" }, [_vm._v("Your Resumes")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true& ***!
@@ -16015,1316 +17026,1401 @@ var render = function() {
       _vm._v(" "),
       _c("main", [
         _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "flex flex-wrap m-2" }, [
-            _c(
-              "div",
-              { staticClass: "w-full md:w-1/2" },
-              [
+          _c(
+            "form",
+            {
+              staticClass: "w-100",
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.createCv($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "flex flex-wrap m-2" }, [
                 _c(
                   "div",
-                  { staticClass: "add-sec m-2" },
+                  { staticClass: "w-full md:w-1/2" },
                   [
-                    _c("div", { staticClass: "dropdown bg-white" }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "dropdown",
-                          on: {
-                            click: function($event) {
-                              return _vm.drop()
-                            }
-                          }
-                        },
-                        [_vm._v("Add section")]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(0)
-                    ]),
-                    _vm._v(" "),
-                    _c("ModelComp", {
-                      attrs: {
-                        "model-head": "Add text section",
-                        id: "add-section"
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "body",
-                          fn: function() {
-                            return [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newSec.secHeading,
-                                          expression: "newSec.secHeading"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        name: "secHeading",
-                                        placeholder: "Section Heading"
-                                      },
-                                      domProps: {
-                                        value: _vm.newSec.secHeading
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
+                    _c(
+                      "div",
+                      { staticClass: "add-sec m-2" },
+                      [
+                        _c("div", { staticClass: "dropdown bg-white" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "dropdown",
+                              on: {
+                                click: function($event) {
+                                  return _vm.drop()
+                                }
+                              }
+                            },
+                            [_vm._v("Add section")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add text section",
+                            id: "add-section"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newSec.secHeading,
+                                              expression: "newSec.secHeading"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: "secHeading",
+                                            placeholder: "Section Heading"
+                                          },
+                                          domProps: {
+                                            value: _vm.newSec.secHeading
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newSec,
+                                                "secHeading",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
-                                          _vm.$set(
-                                            _vm.newSec,
-                                            "secHeading",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("div", { staticClass: "m-auto w-full" }, [
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.newSec.secDesc,
-                                        expression: "newSec.secDesc"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      placeholder: "Section Description",
-                                      id: "section-des"
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "m-auto w-full" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newSec.secDesc,
+                                              expression: "newSec.secDesc"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder: "Section Description",
+                                            id: "section-des"
+                                          },
+                                          domProps: {
+                                            value: _vm.newSec.secDesc
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newSec,
+                                                "secDesc",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addSec }
                                     },
-                                    domProps: { value: _vm.newSec.secDesc },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.newSec,
-                                          "secDesc",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              ])
-                            ]
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add custom dated section",
+                            id: "add-datedSection"
                           },
-                          proxy: true
-                        },
-                        {
-                          key: "save",
-                          fn: function() {
-                            return [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-primary bg-blue-500 border-0 text-sm",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addSec }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    }),
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.newDateSec.datedHeading,
+                                              expression:
+                                                "newDateSec.datedHeading"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: "datedHeading",
+                                            placeholder: "Dated Heading"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedHeading
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedHeading",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedTitle,
+                                              expression:
+                                                "newDateSec.datedTitle"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "degree_name",
+                                            type: "text",
+                                            name: "datedTitle",
+                                            placeholder: "Title",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedTitle
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedTitle",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedOrg,
+                                              expression: "newDateSec.datedOrg"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "school_name",
+                                            type: "text",
+                                            name: "DatedOrg",
+                                            placeholder: "Orgnization",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedOrg
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedOrg",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedDesc,
+                                              expression: "newDateSec.datedDesc"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "dated-des"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedDesc
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedDesc",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.startDate,
+                                              expression: "newDateSec.startDate"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.startDate
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "startDate",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.endDate,
+                                              expression: "newDateSec.endDate"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.endDate
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "endDate",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addDatedSec }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("ModelComp", {
-                      attrs: {
-                        "model-head": "Add custom dated section",
-                        id: "add-datedSection"
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "inf",
+                        attrs: { "section-head": "Personal info." }
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "body",
-                          fn: function() {
-                            return [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.datedHeading,
-                                          expression: "newDateSec.datedHeading"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        name: "datedHeading",
-                                        placeholder: "Dated Heading"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.datedHeading
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "datedHeading",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.datedTitle,
-                                          expression: "newDateSec.datedTitle"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "degree_name",
-                                        type: "text",
-                                        name: "datedTitle",
-                                        placeholder: "Title",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.datedTitle
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "datedTitle",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.datedOrg,
-                                          expression: "newDateSec.datedOrg"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "school_name",
-                                        type: "text",
-                                        name: "DatedOrg",
-                                        placeholder: "Orgnization",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.datedOrg
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "datedOrg",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("textarea", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.datedDesc,
-                                          expression: "newDateSec.datedDesc"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        placeholder: "Education Description",
-                                        id: "dated-des"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.datedDesc
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "datedDesc",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.startDate,
-                                          expression: "newDateSec.startDate"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "edu_end_date",
-                                        type: "text",
-                                        name: "edu_end_date",
-                                        placeholder: "Start date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.startDate
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "startDate",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDateSec.endDate,
-                                          expression: "newDateSec.endDate"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "edu_end_date",
-                                        type: "text",
-                                        name: "edu_end_date",
-                                        placeholder: "End date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.newDateSec.endDate
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.newDateSec,
-                                            "endDate",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "save",
-                          fn: function() {
-                            return [
-                              _c(
-                                "button",
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
                                 {
-                                  staticClass:
-                                    "btn btn-primary bg-blue-500 border-0 text-sm",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addDatedSec }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    })
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.name,
+                                  expression: "cv.info.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "name",
+                                type: "text",
+                                name: "name",
+                                placeholder: "Full Name",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.email,
+                                  expression: "cv.info.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "email",
+                                type: "email",
+                                name: "email",
+                                placeholder: "Email Address",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.number,
+                                  expression: "cv.info.number"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "number",
+                                type: "text",
+                                name: "number",
+                                placeholder: "Phone Number",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.number },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "number",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.location,
+                                  expression: "cv.info.location"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "location",
+                                type: "text",
+                                name: "location",
+                                placeholder: "Location",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.location },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "location",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.title,
+                                  expression: "cv.info.title"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "title",
+                                type: "text",
+                                name: "title",
+                                placeholder: "Headline / current title",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.website,
+                                  expression: "cv.info.website"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "website",
+                                type: "text",
+                                name: "website",
+                                placeholder: "Personal Website",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.website },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.website2,
+                                  expression: "cv.info.website2"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "website2",
+                                type: "text",
+                                name: "website2",
+                                placeholder: "Personal Website",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.website2 },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website2",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
                   ],
                   1
                 ),
                 _vm._v(" "),
                 _c(
-                  "SectionComp",
-                  {
-                    staticClass: "inf",
-                    attrs: { "section-head": "Personal info." }
-                  },
+                  "div",
+                  { staticClass: "w-full md:w-1/2" },
                   [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.name,
-                              expression: "name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "name",
-                            type: "text",
-                            name: "name",
-                            placeholder: "Full Name",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.name = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.email,
-                              expression: "email"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "email",
-                            type: "email",
-                            name: "email",
-                            placeholder: "Email Address",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.email = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.number,
-                              expression: "number"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "number",
-                            type: "text",
-                            name: "number",
-                            placeholder: "Phone Number",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.number },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.number = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.location,
-                              expression: "location"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "location",
-                            type: "text",
-                            name: "location",
-                            placeholder: "Location",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.location },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.location = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.title,
-                              expression: "title"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "title",
-                            type: "text",
-                            name: "title",
-                            placeholder: "Headline / current title",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.title },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.title = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.website,
-                              expression: "website"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "website",
-                            type: "text",
-                            name: "website",
-                            placeholder: "Personal Website",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.website },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.website = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.website2,
-                              expression: "website2"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "website2",
-                            type: "text",
-                            name: "website2",
-                            placeholder: "Personal Website",
-                            autocomplete: "none"
-                          },
-                          domProps: { value: _vm.website2 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.website2 = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "w-full md:w-1/2" },
-              [
-                _c(
-                  "SectionComp",
-                  {
-                    staticClass: "summary",
-                    attrs: { "section-head": "Summary" }
-                  },
-                  [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "m-auto w-full" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.summary_des,
-                              expression: "summary_des"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            placeholder: "Summary Description",
-                            id: "summary-des"
-                          },
-                          domProps: { value: _vm.summary_des },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.summary_des = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "SectionComp",
-                  {
-                    staticClass: "edu",
-                    attrs: { "section-head": "Education" }
-                  },
-                  [
-                    _c("ModelComp", {
-                      attrs: { "model-head": "Add Education", id: "add-edu" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "body",
-                          fn: function() {
-                            return [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.edu.degree_name,
-                                          expression: "edu.degree_name"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "degree_name",
-                                        type: "text",
-                                        name: "degree_name",
-                                        placeholder: "Degree name",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.edu.degree_name },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.edu,
-                                            "degree_name",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.edu.school_name,
-                                          expression: "edu.school_name"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "school_name",
-                                        type: "text",
-                                        name: "school_name",
-                                        placeholder: "school_name",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.edu.school_name },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.edu,
-                                            "school_name",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("textarea", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.edu.edu_des,
-                                          expression: "edu.edu_des"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        placeholder: "Education Description",
-                                        id: "edu-des"
-                                      },
-                                      domProps: { value: _vm.edu.edu_des },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.edu,
-                                            "edu_des",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.edu.edu_start_date,
-                                          expression: "edu.edu_start_date"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "edu_end_date",
-                                        type: "text",
-                                        name: "edu_end_date",
-                                        placeholder: "Start date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.edu.edu_start_date
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.edu,
-                                            "edu_start_date",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.edu.edu_end_date,
-                                          expression: "edu.edu_end_date"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "edu_end_date",
-                                        type: "text",
-                                        name: "edu_end_date",
-                                        placeholder: "End date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.edu.edu_end_date },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.edu,
-                                            "edu_end_date",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "save",
-                          fn: function() {
-                            return [
-                              _c(
-                                "button",
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "summary",
+                        attrs: { "section-head": "Summary" }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "m-auto w-full" }, [
+                            _c("textarea", {
+                              directives: [
                                 {
-                                  staticClass:
-                                    "btn btn-primary bg-blue-500 border-0 text-sm",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addEdu }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.educations, function(val, key) {
-                      return _c("div", { key: key, staticClass: "p-1" }, [
-                        _vm.edu.degree_name
-                          ? _c("h4", {
-                              staticClass: "text-sm font-bold",
-                              domProps: {
-                                textContent: _vm._s(_vm.edu.degree_name)
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.edu.school_name
-                          ? _c("h5", {
-                              staticClass:
-                                "text-sm font-bold text-gray-700 inline",
-                              domProps: {
-                                textContent: _vm._s(_vm.edu.school_name)
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", {
-                          staticClass: "inline",
-                          domProps: {
-                            textContent: _vm._s(
-                              _vm.edu.edu_start_date +
-                                "-" +
-                                _vm.edu.edu_end_date
-                            )
-                          }
-                        })
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "add flex justify-end" }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "text-sm text-blue-400",
-                          attrs: {
-                            "data-toggle": "modal",
-                            "data-target": "#add-edu"
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-plus" }),
-                          _vm._v(" Add\n              ")
-                        ]
-                      )
-                    ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "SectionComp",
-                  {
-                    staticClass: "exper",
-                    attrs: { "section-head": "Experience" }
-                  },
-                  [
-                    _c("ModelComp", {
-                      attrs: { "model-head": "Add Experience", id: "add-ex" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "body",
-                          fn: function() {
-                            return [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.job.job_title,
-                                          expression: "job.job_title"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "job_title",
-                                        type: "text",
-                                        name: "job_title",
-                                        placeholder: "Job title",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.job.job_title },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.job,
-                                            "job_title",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.job.company_name,
-                                          expression: "job.company_name"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "company_name",
-                                        type: "text",
-                                        name: "company_name",
-                                        placeholder: "Company",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.job.company_name },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.job,
-                                            "company_name",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("textarea", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.job.job_des,
-                                          expression: "job.job_des"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        placeholder: "Education Description",
-                                        id: "job-des"
-                                      },
-                                      domProps: { value: _vm.job.job_des },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.job,
-                                            "job_des",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.job.job_start_date,
-                                          expression: "job.job_start_date"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "job_start_date",
-                                        type: "text",
-                                        name: "job_start_date",
-                                        placeholder: "Start date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: {
-                                        value: _vm.job.job_start_date
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.job,
-                                            "job_start_date",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "md:w-4/5 w-full m-auto" },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.job.job_end_date,
-                                          expression: "job.job_end_date"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        id: "job_end_date",
-                                        type: "text",
-                                        name: "job_end_date",
-                                        placeholder: "End date",
-                                        autocomplete: "none"
-                                      },
-                                      domProps: { value: _vm.job.job_end_date },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.job,
-                                            "job_end_date",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]
-                          },
-                          proxy: true
-                        },
-                        {
-                          key: "save",
-                          fn: function() {
-                            return [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-primary bg-blue-500 border-0 text-sm",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addJob }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.jobs, function(val, key) {
-                      return _c("div", { key: key, staticClass: "p-1" }, [
-                        val.job_title
-                          ? _c("h4", {
-                              staticClass: "text-sm font-bold",
-                              domProps: { textContent: _vm._s(val.job_title) }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        val.company_name
-                          ? _c("h5", {
-                              staticClass:
-                                "text-sm font-bold text-gray-700 inline",
-                              domProps: {
-                                textContent: _vm._s(val.company_name)
-                              }
-                            })
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", {
-                          staticClass: "inline text-sm",
-                          domProps: {
-                            textContent: _vm._s(
-                              val.job_start_date + "-" + val.job_end_date
-                            )
-                          }
-                        })
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "add flex justify-end" }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "text-sm text-blue-400",
-                          attrs: {
-                            "data-toggle": "modal",
-                            "data-target": "#add-ex"
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-plus" }),
-                          _vm._v(" Add\n              ")
-                        ]
-                      )
-                    ])
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.sections, function(val, key) {
-                  return _c(
-                    "SectionComp",
-                    { key: key, attrs: { "section-head": val.secHeading } },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "m-auto w-full" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: val.secDesc,
-                                expression: "val.secDesc"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { placeholder: val.secDesc },
-                            domProps: { value: val.secDesc },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.summary_des,
+                                  expression: "cv.info.summary_des"
                                 }
-                                _vm.$set(val, "secDesc", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                placeholder: "Summary Description",
+                                id: "summary-des"
+                              },
+                              domProps: { value: _vm.cv.info.summary_des },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "summary_des",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          })
+                            })
+                          ])
                         ])
-                      ])
-                    ]
-                  )
-                })
-              ],
-              2
-            )
-          ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "edu",
+                        attrs: { "section-head": "Education" }
+                      },
+                      [
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add Education",
+                            id: "add-edu"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.degree_name,
+                                              expression: "edu.degree_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "degree_name",
+                                            type: "text",
+                                            name: "degree_name",
+                                            placeholder: "Degree name",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.degree_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "degree_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.school_name,
+                                              expression: "edu.school_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "school_name",
+                                            type: "text",
+                                            name: "school_name",
+                                            placeholder: "school_name",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.school_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "school_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_des,
+                                              expression: "edu.edu_des"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "edu-des"
+                                          },
+                                          domProps: { value: _vm.edu.edu_des },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_des",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_start_date,
+                                              expression: "edu.edu_start_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.edu_start_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_start_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_end_date,
+                                              expression: "edu.edu_end_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.edu_end_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_end_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addEdu }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.educations, function(val, key) {
+                          return _c("div", { key: key, staticClass: "p-1" }, [
+                            _vm.edu.degree_name
+                              ? _c("h4", {
+                                  staticClass: "text-sm font-bold",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.edu.degree_name)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.edu.school_name
+                              ? _c("h5", {
+                                  staticClass:
+                                    "text-sm font-bold text-gray-700 inline",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.edu.school_name)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "inline",
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.edu.edu_start_date +
+                                    "-" +
+                                    _vm.edu.edu_end_date
+                                )
+                              }
+                            })
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "add flex justify-end" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-sm text-blue-400",
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#add-edu"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add\n                ")
+                            ]
+                          )
+                        ])
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "exper",
+                        attrs: { "section-head": "Experience" }
+                      },
+                      [
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add Experience",
+                            id: "add-ex"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.job_title,
+                                              expression: "job.job_title"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_title",
+                                            type: "text",
+                                            name: "job_title",
+                                            placeholder: "Job title",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.job.job_title
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "job_title",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.company_name,
+                                              expression: "job.company_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "company_name",
+                                            type: "text",
+                                            name: "company_name",
+                                            placeholder: "Company",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.job.company_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "company_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.job_des,
+                                              expression: "job.job_des"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "job-des"
+                                          },
+                                          domProps: { value: _vm.job.job_des },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "job_des",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.job_start_date,
+                                              expression: "job.job_start_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_start_date",
+                                            type: "text",
+                                            name: "job_start_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.job.job_start_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "job_start_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.job_end_date,
+                                              expression: "job.job_end_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_end_date",
+                                            type: "text",
+                                            name: "job_end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.job.job_end_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "job_end_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addJob }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.jobs, function(val, key) {
+                          return _c("div", { key: key, staticClass: "p-1" }, [
+                            val.job_title
+                              ? _c("h4", {
+                                  staticClass: "text-sm font-bold",
+                                  domProps: {
+                                    textContent: _vm._s(val.job_title)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            val.company_name
+                              ? _c("h5", {
+                                  staticClass:
+                                    "text-sm font-bold text-gray-700 inline",
+                                  domProps: {
+                                    textContent: _vm._s(val.company_name)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "inline text-sm",
+                              domProps: {
+                                textContent: _vm._s(
+                                  val.job_start_date + "-" + val.job_end_date
+                                )
+                              }
+                            })
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "add flex justify-end" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-sm text-blue-400",
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#add-ex"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add\n                ")
+                            ]
+                          )
+                        ])
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.sections, function(val, key) {
+                      return _c(
+                        "SectionComp",
+                        { key: key, attrs: { "section-head": val.secHeading } },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("div", { staticClass: "m-auto w-full" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: val.secDesc,
+                                    expression: "val.secDesc"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { placeholder: val.secDesc },
+                                domProps: { value: val.secDesc },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      val,
+                                      "secDesc",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]
+          )
         ])
       ])
     ],
@@ -17345,7 +18441,7 @@ var staticRenderFns = [
         },
         [
           _c("i", { staticClass: "fas fa-plus text-sm mr-1" }),
-          _vm._v(" Add text section\n                ")
+          _vm._v(" Add text section\n                  ")
         ]
       ),
       _vm._v(" "),
@@ -17357,9 +18453,26 @@ var staticRenderFns = [
         },
         [
           _c("i", { staticClass: "fas fa-plus text-sm mr-1" }),
-          _vm._v(" Add custom dated section\n                ")
+          _vm._v(" Add custom dated section\n                  ")
         ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group mb-0" }, [
+      _c("div", { staticClass: "col-md-8 m-auto text-center" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary w-100 heartbeat",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Create Cv")]
+        )
+      ])
     ])
   }
 ]
@@ -17395,36 +18508,45 @@ var render = function() {
           _c("header", [
             _c("div", { staticClass: "m-4 flex shadow" }, [
               _c("div", { staticClass: "w-full md:w-1/2" }, [
-                _c("div", { staticClass: "p-3 welcome" }, [
-                  _c(
-                    "h2",
-                    { staticClass: "text-3xl font-bold m-1 px-2 py-3" },
-                    [_vm._v("Welcome " + _vm._s(_vm.user.name))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "h3",
-                    { staticClass: "text-xl font-bold m-1 p-3 text-gray-800" },
-                    [_vm._v("Build your own Cv by one tap ..")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "text-lg font-bold m-1 p-3 text-gray-800" },
-                    [_vm._v("Easy, Right !")]
-                  ),
-                  _vm._v(" "),
-                  _c("button", { staticClass: "btn btn-primary m-3" }, [
-                    _vm._v("Create Cv")
-                  ])
-                ])
+                _c(
+                  "div",
+                  { staticClass: "p-3 welcome" },
+                  [
+                    _c(
+                      "h2",
+                      { staticClass: "text-5xl font-bold m-1 px-2 py-3" },
+                      [_vm._v("Welcome " + _vm._s(_vm.user.name))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h3",
+                      {
+                        staticClass: "text-2xl font-bold m-1 p-3 text-gray-800"
+                      },
+                      [_vm._v("Build your own Cv by one tap ..")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass: "text-lg font-bold m-1 p-3 text-gray-800"
+                      },
+                      [_vm._v("Easy, Right !")]
+                    ),
+                    _vm._v(" "),
+                    _c("router-link", { attrs: { to: "/cvs/create" } }, [
+                      _c("button", { staticClass: "btn btn-primary m-3" }, [
+                        _vm._v("Create Cv")
+                      ])
+                    ])
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _vm._m(0)
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
+          ])
         ])
       ])
     ],
@@ -17439,63 +18561,1469 @@ var staticRenderFns = [
     return _c("div", { staticClass: "w-full md:w-1/2" }, [
       _c("div", { staticClass: "img w-full shadow" })
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "main" },
+    [
+      _c("NavComp"),
+      _vm._v(" "),
+      _c("main", [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "form",
+            {
+              staticClass: "w-100",
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.createCv($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "flex flex-wrap m-2" }, [
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "add-sec m-2" },
+                      [
+                        _c("div", { staticClass: "dropdown bg-white" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "dropdown",
+                              on: {
+                                click: function($event) {
+                                  return _vm.drop()
+                                }
+                              }
+                            },
+                            [_vm._v("Add section")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add text section",
+                            id: "add-section"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newSec.secHeading,
+                                              expression: "newSec.secHeading"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: "secHeading",
+                                            placeholder: "Section Heading"
+                                          },
+                                          domProps: {
+                                            value: _vm.newSec.secHeading
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newSec,
+                                                "secHeading",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "m-auto w-full" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newSec.secDesc,
+                                              expression: "newSec.secDesc"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder: "Section Description",
+                                            id: "section-des"
+                                          },
+                                          domProps: {
+                                            value: _vm.newSec.secDesc
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newSec,
+                                                "secDesc",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addSec }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add custom dated section",
+                            id: "add-datedSection"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.newDateSec.datedHeading,
+                                              expression:
+                                                "newDateSec.datedHeading"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: "datedHeading",
+                                            placeholder: "Dated Heading"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedHeading
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedHeading",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedTitle,
+                                              expression:
+                                                "newDateSec.datedTitle"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "degree_name",
+                                            type: "text",
+                                            name: "datedTitle",
+                                            placeholder: "Title",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedTitle
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedTitle",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedOrg,
+                                              expression: "newDateSec.datedOrg"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "school_name",
+                                            type: "text",
+                                            name: "DatedOrg",
+                                            placeholder: "Orgnization",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedOrg
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedOrg",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.datedDesc,
+                                              expression: "newDateSec.datedDesc"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "dated-des"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.datedDesc
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "datedDesc",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.startDate,
+                                              expression: "newDateSec.startDate"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.startDate
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "startDate",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.newDateSec.endDate,
+                                              expression: "newDateSec.endDate"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.newDateSec.endDate
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.newDateSec,
+                                                "endDate",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addDatedSec }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "inf",
+                        attrs: { "section-head": "Personal info." }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.name,
+                                  expression: "cv.info.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "name",
+                                type: "text",
+                                name: "name",
+                                placeholder: "Full Name",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.email,
+                                  expression: "cv.info.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "email",
+                                type: "email",
+                                name: "email",
+                                placeholder: "Email Address",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.number,
+                                  expression: "cv.info.number"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "number",
+                                type: "text",
+                                name: "number",
+                                placeholder: "Phone Number",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.number },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "number",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.location,
+                                  expression: "cv.info.location"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "location",
+                                type: "text",
+                                name: "location",
+                                placeholder: "Location",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.location },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "location",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.title,
+                                  expression: "cv.info.title"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "title",
+                                type: "text",
+                                name: "title",
+                                placeholder: "Headline / current title",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.website,
+                                  expression: "cv.info.website"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "website",
+                                type: "text",
+                                name: "website",
+                                placeholder: "Personal Website",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.website },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.website2,
+                                  expression: "cv.info.website2"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "website2",
+                                type: "text",
+                                name: "website2",
+                                placeholder: "Personal Website",
+                                autocomplete: "none"
+                              },
+                              domProps: { value: _vm.cv.info.website2 },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website2",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/2" },
+                  [
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "summary",
+                        attrs: { "section-head": "Summary" }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("div", { staticClass: "m-auto w-full" }, [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.cv.info.summary,
+                                  expression: "cv.info.summary"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                placeholder: "Summary Description",
+                                id: "summary-des"
+                              },
+                              domProps: { value: _vm.cv.info.summary },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "summary",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "edu",
+                        attrs: { "section-head": "Education" }
+                      },
+                      [
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add Education",
+                            id: "add-edu"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.degree_name,
+                                              expression: "edu.degree_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "degree_name",
+                                            type: "text",
+                                            name: "degree_name",
+                                            placeholder: "Degree name",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.degree_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "degree_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.school_name,
+                                              expression: "edu.school_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "school_name",
+                                            type: "text",
+                                            name: "school_name",
+                                            placeholder: "school_name",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.school_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "school_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_des,
+                                              expression: "edu.edu_des"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "edu-des"
+                                          },
+                                          domProps: { value: _vm.edu.edu_des },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_des",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_start_date,
+                                              expression: "edu.edu_start_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.edu_start_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_start_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.edu.edu_end_date,
+                                              expression: "edu.edu_end_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "edu_end_date",
+                                            type: "text",
+                                            name: "edu_end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.edu.edu_end_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.edu,
+                                                "edu_end_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addEdu }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.educations, function(val, key) {
+                          return _c("div", { key: key, staticClass: "p-1" }, [
+                            _vm.edu.degree_name
+                              ? _c("h4", {
+                                  staticClass: "text-sm font-bold",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.edu.degree_name)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.edu.school_name
+                              ? _c("h5", {
+                                  staticClass:
+                                    "text-sm font-bold text-gray-700 inline",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.edu.school_name)
+                                  }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "inline",
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.edu.edu_start_date +
+                                    "-" +
+                                    _vm.edu.edu_end_date
+                                )
+                              }
+                            })
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "add flex justify-end" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-sm text-blue-400",
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#add-edu"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add\n                ")
+                            ]
+                          )
+                        ])
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "SectionComp",
+                      {
+                        staticClass: "exper",
+                        attrs: { "section-head": "Experience" }
+                      },
+                      [
+                        _c("ModelComp", {
+                          attrs: {
+                            "model-head": "Add Experience",
+                            id: "add-ex"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "body",
+                              fn: function() {
+                                return [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.title,
+                                              expression: "job.title"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_title",
+                                            type: "text",
+                                            name: "job_title",
+                                            placeholder: "Job title",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: { value: _vm.job.title },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "title",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.company,
+                                              expression: "job.company"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "company_name",
+                                            type: "text",
+                                            name: "company_name",
+                                            placeholder: "Company",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: { value: _vm.job.company },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "company",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("textarea", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.desc,
+                                              expression: "job.desc"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            placeholder:
+                                              "Education Description",
+                                            id: "job-des"
+                                          },
+                                          domProps: { value: _vm.job.desc },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "desc",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.start_date,
+                                              expression: "job.start_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_start_date",
+                                            type: "text",
+                                            name: "start_date",
+                                            placeholder: "Start date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: {
+                                            value: _vm.job.start_date
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "start_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "md:w-4/5 w-full m-auto" },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.job.end_date,
+                                              expression: "job.end_date"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "job_end_date",
+                                            type: "text",
+                                            name: "end_date",
+                                            placeholder: "End date",
+                                            autocomplete: "none"
+                                          },
+                                          domProps: { value: _vm.job.end_date },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.job,
+                                                "end_date",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            },
+                            {
+                              key: "save",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary bg-blue-500 border-0 text-sm",
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.addJob }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.cv.experiences, function(val, key) {
+                          return _c("div", { key: key, staticClass: "p-1" }, [
+                            val.title
+                              ? _c("h4", {
+                                  staticClass: "text-sm font-bold",
+                                  domProps: { textContent: _vm._s(val.title) }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            val.company
+                              ? _c("h5", {
+                                  staticClass:
+                                    "text-sm font-bold text-gray-700 inline",
+                                  domProps: { textContent: _vm._s(val.company) }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "inline text-sm",
+                              domProps: {
+                                textContent: _vm._s(
+                                  val.start_date + "-" + val.end_date
+                                )
+                              }
+                            })
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "add flex justify-end" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-sm text-blue-400",
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#add-ex"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Add\n                ")
+                            ]
+                          )
+                        ])
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.sections, function(val, key) {
+                      return _c(
+                        "SectionComp",
+                        { key: key, attrs: { "section-head": val.secHeading } },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("div", { staticClass: "m-auto w-full" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: val.secDesc,
+                                    expression: "val.secDesc"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { placeholder: val.secDesc },
+                                domProps: { value: val.secDesc },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      val,
+                                      "secDesc",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "dropmenu w-100" }, [
+      _c(
+        "span",
+        {
+          staticStyle: { "font-weight": "100", color: "#575757" },
+          attrs: { "data-toggle": "modal", "data-target": "#add-section" }
+        },
+        [
+          _c("i", { staticClass: "fas fa-plus text-sm mr-1" }),
+          _vm._v(" Add text section\n                  ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticStyle: { "font-weight": "100", color: "#575757" },
+          attrs: { "data-toggle": "modal", "data-target": "#add-datedSection" }
+        },
+        [
+          _c("i", { staticClass: "fas fa-plus text-sm mr-1" }),
+          _vm._v(" Add custom dated section\n                  ")
+        ]
+      )
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", [
-      _c("div", { staticClass: "header" }, [
-        _c("div", { staticClass: "p-4" }, [
-          _c("h2", { staticClass: "text-2xl" }, [_vm._v("Your Resumes")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "body p-4 flex flex-wrap" }, [
+    return _c("div", { staticClass: "form-group mb-0" }, [
+      _c("div", { staticClass: "col-md-8" }, [
         _c(
-          "div",
-          { staticClass: "w-64 rounded overflow-hidden shadow-lg bg-white cv" },
-          [
-            _c("div", { staticClass: "px-6 py-4" }, [
-              _c("div", { staticClass: "font-bold text-xl mb-2" }, [
-                _vm._v("ID : 512351")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-gray-800 text-sm font-bold" }, [
-                _vm._v("Updated at :")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-gray-700 text-base text-center" }, [
-                _vm._v("29-Nov-19")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "px-6 py-4 text-center" }, [
-              _c(
-                "button",
-                { staticClass: "btn btn-outline-primary rounded-full" },
-                [_vm._v("Edit")]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "w-64 bg-white rounded overflow-hidden shadow create"
-          },
-          [
-            _c("div", { staticClass: "px-6 py-4 text-center" }, [
-              _c("div", { staticClass: "font-bold text-xl font-bold mb-2" }, [
-                _vm._v("New Cv")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold text-xl mb-2" }, [
-                _c("i", { staticClass: "fas fa-plus" })
-              ])
-            ])
-          ]
+          "button",
+          { staticClass: "btn btn-primary w-100", attrs: { type: "submit" } },
+          [_vm._v("Edit")]
         )
       ])
     ])
@@ -33006,12 +35534,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_Auth_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Auth.vue */ "./resources/js/views/Auth.vue");
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue");
-/* harmony import */ var _views_Create_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Create.vue */ "./resources/js/views/Create.vue");
+/* harmony import */ var _views_CVS_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/CVS.vue */ "./resources/js/views/CVS.vue");
+/* harmony import */ var _views_Create_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Create.vue */ "./resources/js/views/Create.vue");
+/* harmony import */ var _views_Show_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/Show.vue */ "./resources/js/views/Show.vue");
 
 
 
 
 
+
+
+ // import Preview from "./views/Preview.vue";
 
 var routes = [{
   path: '/auth',
@@ -33028,8 +35561,23 @@ var routes = [{
     requiresAuth: true
   }
 }, {
-  path: '/create',
-  component: _views_Create_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  path: '/cvs',
+  component: _views_CVS_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: "cvs",
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/cvs/:cvId/edit',
+  name: 'cv',
+  component: _views_Show_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/cvs/create',
+  component: _views_Create_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: "create",
   meta: {
     requiresAuth: true
   }
@@ -33133,6 +35681,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Auth_vue_vue_type_template_id_4072a947___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Auth_vue_vue_type_template_id_4072a947___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/CVS.vue":
+/*!************************************!*\
+  !*** ./resources/js/views/CVS.vue ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CVS.vue?vue&type=template&id=1a00d1de&scoped=true& */ "./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true&");
+/* harmony import */ var _CVS_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CVS.vue?vue&type=script&lang=js& */ "./resources/js/views/CVS.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& */ "./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CVS_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1a00d1de",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/CVS.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/CVS.vue?vue&type=script&lang=js&":
+/*!*************************************************************!*\
+  !*** ./resources/js/views/CVS.vue?vue&type=script&lang=js& ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CVS.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=style&index=0&id=1a00d1de&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_style_index_0_id_1a00d1de_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CVS.vue?vue&type=template&id=1a00d1de&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/CVS.vue?vue&type=template&id=1a00d1de&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CVS_vue_vue_type_template_id_1a00d1de_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -33307,6 +35942,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_63cd6604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_63cd6604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Show.vue":
+/*!*************************************!*\
+  !*** ./resources/js/views/Show.vue ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Show.vue?vue&type=template&id=523c17c8&scoped=true& */ "./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&");
+/* harmony import */ var _Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Show.vue?vue&type=script&lang=js& */ "./resources/js/views/Show.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "523c17c8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Show.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/Show.vue?vue&type=script&lang=js&":
+/*!**************************************************************!*\
+  !*** ./resources/js/views/Show.vue?vue&type=script&lang=js& ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=template&id=523c17c8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -9,10 +9,12 @@
           <div class="m-4 flex shadow">
             <div class="w-full md:w-1/2">
               <div class="p-3 welcome">
-                <h2 class="text-3xl font-bold m-1 px-2 py-3">Welcome {{user.name}}</h2>
-                <h3 class="text-xl font-bold m-1 p-3 text-gray-800">Build your own Cv by one tap ..</h3>
+                <h2 class="text-5xl font-bold m-1 px-2 py-3">Welcome {{user.name}}</h2>
+                <h3 class="text-2xl font-bold m-1 p-3 text-gray-800">Build your own Cv by one tap ..</h3>
                 <p class="text-lg font-bold m-1 p-3 text-gray-800">Easy, Right !</p>
-                <button class="btn btn-primary m-3">Create Cv</button>
+                <router-link to="/cvs/create">
+                  <button class="btn btn-primary m-3">Create Cv</button>
+                </router-link>
               </div>
             </div>
             <div class="w-full md:w-1/2">
@@ -20,38 +22,6 @@
             </div>
           </div>
         </header>
-        <!-- cvs -->
-        <section>
-          <div class="header">
-            <div class="p-4">
-              <h2 class="text-2xl">Your Resumes</h2>
-            </div>
-          </div>
-          <div class="body p-4 flex flex-wrap">
-            <div class="w-64 rounded overflow-hidden shadow-lg bg-white cv">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">ID : 512351</div>
-                <p
-                  class="text-gray-800 text-sm font-bold"
-                >Updated at :</p>
-                <p
-                  class="text-gray-700 text-base text-center"
-                >29-Nov-19</p>
-              </div>
-              <div class="px-6 py-4 text-center">
-                <button class="btn btn-outline-primary rounded-full">Edit</button>
-              </div>
-            </div>
-            <div class="w-64 bg-white rounded overflow-hidden shadow create">
-              <div class="px-6 py-4 text-center">
-                <div class="font-bold text-xl font-bold mb-2">New Cv</div>
-                <div class="font-bold text-xl mb-2">
-                  <i class="fas fa-plus"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
   </div>
@@ -85,28 +55,35 @@ header {
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     border-radius: 10px;
     flex-wrap: wrap;
-    .welcome {
-      .btn {
-        border: none;
-        cursor: pointer;
-        transition: 500ms ease;
-        background: #735c87;
-        &:hover {
-          transform: scale(0.98);
-        }
+    background-color: #ebebeb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%23ebebeb' width='11' height='11'/%3E%3Crect fill='%23eaebeb' x='10' width='11' height='11'/%3E%3Crect fill='%23eaebeb' y='10' width='11' height='11'/%3E%3Crect fill='%23e9ebeb' x='20' width='11' height='11'/%3E%3Crect fill='%23e8ebeb' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%23e7ebeb' y='20' width='11' height='11'/%3E%3Crect fill='%23e7ebeb' x='30' width='11' height='11'/%3E%3Crect fill='%23e6ebeb' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23e5ebeb' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23e5eceb' y='30' width='11' height='11'/%3E%3Crect fill='%23e4eceb' x='40' width='11' height='11'/%3E%3Crect fill='%23e3eceb' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23e2eceb' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23e2eceb' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23e1eceb' y='40' width='11' height='11'/%3E%3Crect fill='%23e0eceb' x='50' width='11' height='11'/%3E%3Crect fill='%23dfeceb' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23dfeceb' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23deeceb' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23ddeceb' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23dceceb' y='50' width='11' height='11'/%3E%3Crect fill='%23dceceb' x='60' width='11' height='11'/%3E%3Crect fill='%23dbeceb' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23daeceb' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23d9eceb' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23d9eceb' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23d8eceb' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23d7edeb' x='70' width='11' height='11'/%3E%3Crect fill='%23d6edeb' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23d6edeb' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23d5edea' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23d4edea' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23d3edea' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23d3edea' x='80' width='11' height='11'/%3E%3Crect fill='%23d2edea' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23d1edea' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23d0edea' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23d0edea' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23cfedea' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23ceedea' x='90' width='11' height='11'/%3E%3Crect fill='%23cdedea' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23ccedea' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23ccedea' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23cbedea' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23caedea' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23c9edea' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23c9edea' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23c8edea' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23c7eeea' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23c6eeea' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23c5eeea' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23c5eeea' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23c4eeea' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23c3eeea' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23c2eeea' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23c1eeea' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23c0eeea' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23c0eeea' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23bfeeea' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23beeeea' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+  }
+  .welcome {
+    .btn {
+      border: none;
+      cursor: pointer;
+      transition: 500ms ease;
+      background: #735c87;
+      padding: 0.7rem 2rem;
+      box-shadow: 5px 4px 0px #673ab7;
+      &:hover {
+        box-shadow: none;
+        // transform: scale(0.98);
       }
     }
-    .img {
-      background-image: url(/imgs/cv.jpg);
-      height: 300px;
-      background-size: cover;
-      border-radius: 10px;
-      background-repeat: no-repeat;
-      background-position: center;
-      margin: 0.5rem;
-    }
+  }
+  .img {
+    background-image: url(/imgs/dash.gif);
+    height: 400px;
+    background-size: cover;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0.5rem;
   }
 }
+
 section {
   .body {
     .create {
@@ -116,7 +93,7 @@ section {
       justify-content: center;
       align-items: center;
       transition: 500ms ease;
-      margin: .5rem;
+      margin: 0.5rem;
 
       &:hover {
         transform: scale(1.03);
@@ -126,7 +103,7 @@ section {
     .cv {
       min-height: 300px;
       transition: 500ms ease;
-      margin: .5rem;
+      margin: 0.5rem;
       min-height: 300px;
 
       &:hover {
