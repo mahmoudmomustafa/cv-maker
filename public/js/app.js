@@ -2973,6 +2973,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2996,40 +3025,29 @@ __webpack_require__.r(__webpack_exports__);
           website2: "",
           summary_des: ""
         },
-        experiences: {},
-        educations: {}
+        experiences: [],
+        educations: [],
+        sections: [],
+        datedSections: []
       },
-      name: "",
-      number: "",
-      email: "",
-      title: "",
-      location: "",
-      website: "",
-      website2: "",
-      summary_des: "",
-      educations: [],
       edu: {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       },
-      jobs: [],
       job: {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       },
-      skills: "",
-      sections: [],
       newSec: {
         secHeading: "",
         secDesc: ""
       },
-      datedSections: [],
       newDateSec: {
         datedHeading: "",
         datedTitle: "",
@@ -3051,29 +3069,29 @@ __webpack_require__.r(__webpack_exports__);
     },
     // add education
     addEdu: function addEdu() {
-      this.educations.push(this.edu);
+      this.cv.educations.push(this.edu);
       this.edu = {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       };
     },
     // adding new job
     addJob: function addJob() {
-      this.jobs.push(this.job);
+      this.cv.experiences.push(this.job);
       this.job = {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       };
     },
     // add text sections
     addSec: function addSec() {
-      this.sections.push(this.newSec);
+      this.cv.sections.push(this.newSec);
       this.newSec = {
         secHeading: "",
         secDesc: ""
@@ -3081,7 +3099,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     // add dated sections
     addDatedSec: function addDatedSec() {
-      this.datedSections.push(this.newDateSec);
+      this.cv.datedSections.push(this.newDateSec);
       this.newDateSec = {
         datedHeading: "",
         datedTitle: "",
@@ -3091,10 +3109,23 @@ __webpack_require__.r(__webpack_exports__);
         endDate: ""
       };
     },
+    // delete education
+    deleteEdu: function deleteEdu(key) {
+      this.$delete(this.cv.educations, key);
+    },
+    // delete experince
+    deleteExp: function deleteExp(key) {
+      this.$delete(this.cv.experiences, key);
+    },
+    // delete experince
+    deleteSec: function deleteSec(key) {
+      this.$delete(this.cv.sections, key);
+    },
+    // submit cv
     createCv: function createCv() {
       var _this = this;
 
-      axios.post("/cvs/create", this.$data).then(function (response) {
+      axios.post("/cvs/create", this.cv).then(function (response) {
         // this.$router.replace("/dashboard");
         _this.$router.push({
           name: "cvs"
@@ -3685,6 +3716,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3708,10 +3775,10 @@ __webpack_require__.r(__webpack_exports__);
           website2: "",
           summary: ""
         },
-        experiences: {},
-        educations: {}
+        experiences: [],
+        educations: [],
+        sections: []
       },
-      educations: [],
       edu: {
         degree_name: "",
         school_name: "",
@@ -3726,12 +3793,10 @@ __webpack_require__.r(__webpack_exports__);
         start_date: "",
         end_date: ""
       },
-      sections: [],
       newSec: {
         secHeading: "",
         secDesc: ""
       },
-      datedSections: [],
       newDateSec: {
         datedHeading: "",
         datedTitle: "",
@@ -3779,7 +3844,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     // add text sections
     addSec: function addSec() {
-      this.sections.push(this.newSec);
+      this.cv.sections.push(this.newSec);
       this.newSec = {
         secHeading: "",
         secDesc: ""
@@ -3797,20 +3862,74 @@ __webpack_require__.r(__webpack_exports__);
         endDate: ""
       };
     },
+    // get cv data
     getCv: function getCv() {
       var _this = this;
 
       axios.get("/cvs/" + this.$route.params.cvId).then(function (response) {
+        console.log(response.data);
         _this.cv = response.data;
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
-    deleteCV: function deleteCV() {
+    //uodate cv
+    updateCv: function updateCv() {
       var _this2 = this;
 
-      axios["delete"]("/cvs/" + this.$route.params.cvId).then(function (response) {
+      axios.put("/cvs/" + this.$route.params.cvId, this.cv).then(function (response) {
+        // this.$router.replace("/dashboard");
         _this2.$router.push({
+          name: "cvs"
+        });
+
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    // delete ducation
+    deleteEdu: function deleteEdu(key, id) {
+      var _this3 = this;
+
+      axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
+        console.log(response.data);
+
+        _this3.$delete(_this3.cv.educations, key);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    // delete experince
+    deleteExp: function deleteExp(key, id) {
+      var _this4 = this;
+
+      axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
+        console.log(response.data);
+
+        _this4.$delete(_this4.cv.experiences, key);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    // delete section
+    deleteSec: function deleteSec(key, id) {
+      var _this5 = this;
+
+      axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
+        console.log(response.data);
+
+        _this5.$delete(_this5.cv.sections, key);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    // delete cv
+    deleteCV: function deleteCV() {
+      var _this6 = this;
+
+      axios["delete"]("/cvs/" + this.$route.params.cvId).then(function (response) {
+        _this6.$router.push({
           name: "cvs"
         });
       })["catch"](function (error) {
@@ -3948,7 +4067,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-08197cdb] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-08197cdb] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-08197cdb]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .form-control[data-v-08197cdb] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-08197cdb] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain .add[data-v-08197cdb] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-08197cdb] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "main[data-v-08197cdb] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-08197cdb] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-08197cdb]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .form-control[data-v-08197cdb] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-08197cdb] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-minus-circle.text-xs[data-v-08197cdb] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n}\nmain i.fas.fa-minus-circle.text-xs[data-v-08197cdb]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain .add[data-v-08197cdb] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-08197cdb] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -3986,7 +4105,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n}\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -17519,8 +17638,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.name,
-                                  expression: "name"
+                                  value: _vm.cv.info.name,
+                                  expression: "cv.info.name"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17531,13 +17650,17 @@ var render = function() {
                                 placeholder: "Full Name",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.name },
+                              domProps: { value: _vm.cv.info.name },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.name = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "name",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17551,8 +17674,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.email,
-                                  expression: "email"
+                                  value: _vm.cv.info.email,
+                                  expression: "cv.info.email"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17563,13 +17686,17 @@ var render = function() {
                                 placeholder: "Email Address",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.email },
+                              domProps: { value: _vm.cv.info.email },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.email = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "email",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17583,8 +17710,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.number,
-                                  expression: "number"
+                                  value: _vm.cv.info.number,
+                                  expression: "cv.info.number"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17595,13 +17722,17 @@ var render = function() {
                                 placeholder: "Phone Number",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.number },
+                              domProps: { value: _vm.cv.info.number },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.number = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "number",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17615,8 +17746,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.location,
-                                  expression: "location"
+                                  value: _vm.cv.info.location,
+                                  expression: "cv.info.location"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17627,13 +17758,17 @@ var render = function() {
                                 placeholder: "Location",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.location },
+                              domProps: { value: _vm.cv.info.location },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.location = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "location",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17647,8 +17782,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.title,
-                                  expression: "title"
+                                  value: _vm.cv.info.title,
+                                  expression: "cv.info.title"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17659,13 +17794,17 @@ var render = function() {
                                 placeholder: "Headline / current title",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.title },
+                              domProps: { value: _vm.cv.info.title },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.title = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "title",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17679,8 +17818,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.website,
-                                  expression: "website"
+                                  value: _vm.cv.info.website,
+                                  expression: "cv.info.website"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17691,13 +17830,17 @@ var render = function() {
                                 placeholder: "Personal Website",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.website },
+                              domProps: { value: _vm.cv.info.website },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.website = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17711,8 +17854,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.website2,
-                                  expression: "website2"
+                                  value: _vm.cv.info.website2,
+                                  expression: "cv.info.website2"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17723,13 +17866,17 @@ var render = function() {
                                 placeholder: "Personal Website",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.website2 },
+                              domProps: { value: _vm.cv.info.website2 },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.website2 = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "website2",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17761,8 +17908,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.summary_des,
-                                  expression: "summary_des"
+                                  value: _vm.cv.info.summary_des,
+                                  expression: "cv.info.summary_des"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17770,13 +17917,17 @@ var render = function() {
                                 placeholder: "Summary Description",
                                 id: "summary-des"
                               },
-                              domProps: { value: _vm.summary_des },
+                              domProps: { value: _vm.cv.info.summary_des },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.summary_des = $event.target.value
+                                  _vm.$set(
+                                    _vm.cv.info,
+                                    "summary_des",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -17821,8 +17972,7 @@ var render = function() {
                                             id: "degree_name",
                                             type: "text",
                                             name: "degree_name",
-                                            placeholder: "Degree name",
-                                            autocomplete: "none"
+                                            placeholder: "Degree name"
                                           },
                                           domProps: {
                                             value: _vm.edu.degree_name
@@ -17863,8 +18013,7 @@ var render = function() {
                                             id: "school_name",
                                             type: "text",
                                             name: "school_name",
-                                            placeholder: "school_name",
-                                            autocomplete: "none"
+                                            placeholder: "School name"
                                           },
                                           domProps: {
                                             value: _vm.edu.school_name
@@ -17934,8 +18083,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.edu.edu_start_date,
-                                              expression: "edu.edu_start_date"
+                                              value: _vm.edu.edu_start,
+                                              expression: "edu.edu_start"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -17947,7 +18096,7 @@ var render = function() {
                                             autocomplete: "none"
                                           },
                                           domProps: {
-                                            value: _vm.edu.edu_start_date
+                                            value: _vm.edu.edu_start
                                           },
                                           on: {
                                             input: function($event) {
@@ -17956,7 +18105,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.edu,
-                                                "edu_start_date",
+                                                "edu_start",
                                                 $event.target.value
                                               )
                                             }
@@ -17976,8 +18125,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.edu.edu_end_date,
-                                              expression: "edu.edu_end_date"
+                                              value: _vm.edu.edu_end,
+                                              expression: "edu.edu_end"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -17988,9 +18137,7 @@ var render = function() {
                                             placeholder: "End date",
                                             autocomplete: "none"
                                           },
-                                          domProps: {
-                                            value: _vm.edu.edu_end_date
-                                          },
+                                          domProps: { value: _vm.edu.edu_end },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -17998,7 +18145,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.edu,
-                                                "edu_end_date",
+                                                "edu_end",
                                                 $event.target.value
                                               )
                                             }
@@ -18032,23 +18179,39 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm._l(_vm.educations, function(val, key) {
+                        _vm._l(_vm.cv.educations, function(val, key) {
                           return _c("div", { key: key, staticClass: "p-1" }, [
-                            _vm.edu.degree_name
-                              ? _c("h4", {
-                                  staticClass: "text-sm font-bold",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.edu.degree_name)
+                            _c("div", { staticClass: "flex justify-between" }, [
+                              val.degree_name
+                                ? _c("h4", {
+                                    staticClass: "text-sm font-bold",
+                                    domProps: {
+                                      textContent: _vm._s(val.degree_name)
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fas fa-minus-circle text-xs",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "bottom",
+                                  title: "Remove"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteEdu(key)
                                   }
-                                })
-                              : _vm._e(),
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
-                            _vm.edu.school_name
+                            val.school_name
                               ? _c("h5", {
                                   staticClass:
                                     "text-sm font-bold text-gray-700 inline",
                                   domProps: {
-                                    textContent: _vm._s(_vm.edu.school_name)
+                                    textContent: _vm._s(val.school_name)
                                   }
                                 })
                               : _vm._e(),
@@ -18057,9 +18220,7 @@ var render = function() {
                               staticClass: "inline",
                               domProps: {
                                 textContent: _vm._s(
-                                  _vm.edu.edu_start_date +
-                                    "-" +
-                                    _vm.edu.edu_end_date
+                                  val.edu_start + "-" + val.edu_end
                                 )
                               }
                             })
@@ -18113,8 +18274,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.job.job_title,
-                                              expression: "job.job_title"
+                                              value: _vm.job.title,
+                                              expression: "job.title"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -18125,9 +18286,7 @@ var render = function() {
                                             placeholder: "Job title",
                                             autocomplete: "none"
                                           },
-                                          domProps: {
-                                            value: _vm.job.job_title
-                                          },
+                                          domProps: { value: _vm.job.title },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -18135,7 +18294,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.job,
-                                                "job_title",
+                                                "title",
                                                 $event.target.value
                                               )
                                             }
@@ -18155,8 +18314,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.job.company_name,
-                                              expression: "job.company_name"
+                                              value: _vm.job.company,
+                                              expression: "job.company"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -18167,9 +18326,7 @@ var render = function() {
                                             placeholder: "Company",
                                             autocomplete: "none"
                                           },
-                                          domProps: {
-                                            value: _vm.job.company_name
-                                          },
+                                          domProps: { value: _vm.job.company },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -18177,7 +18334,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.job,
-                                                "company_name",
+                                                "company",
                                                 $event.target.value
                                               )
                                             }
@@ -18197,17 +18354,16 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.job.job_des,
-                                              expression: "job.job_des"
+                                              value: _vm.job.desc,
+                                              expression: "job.desc"
                                             }
                                           ],
                                           staticClass: "form-control",
                                           attrs: {
-                                            placeholder:
-                                              "Education Description",
+                                            placeholder: "Job Description",
                                             id: "job-des"
                                           },
-                                          domProps: { value: _vm.job.job_des },
+                                          domProps: { value: _vm.job.desc },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -18215,7 +18371,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.job,
-                                                "job_des",
+                                                "desc",
                                                 $event.target.value
                                               )
                                             }
@@ -18235,8 +18391,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.job.job_start_date,
-                                              expression: "job.job_start_date"
+                                              value: _vm.job.start_date,
+                                              expression: "job.start_date"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -18248,7 +18404,7 @@ var render = function() {
                                             autocomplete: "none"
                                           },
                                           domProps: {
-                                            value: _vm.job.job_start_date
+                                            value: _vm.job.start_date
                                           },
                                           on: {
                                             input: function($event) {
@@ -18257,7 +18413,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.job,
-                                                "job_start_date",
+                                                "start_date",
                                                 $event.target.value
                                               )
                                             }
@@ -18277,8 +18433,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.job.job_end_date,
-                                              expression: "job.job_end_date"
+                                              value: _vm.job.end_date,
+                                              expression: "job.end_date"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -18289,9 +18445,7 @@ var render = function() {
                                             placeholder: "End date",
                                             autocomplete: "none"
                                           },
-                                          domProps: {
-                                            value: _vm.job.job_end_date
-                                          },
+                                          domProps: { value: _vm.job.end_date },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -18299,7 +18453,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.job,
-                                                "job_end_date",
+                                                "end_date",
                                                 $event.target.value
                                               )
                                             }
@@ -18333,24 +18487,36 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm._l(_vm.jobs, function(val, key) {
+                        _vm._l(_vm.cv.experiences, function(val, key) {
                           return _c("div", { key: key, staticClass: "p-1" }, [
-                            val.job_title
-                              ? _c("h4", {
-                                  staticClass: "text-sm font-bold",
-                                  domProps: {
-                                    textContent: _vm._s(val.job_title)
+                            _c("div", { staticClass: "flex justify-between" }, [
+                              val.title
+                                ? _c("h4", {
+                                    staticClass: "text-sm font-bold",
+                                    domProps: { textContent: _vm._s(val.title) }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fas fa-minus-circle text-xs",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "bottom",
+                                  title: "Remove"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteExp(key)
                                   }
-                                })
-                              : _vm._e(),
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
-                            val.company_name
+                            val.company
                               ? _c("h5", {
                                   staticClass:
                                     "text-sm font-bold text-gray-700 inline",
-                                  domProps: {
-                                    textContent: _vm._s(val.company_name)
-                                  }
+                                  domProps: { textContent: _vm._s(val.company) }
                                 })
                               : _vm._e(),
                             _vm._v(" "),
@@ -18358,7 +18524,7 @@ var render = function() {
                               staticClass: "inline text-sm",
                               domProps: {
                                 textContent: _vm._s(
-                                  val.job_start_date + "-" + val.job_end_date
+                                  val.start_date + "-" + val.end_date
                                 )
                               }
                             })
@@ -18385,7 +18551,7 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _vm._l(_vm.sections, function(val, key) {
+                    _vm._l(_vm.cv.sections, function(val, key) {
                       return _c(
                         "SectionComp",
                         { key: key, attrs: { "section-head": val.secHeading } },
@@ -18402,7 +18568,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { placeholder: val.secDesc },
+                                attrs: { placeholder: val.secHeading },
                                 domProps: { value: val.secDesc },
                                 on: {
                                   input: function($event) {
@@ -18418,6 +18584,22 @@ var render = function() {
                                 }
                               })
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex justify-end" }, [
+                            _c("i", {
+                              staticClass: "fas fa-minus-circle text-xs",
+                              attrs: {
+                                "data-toggle": "tooltip",
+                                "data-placement": "bottom",
+                                title: "Remove"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteSec(key)
+                                }
+                              }
+                            })
                           ])
                         ]
                       )
@@ -18607,7 +18789,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.createCv($event)
+                  return _vm.updateCv($event)
                 }
               }
             },
@@ -19596,23 +19778,39 @@ var render = function() {
                           ])
                         }),
                         _vm._v(" "),
-                        _vm._l(_vm.educations, function(val, key) {
+                        _vm._l(_vm.cv.educations, function(val, key) {
                           return _c("div", { key: key, staticClass: "p-1" }, [
-                            _vm.edu.degree_name
-                              ? _c("h4", {
-                                  staticClass: "text-sm font-bold",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.edu.degree_name)
+                            _c("div", { staticClass: "flex justify-between" }, [
+                              val.degree_name
+                                ? _c("h4", {
+                                    staticClass: "text-sm font-bold",
+                                    domProps: {
+                                      textContent: _vm._s(val.degree_name)
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fas fa-minus-circle text-xs",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "bottom",
+                                  title: "Remove"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteEdu(key, val.id)
                                   }
-                                })
-                              : _vm._e(),
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
-                            _vm.edu.school_name
+                            val.school_name
                               ? _c("h5", {
                                   staticClass:
                                     "text-sm font-bold text-gray-700 inline",
                                   domProps: {
-                                    textContent: _vm._s(_vm.edu.school_name)
+                                    textContent: _vm._s(val.school_name)
                                   }
                                 })
                               : _vm._e(),
@@ -19621,9 +19819,7 @@ var render = function() {
                               staticClass: "inline",
                               domProps: {
                                 textContent: _vm._s(
-                                  _vm.edu.edu_start_date +
-                                    "-" +
-                                    _vm.edu.edu_end_date
+                                  val.edu_start + "-" + val.edu_end
                                 )
                               }
                             })
@@ -19893,12 +20089,28 @@ var render = function() {
                         _vm._v(" "),
                         _vm._l(_vm.cv.experiences, function(val, key) {
                           return _c("div", { key: key, staticClass: "p-1" }, [
-                            val.title
-                              ? _c("h4", {
-                                  staticClass: "text-sm font-bold",
-                                  domProps: { textContent: _vm._s(val.title) }
-                                })
-                              : _vm._e(),
+                            _c("div", { staticClass: "flex justify-between" }, [
+                              val.title
+                                ? _c("h4", {
+                                    staticClass: "text-sm font-bold",
+                                    domProps: { textContent: _vm._s(val.title) }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fas fa-minus-circle text-xs",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "bottom",
+                                  title: "Remove"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteExp(key, val.id)
+                                  }
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
                             val.company
                               ? _c("h5", {
@@ -19939,7 +20151,7 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _vm._l(_vm.sections, function(val, key) {
+                    _vm._l(_vm.cv.sections, function(val, key) {
                       return _c(
                         "SectionComp",
                         { key: key, attrs: { "section-head": val.secHeading } },
@@ -19956,7 +20168,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { placeholder: val.secDesc },
+                                attrs: { placeholder: val.secHeading },
                                 domProps: { value: val.secDesc },
                                 on: {
                                   input: function($event) {
@@ -19972,6 +20184,22 @@ var render = function() {
                                 }
                               })
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex justify-end" }, [
+                            _c("i", {
+                              staticClass: "fas fa-minus-circle text-xs",
+                              attrs: {
+                                "data-toggle": "tooltip",
+                                "data-placement": "bottom",
+                                title: "Remove"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteSec(key, val.id)
+                                }
+                              }
+                            })
                           ])
                         ]
                       )
@@ -19985,7 +20213,7 @@ var render = function() {
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Edit")]
+                  [_vm._v("Save")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -20000,15 +20228,7 @@ var render = function() {
                     },
                     on: { click: _vm.deleteCV }
                   },
-                  [
-                    _c("img", {
-                      attrs: {
-                        src: "/imgs/perspective.svg",
-                        width: "25",
-                        alt: "delete"
-                      }
-                    })
-                  ]
+                  [_vm._v("Delete CV")]
                 )
               ])
             ]

@@ -5,7 +5,7 @@
     <!-- main page -->
     <main>
       <div class="container">
-        <form method="post" class="w-100" @submit.prevent="createCv">
+        <form method="post" class="w-100" @submit.prevent="updateCv">
           <div class="flex flex-wrap m-2">
             <!-- left side -->
             <div class="w-full md:w-1/2">
@@ -356,14 +356,23 @@
                   </template>
                 </ModelComp>
                 <!-- edu div -->
-                <div class="p-1" v-for="(val,key) in educations" :key="key">
-                  <h4 class="text-sm font-bold" v-if="edu.degree_name" v-text="edu.degree_name"></h4>
+                <div class="p-1" v-for="(val,key) in cv.educations" :key="key">
+                  <div class="flex justify-between">
+                    <h4 class="text-sm font-bold" v-if="val.degree_name" v-text="val.degree_name"></h4>
+                    <i
+                      class="fas fa-minus-circle text-xs"
+                      @click="deleteEdu(key,val.id)"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Remove"
+                    ></i>
+                  </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
-                    v-if="edu.school_name"
-                    v-text="edu.school_name"
+                    v-if="val.school_name"
+                    v-text="val.school_name"
                   ></h5>
-                  <div class="inline" v-text="edu.edu_start_date +'-'+ edu.edu_end_date"></div>
+                  <div class="inline" v-text="val.edu_start +'-'+ val.edu_end"></div>
                 </div>
                 <div class="add flex justify-end">
                   <span class="text-sm text-blue-400" data-toggle="modal" data-target="#add-edu">
@@ -373,7 +382,7 @@
               </SectionComp>
               <!-- exprince -->
               <SectionComp class="exper" section-head="Experience">
-                <!-- edu model -->
+                <!-- exp model -->
                 <ModelComp model-head="Add Experience" id="add-ex">
                   <template v-slot:body>
                     <!-- job title -->
@@ -452,9 +461,18 @@
                     >Save</button>
                   </template>
                 </ModelComp>
-                <!-- edu div -->
+                <!-- exp div -->
                 <div class="p-1" v-for="(val ,key) in cv.experiences" :key="key">
-                  <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
+                  <div class="flex justify-between">
+                    <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
+                    <i
+                      class="fas fa-minus-circle text-xs"
+                      @click="deleteExp(key,val.id)"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Remove"
+                    ></i>
+                  </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
                     v-if="val.company"
@@ -471,24 +489,42 @@
               </SectionComp>
               <!-- new sections -->
               <SectionComp
-                v-for="(val, key) in sections"
+                v-for="(val, key) in cv.sections"
                 :key="key"
                 v-bind:section-head="val.secHeading"
               >
                 <div class="form-group">
                   <div class="m-auto w-full">
-                    <textarea :placeholder="val.secDesc" class="form-control" v-model="val.secDesc"></textarea>
+                    <textarea
+                      :placeholder="val.secHeading"
+                      class="form-control"
+                      v-model="val.secDesc"
+                    ></textarea>
                   </div>
+                </div>
+                <div class="flex justify-end">
+                  <i
+                    class="fas fa-minus-circle text-xs"
+                    @click="deleteSec(key,val.id)"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Remove"
+                  ></i>
                 </div>
               </SectionComp>
             </div>
           </div>
           <!-- btn submit -->
           <div class="form-group">
-              <button type="submit" class="btn btn-primary">Edit</button>
-              <button type="button" class="btn btn-danger" @click="deleteCV" data-toggle="tooltip" data-placement="right" title="Delete">
-                <img src="/imgs/perspective.svg" width="25" alt="delete">
-              </button>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              @click="deleteCV"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Delete"
+            >Delete CV</button>
           </div>
         </form>
       </div>
@@ -521,10 +557,10 @@ export default {
           website2: "",
           summary: ""
         },
-        experiences: {},
-        educations: {}
+        experiences: [],
+        educations: [],
+        sections: []
       },
-      educations: [],
       edu: {
         degree_name: "",
         school_name: "",
@@ -539,12 +575,10 @@ export default {
         start_date: "",
         end_date: ""
       },
-      sections: [],
       newSec: {
         secHeading: "",
         secDesc: ""
       },
-      datedSections: [],
       newDateSec: {
         datedHeading: "",
         datedTitle: "",
@@ -592,7 +626,7 @@ export default {
     },
     // add text sections
     addSec() {
-      this.sections.push(this.newSec);
+      this.cv.sections.push(this.newSec);
       this.newSec = {
         secHeading: "",
         secDesc: ""
@@ -610,16 +644,68 @@ export default {
         endDate: ""
       };
     },
+    // get cv data
     getCv() {
       axios
         .get("/cvs/" + this.$route.params.cvId)
         .then(response => {
+          console.log(response.data);
           this.cv = response.data;
         })
         .catch(error => {
           console.log(error.response);
         });
     },
+    //uodate cv
+    updateCv() {
+      axios
+        .put("/cvs/"+ this.$route.params.cvId, this.cv)
+        .then(response => {
+          // this.$router.replace("/dashboard");
+          this.$router.push({ name: "cvs" });
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    // delete ducation
+    deleteEdu(key, id) {
+      axios
+        .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id)
+        .then(response => {
+          console.log(response.data);
+          this.$delete(this.cv.educations, key);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    // delete experince
+    deleteExp(key, id) {
+      axios
+        .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id)
+        .then(response => {
+          console.log(response.data);
+          this.$delete(this.cv.experiences, key);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    // delete section
+    deleteSec(key, id) {
+      axios
+        .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
+        .then(response => {
+          console.log(response.data);
+          this.$delete(this.cv.sections, key);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    // delete cv
     deleteCV() {
       axios
         .delete("/cvs/" + this.$route.params.cvId)
@@ -664,8 +750,8 @@ main {
       box-shadow: none;
     }
   }
-  .btn-danger{
-        background: #ff4545;
+  .btn-danger {
+    background: #ff4545;
     box-shadow: 5px 3px 0 #f54646;
   }
   .form-control {
@@ -678,6 +764,15 @@ main {
   .p-1 {
     border-bottom: 1px solid #ebebeb;
     margin-bottom: 3px;
+  }
+  i.fas.fa-minus-circle.text-xs {
+    color: #e1e1e1;
+    transition: 500ms ease;
+    cursor: pointer;
+    &:hover {
+      color: #f35a5a;
+      transform: scale(1.03);
+    }
   }
   .add {
     margin: 0.5rem;

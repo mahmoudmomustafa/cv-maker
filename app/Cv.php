@@ -23,4 +23,9 @@ class Cv extends Model
     {
         return $this->hasMany(Experience::class);
     }
+    // cv has many sections
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
 }

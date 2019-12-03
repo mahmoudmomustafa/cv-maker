@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Education extends Model
+class Section extends Model
 {
-    public $table = "educations";
     // protect inputs
-    protected $fillable = ['degree_name', 'school_name', 'edu_des', 'edu_start', 'edu_end', 'updated_at', 'created_at'];
+    protected $fillable = ['secHeading','secDesc','updated_at', 'created_at'];
     //connect to user
     public function cv()
     {

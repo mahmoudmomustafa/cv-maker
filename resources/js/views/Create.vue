@@ -169,7 +169,7 @@
                       name="name"
                       placeholder="Full Name"
                       autocomplete="none"
-                      v-model="name"
+                      v-model="cv.info.name"
                     />
                   </div>
                 </div>
@@ -183,7 +183,7 @@
                       name="email"
                       placeholder="Email Address"
                       autocomplete="none"
-                      v-model="email"
+                      v-model="cv.info.email"
                     />
                   </div>
                 </div>
@@ -197,7 +197,7 @@
                       name="number"
                       placeholder="Phone Number"
                       autocomplete="none"
-                      v-model="number"
+                      v-model="cv.info.number"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@
                       name="location"
                       placeholder="Location"
                       autocomplete="none"
-                      v-model="location"
+                      v-model="cv.info.location"
                     />
                   </div>
                 </div>
@@ -225,7 +225,7 @@
                       name="title"
                       placeholder="Headline / current title"
                       autocomplete="none"
-                      v-model="title"
+                      v-model="cv.info.title"
                     />
                   </div>
                 </div>
@@ -239,7 +239,7 @@
                       name="website"
                       placeholder="Personal Website"
                       autocomplete="none"
-                      v-model="website"
+                      v-model="cv.info.website"
                     />
                   </div>
                 </div>
@@ -253,7 +253,7 @@
                       name="website2"
                       placeholder="Personal Website"
                       autocomplete="none"
-                      v-model="website2"
+                      v-model="cv.info.website2"
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@
                       placeholder="Summary Description"
                       class="form-control"
                       id="summary-des"
-                      v-model="summary_des"
+                      v-model="cv.info.summary_des"
                     ></textarea>
                   </div>
                 </div>
@@ -294,7 +294,6 @@
                           class="form-control"
                           name="degree_name"
                           placeholder="Degree name"
-                          autocomplete="none"
                           v-model="edu.degree_name"
                         />
                       </div>
@@ -307,8 +306,7 @@
                           type="text"
                           class="form-control"
                           name="school_name"
-                          placeholder="school_name"
-                          autocomplete="none"
+                          placeholder="School name"
                           v-model="edu.school_name"
                         />
                       </div>
@@ -334,7 +332,7 @@
                           name="edu_end_date"
                           placeholder="Start date"
                           autocomplete="none"
-                          v-model="edu.edu_start_date"
+                          v-model="edu.edu_start"
                         />
                       </div>
                     </div>
@@ -348,7 +346,7 @@
                           name="edu_end_date"
                           placeholder="End date"
                           autocomplete="none"
-                          v-model="edu.edu_end_date"
+                          v-model="edu.edu_end"
                         />
                       </div>
                     </div>
@@ -362,14 +360,23 @@
                   </template>
                 </ModelComp>
                 <!-- edu div -->
-                <div class="p-1" v-for="(val,key) in educations" :key="key">
-                  <h4 class="text-sm font-bold" v-if="edu.degree_name" v-text="edu.degree_name"></h4>
+                <div class="p-1" v-for="(val,key) in cv.educations" :key="key">
+                  <div class="flex justify-between">
+                    <h4 class="text-sm font-bold" v-if="val.degree_name" v-text="val.degree_name"></h4>
+                    <i
+                      class="fas fa-minus-circle text-xs"
+                      @click="deleteEdu(key)"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Remove"
+                    ></i>
+                  </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
-                    v-if="edu.school_name"
-                    v-text="edu.school_name"
+                    v-if="val.school_name"
+                    v-text="val.school_name"
                   ></h5>
-                  <div class="inline" v-text="edu.edu_start_date +'-'+ edu.edu_end_date"></div>
+                  <div class="inline" v-text="val.edu_start +'-'+ val.edu_end"></div>
                 </div>
                 <div class="add flex justify-end">
                   <span class="text-sm text-blue-400" data-toggle="modal" data-target="#add-edu">
@@ -379,7 +386,7 @@
               </SectionComp>
               <!-- exprince -->
               <SectionComp class="exper" section-head="Experience">
-                <!-- edu model -->
+                <!-- exp model -->
                 <ModelComp model-head="Add Experience" id="add-ex">
                   <template v-slot:body>
                     <!-- job title -->
@@ -392,7 +399,7 @@
                           name="job_title"
                           placeholder="Job title"
                           autocomplete="none"
-                          v-model="job.job_title"
+                          v-model="job.title"
                         />
                       </div>
                     </div>
@@ -406,7 +413,7 @@
                           name="company_name"
                           placeholder="Company"
                           autocomplete="none"
-                          v-model="job.company_name"
+                          v-model="job.company"
                         />
                       </div>
                     </div>
@@ -414,10 +421,10 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <textarea
-                          placeholder="Education Description"
+                          placeholder="Job Description"
                           class="form-control"
                           id="job-des"
-                          v-model="job.job_des"
+                          v-model="job.desc"
                         ></textarea>
                       </div>
                     </div>
@@ -431,7 +438,7 @@
                           name="job_start_date"
                           placeholder="Start date"
                           autocomplete="none"
-                          v-model="job.job_start_date"
+                          v-model="job.start_date"
                         />
                       </div>
                     </div>
@@ -445,7 +452,7 @@
                           name="job_end_date"
                           placeholder="End date"
                           autocomplete="none"
-                          v-model="job.job_end_date"
+                          v-model="job.end_date"
                         />
                       </div>
                     </div>
@@ -458,15 +465,24 @@
                     >Save</button>
                   </template>
                 </ModelComp>
-                <!-- edu div -->
-                <div class="p-1" v-for="(val ,key) in jobs" :key="key">
-                  <h4 class="text-sm font-bold" v-if="val.job_title" v-text="val.job_title"></h4>
+                <!-- exp div -->
+                <div class="p-1" v-for="(val ,key) in cv.experiences" :key="key">
+                  <div class="flex justify-between">
+                    <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
+                    <i
+                      class="fas fa-minus-circle text-xs"
+                      @click="deleteExp(key)"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Remove"
+                    ></i>
+                  </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
-                    v-if="val.company_name"
-                    v-text="val.company_name"
+                    v-if="val.company"
+                    v-text="val.company"
                   ></h5>
-                  <div class="inline text-sm" v-text="val.job_start_date +'-'+ val.job_end_date"></div>
+                  <div class="inline text-sm" v-text="val.start_date +'-'+ val.end_date"></div>
                 </div>
                 <!-- add -->
                 <div class="add flex justify-end">
@@ -477,14 +493,27 @@
               </SectionComp>
               <!-- new sections -->
               <SectionComp
-                v-for="(val, key) in sections"
+                v-for="(val, key) in cv.sections"
                 :key="key"
                 v-bind:section-head="val.secHeading"
               >
                 <div class="form-group">
                   <div class="m-auto w-full">
-                    <textarea :placeholder="val.secDesc" class="form-control" v-model="val.secDesc"></textarea>
+                    <textarea
+                      :placeholder="val.secHeading"
+                      class="form-control"
+                      v-model="val.secDesc"
+                    ></textarea>
                   </div>
+                </div>
+                <div class="flex justify-end">
+                  <i
+                    class="fas fa-minus-circle text-xs"
+                    @click="deleteSec(key)"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Remove"
+                  ></i>
                 </div>
               </SectionComp>
             </div>
@@ -520,41 +549,29 @@ export default {
           website2: "",
           summary_des: ""
         },
-        experiences: {},
-        educations: {}
+        experiences: [],
+        educations: [],
+        sections: [],
+        datedSections: []
       },
-      name: "",
-      number: "",
-      email: "",
-      title: "",
-      location: "",
-      website: "",
-      website2: "",
-      summary_des: "",
-
-      educations: [],
       edu: {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       },
-      jobs: [],
       job: {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       },
-      skills: "",
-      sections: [],
       newSec: {
         secHeading: "",
         secDesc: ""
       },
-      datedSections: [],
       newDateSec: {
         datedHeading: "",
         datedTitle: "",
@@ -576,29 +593,29 @@ export default {
     },
     // add education
     addEdu() {
-      this.educations.push(this.edu);
+      this.cv.educations.push(this.edu);
       this.edu = {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       };
     },
     // adding new job
     addJob() {
-      this.jobs.push(this.job);
+      this.cv.experiences.push(this.job);
       this.job = {
-        job_title: "",
-        company_name: "",
-        job_des: "",
-        job_start_date: "",
-        job_end_date: ""
+        title: "",
+        company: "",
+        desc: "",
+        start_date: "",
+        end_date: ""
       };
     },
     // add text sections
     addSec() {
-      this.sections.push(this.newSec);
+      this.cv.sections.push(this.newSec);
       this.newSec = {
         secHeading: "",
         secDesc: ""
@@ -606,7 +623,7 @@ export default {
     },
     // add dated sections
     addDatedSec() {
-      this.datedSections.push(this.newDateSec);
+      this.cv.datedSections.push(this.newDateSec);
       this.newDateSec = {
         datedHeading: "",
         datedTitle: "",
@@ -616,9 +633,22 @@ export default {
         endDate: ""
       };
     },
+    // delete education
+    deleteEdu(key) {
+      this.$delete(this.cv.educations, key);
+    },
+    // delete experince
+    deleteExp(key) {
+      this.$delete(this.cv.experiences, key);
+    },
+    // delete experince
+    deleteSec(key) {
+      this.$delete(this.cv.sections, key);
+    },
+    // submit cv
     createCv() {
       axios
-        .post("/cvs/create", this.$data)
+        .post("/cvs/create", this.cv)
         .then(response => {
           // this.$router.replace("/dashboard");
           this.$router.push({ name: "cvs" });
@@ -659,6 +689,15 @@ main {
   .p-1 {
     border-bottom: 1px solid #ebebeb;
     margin-bottom: 3px;
+  }
+  i.fas.fa-minus-circle.text-xs {
+    color: #e1e1e1;
+    transition: 500ms ease;
+    cursor: pointer;
+    &:hover {
+      color: #f35a5a;
+      transform: scale(1.03);
+    }
   }
   .add {
     margin: 0.5rem;
