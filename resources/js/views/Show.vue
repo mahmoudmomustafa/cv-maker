@@ -258,12 +258,6 @@
                   </div>
                 </div>
               </SectionComp>
-              <!-- btn submit -->
-              <div class="form-group mb-0">
-                <div class="col-md-8">
-                  <button type="submit" class="btn btn-primary w-100">Edit</button>
-                </div>
-              </div>
             </div>
             <!-- right sec -->
             <div class="w-full md:w-1/2">
@@ -489,6 +483,13 @@
               </SectionComp>
             </div>
           </div>
+          <!-- btn submit -->
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary">Edit</button>
+              <button type="button" class="btn btn-danger" @click="deleteCV" data-toggle="tooltip" data-placement="right" title="Delete">
+                <img src="/imgs/perspective.svg" width="25" alt="delete">
+              </button>
+          </div>
         </form>
       </div>
     </main>
@@ -611,9 +612,19 @@ export default {
     },
     getCv() {
       axios
-        .get("/cvs/" + this.$route.params.cvId + "/edit")
+        .get("/cvs/" + this.$route.params.cvId)
         .then(response => {
           this.cv = response.data;
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    deleteCV() {
+      axios
+        .delete("/cvs/" + this.$route.params.cvId)
+        .then(response => {
+          this.$router.push({ name: "cvs" });
         })
         .catch(error => {
           console.log(error.response);
@@ -640,16 +651,22 @@ main {
       background: rgb(247, 247, 247);
     }
   }
+  .btn-danger,
   .btn-primary {
     border: none;
     cursor: pointer;
     transition: 500ms ease;
-    background: #735c87;
-    padding: 0.7rem 2rem;
-    box-shadow: 5px 4px 0px #673ab7;
+    background: #34e181;
+    margin: 0.5rem;
+    padding: 0.5rem 2rem;
+    box-shadow: 5px 4px 0px #33c674;
     &:hover {
       box-shadow: none;
     }
+  }
+  .btn-danger{
+        background: #ff4545;
+    box-shadow: 5px 3px 0 #f54646;
   }
   .form-control {
     border: 0;

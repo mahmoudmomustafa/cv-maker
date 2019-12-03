@@ -21,7 +21,7 @@ class CvController extends Controller
     // create cv
     public function create(Request $request)
     {
-        $data = request(['cv'=>['info']]);
+        $data = $request->all();
         $request->user()->cvs()->create($data);
         return response()->json("Done");
     }
@@ -31,5 +31,10 @@ class CvController extends Controller
         // $eductaions = $cv->educations()->get();
         $experiences = $cv->experiences()->get();
         return response()->json(['info' => $cv, 'experiences' => $experiences]);
+    }
+    //delete cv
+    public function destroy(Cv $cv){
+        $cv->delete();
+        return response()->json('delete');
     }
 }

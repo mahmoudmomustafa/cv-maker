@@ -169,7 +169,7 @@
                       name="name"
                       placeholder="Full Name"
                       autocomplete="none"
-                      v-model="cv.info.name"
+                      v-model="name"
                     />
                   </div>
                 </div>
@@ -183,7 +183,7 @@
                       name="email"
                       placeholder="Email Address"
                       autocomplete="none"
-                      v-model="cv.info.email"
+                      v-model="email"
                     />
                   </div>
                 </div>
@@ -197,7 +197,7 @@
                       name="number"
                       placeholder="Phone Number"
                       autocomplete="none"
-                      v-model="cv.info.number"
+                      v-model="number"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@
                       name="location"
                       placeholder="Location"
                       autocomplete="none"
-                      v-model="cv.info.location"
+                      v-model="location"
                     />
                   </div>
                 </div>
@@ -225,7 +225,7 @@
                       name="title"
                       placeholder="Headline / current title"
                       autocomplete="none"
-                      v-model="cv.info.title"
+                      v-model="title"
                     />
                   </div>
                 </div>
@@ -239,7 +239,7 @@
                       name="website"
                       placeholder="Personal Website"
                       autocomplete="none"
-                      v-model="cv.info.website"
+                      v-model="website"
                     />
                   </div>
                 </div>
@@ -253,7 +253,7 @@
                       name="website2"
                       placeholder="Personal Website"
                       autocomplete="none"
-                      v-model="cv.info.website2"
+                      v-model="website2"
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@
                       placeholder="Summary Description"
                       class="form-control"
                       id="summary-des"
-                      v-model="cv.info.summary_des"
+                      v-model="summary_des"
                     ></textarea>
                   </div>
                 </div>
@@ -523,14 +523,15 @@ export default {
         experiences: {},
         educations: {}
       },
-      // name: "",
-      // number: "",
-      // email: "",
-      // title: "",
-      // location: "",
-      // website: "",
-      // website2: "",
-      // summary_des: "",
+      name: "",
+      number: "",
+      email: "",
+      title: "",
+      location: "",
+      website: "",
+      website2: "",
+      summary_des: "",
+
       educations: [],
       edu: {
         degree_name: "",
@@ -617,10 +618,10 @@ export default {
     },
     createCv() {
       axios
-        .post("/cvs/create", this.cv)
+        .post("/cvs/create", this.$data)
         .then(response => {
           // this.$router.replace("/dashboard");
-          this.$router.push({ name: 'cvs' })
+          this.$router.push({ name: "cvs" });
           console.log(response);
         })
         .catch(error => {

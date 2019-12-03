@@ -21,7 +21,7 @@
             <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/cvs">CVS</router-link>
+            <router-link class="nav-link" to="/cvs">Your Cvs</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/cvs/create">Create</router-link>
@@ -35,7 +35,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link pl-0"
+              class="nav-link pl-0 cursor-pointer"
               data-toggle="tooltip"
               data-placement="bottom"
               title="Log Out"

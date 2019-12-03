@@ -2446,16 +2446,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get("/cvs").then(function (response) {
-      _this.cvs = response.data;
-    })["catch"](function (error) {
-      console.log(error.response);
-    });
+    this.getCvs();
   },
   methods: {
-    getCvs: function getCvs() {}
+    // get all user cvs
+    getCvs: function getCvs() {
+      var _this = this;
+
+      axios.get("/cvs").then(function (response) {
+        _this.cvs = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
   }
 });
 
@@ -2996,14 +2999,14 @@ __webpack_require__.r(__webpack_exports__);
         experiences: {},
         educations: {}
       },
-      // name: "",
-      // number: "",
-      // email: "",
-      // title: "",
-      // location: "",
-      // website: "",
-      // website2: "",
-      // summary_des: "",
+      name: "",
+      number: "",
+      email: "",
+      title: "",
+      location: "",
+      website: "",
+      website2: "",
+      summary_des: "",
       educations: [],
       edu: {
         degree_name: "",
@@ -3091,10 +3094,10 @@ __webpack_require__.r(__webpack_exports__);
     createCv: function createCv() {
       var _this = this;
 
-      axios.post("/cvs/create", this.cv).then(function (response) {
+      axios.post("/cvs/create", this.$data).then(function (response) {
         // this.$router.replace("/dashboard");
         _this.$router.push({
-          name: 'cvs'
+          name: "cvs"
         });
 
         console.log(response);
@@ -3184,6 +3187,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/NavComp.vue */ "./resources/js/components/NavComp.vue");
 /* harmony import */ var _components_ModelComp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ModelComp.vue */ "./resources/js/components/ModelComp.vue");
 /* harmony import */ var _components_SectionComp_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SectionComp.vue */ "./resources/js/components/SectionComp.vue");
+//
 //
 //
 //
@@ -3796,8 +3800,19 @@ __webpack_require__.r(__webpack_exports__);
     getCv: function getCv() {
       var _this = this;
 
-      axios.get("/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
+      axios.get("/cvs/" + this.$route.params.cvId).then(function (response) {
         _this.cv = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    deleteCV: function deleteCV() {
+      var _this2 = this;
+
+      axios["delete"]("/cvs/" + this.$route.params.cvId).then(function (response) {
+        _this2.$router.push({
+          name: "cvs"
+        });
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -3971,7 +3986,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #735c87;\n  padding: 0.7rem 2rem;\n  box-shadow: 5px 4px 0px #673ab7;\n}\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -16372,7 +16387,7 @@ var render = function() {
                   _c(
                     "router-link",
                     { staticClass: "nav-link", attrs: { to: "/cvs" } },
-                    [_vm._v("CVS")]
+                    [_vm._v("Your Cvs")]
                   )
                 ],
                 1
@@ -16408,7 +16423,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "nav-link pl-0",
+                    staticClass: "nav-link pl-0 cursor-pointer",
                     staticStyle: { padding: ".2rem .5rem !important" },
                     attrs: {
                       "data-toggle": "tooltip",
@@ -16929,7 +16944,7 @@ var render = function() {
                           {
                             key: cv.id,
                             staticClass:
-                              "w-full md:w-64 rounded overflow-hidden shadow-lg bg-white cv"
+                              "w-full md:w-64 rounded shadow-lg bg-white cv"
                           },
                           [
                             _c(
@@ -17504,8 +17519,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.name,
-                                  expression: "cv.info.name"
+                                  value: _vm.name,
+                                  expression: "name"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17516,17 +17531,13 @@ var render = function() {
                                 placeholder: "Full Name",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.name },
+                              domProps: { value: _vm.name },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "name",
-                                    $event.target.value
-                                  )
+                                  _vm.name = $event.target.value
                                 }
                               }
                             })
@@ -17540,8 +17551,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.email,
-                                  expression: "cv.info.email"
+                                  value: _vm.email,
+                                  expression: "email"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17552,17 +17563,13 @@ var render = function() {
                                 placeholder: "Email Address",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.email },
+                              domProps: { value: _vm.email },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "email",
-                                    $event.target.value
-                                  )
+                                  _vm.email = $event.target.value
                                 }
                               }
                             })
@@ -17576,8 +17583,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.number,
-                                  expression: "cv.info.number"
+                                  value: _vm.number,
+                                  expression: "number"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17588,17 +17595,13 @@ var render = function() {
                                 placeholder: "Phone Number",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.number },
+                              domProps: { value: _vm.number },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "number",
-                                    $event.target.value
-                                  )
+                                  _vm.number = $event.target.value
                                 }
                               }
                             })
@@ -17612,8 +17615,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.location,
-                                  expression: "cv.info.location"
+                                  value: _vm.location,
+                                  expression: "location"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17624,17 +17627,13 @@ var render = function() {
                                 placeholder: "Location",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.location },
+                              domProps: { value: _vm.location },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "location",
-                                    $event.target.value
-                                  )
+                                  _vm.location = $event.target.value
                                 }
                               }
                             })
@@ -17648,8 +17647,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.title,
-                                  expression: "cv.info.title"
+                                  value: _vm.title,
+                                  expression: "title"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17660,17 +17659,13 @@ var render = function() {
                                 placeholder: "Headline / current title",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.title },
+                              domProps: { value: _vm.title },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "title",
-                                    $event.target.value
-                                  )
+                                  _vm.title = $event.target.value
                                 }
                               }
                             })
@@ -17684,8 +17679,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.website,
-                                  expression: "cv.info.website"
+                                  value: _vm.website,
+                                  expression: "website"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17696,17 +17691,13 @@ var render = function() {
                                 placeholder: "Personal Website",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.website },
+                              domProps: { value: _vm.website },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website",
-                                    $event.target.value
-                                  )
+                                  _vm.website = $event.target.value
                                 }
                               }
                             })
@@ -17720,8 +17711,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.website2,
-                                  expression: "cv.info.website2"
+                                  value: _vm.website2,
+                                  expression: "website2"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17732,17 +17723,13 @@ var render = function() {
                                 placeholder: "Personal Website",
                                 autocomplete: "none"
                               },
-                              domProps: { value: _vm.cv.info.website2 },
+                              domProps: { value: _vm.website2 },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website2",
-                                    $event.target.value
-                                  )
+                                  _vm.website2 = $event.target.value
                                 }
                               }
                             })
@@ -17774,8 +17761,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.cv.info.summary_des,
-                                  expression: "cv.info.summary_des"
+                                  value: _vm.summary_des,
+                                  expression: "summary_des"
                                 }
                               ],
                               staticClass: "form-control",
@@ -17783,17 +17770,13 @@ var render = function() {
                                 placeholder: "Summary Description",
                                 id: "summary-des"
                               },
-                              domProps: { value: _vm.cv.info.summary_des },
+                              domProps: { value: _vm.summary_des },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "summary_des",
-                                    $event.target.value
-                                  )
+                                  _vm.summary_des = $event.target.value
                                 }
                               }
                             })
@@ -19315,9 +19298,7 @@ var render = function() {
                           ])
                         ])
                       ]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(1)
+                    )
                   ],
                   1
                 ),
@@ -19998,6 +19979,37 @@ var render = function() {
                   ],
                   2
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "tooltip",
+                      "data-placement": "right",
+                      title: "Delete"
+                    },
+                    on: { click: _vm.deleteCV }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/imgs/perspective.svg",
+                        width: "25",
+                        alt: "delete"
+                      }
+                    })
+                  ]
+                )
               ])
             ]
           )
@@ -20036,20 +20048,6 @@ var staticRenderFns = [
           _vm._v(" Add custom dated section\n                  ")
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group mb-0" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary w-100", attrs: { type: "submit" } },
-          [_vm._v("Edit")]
-        )
-      ])
     ])
   }
 ]

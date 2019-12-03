@@ -15,7 +15,7 @@
           <div class="body p-4 flex flex-wrap">
             <div class="div flex flex-wrap" v-if="cvs !== []">
               <div
-                class="w-full md:w-64 rounded overflow-hidden shadow-lg bg-white cv"
+                class="w-full md:w-64 rounded shadow-lg bg-white cv"
                 v-for="cv in cvs"
                 :key="cv.id"
               >
@@ -60,17 +60,20 @@ export default {
     };
   },
   created() {
-    axios
-      .get("/cvs")
-      .then(response => {
-        this.cvs = response.data;
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
+    this.getCvs();
   },
   methods: {
-    getCvs() {}
+    // get all user cvs
+    getCvs() {
+      axios
+        .get("/cvs")
+        .then(response => {
+          this.cvs = response.data;
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    }
   }
 };
 </script>

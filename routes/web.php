@@ -11,6 +11,7 @@ Route::post('/logout', 'AuthController@logout');
 
 Route::get('/cvs', 'CvController@index');
 Route::post('/cvs/create', 'CvController@create');
-Route::post('/cvs/{cv}', 'CvController@preview');
-Route::get('/cvs/{cv}/edit', 'CvController@edit');
-Route::post('/cvs/{cv}/delete', 'CvController@delete');
+// Route::post('/cvs/{cv}', 'CvController@preview');
+Route::put('/cvs/{cv}/edit', 'CvController@edit');
+Route::get('/cvs/{cv}', 'CvController@edit');
+Route::delete('/cvs/{cv}', 'CvController@destroy');
