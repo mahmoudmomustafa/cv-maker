@@ -124,8 +124,9 @@ export default {
       axios
         .post("/register", this.$data)
         .then(response => {
-          app.user = response.data;
-          this.$router.replace("/dashboard");
+          store.commit("loginUser");
+          localStorage.setItem("token", response.data.access_token);
+          this.$router.replace("dashboard");
         })
         .catch(error => {
           this.errors = error.response.data.message;

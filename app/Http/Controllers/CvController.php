@@ -8,7 +8,7 @@ use App\Education;
 use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class CvController extends Controller
 {
     // public function __construct()
@@ -18,7 +18,7 @@ class CvController extends Controller
     // show all cvs
     public function index()
     {
-        $cvs = Auth::user()->cvs()->orderBy('created_at', 'desc')->get();
+        $cvs = Auth::user()->cvs()->orderBy('updated_at', 'desc')->get();
         return response()->json($cvs);
     }
     // create cv
@@ -66,11 +66,11 @@ class CvController extends Controller
         return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations]);
     }
     // update cv
-    public function update(Request $request)
+    public function update(CV $cv)
     {
-        $data = $request->all();
+        $data = request()->all();
         // update cv
-        $cv = $request->user()->cvs()->update($data['info']);
+        $cv->update($data['info']);
         // create exp
         foreach ($data['experiences'] as $experience) {
             $exp = new Experience;
@@ -102,17 +102,20 @@ class CvController extends Controller
         return response()->json("Cv is Updated");
     }
     // deleteEducation
-    public function deleteEducation(Cv $cv , Education $education){
+    public function deleteEducation(Education $education)
+    {
         $education->delete();
         return response()->json('delete');
     }
     // deleteEducation
-    public function deleteExp(Cv $cv , Experience $experience){
+    public function deleteExp(Experience $experience)
+    {
         $experience->delete();
         return response()->json('delete');
     }
     // delete section
-    public function deleteSection(Cv $cv , Section $section){
+    public function deleteSection(Section $section)
+    {
         $section->delete();
         return response()->json('delete');
     }
@@ -121,5 +124,12 @@ class CvController extends Controller
     {
         $cv->delete();
         return response()->json('delete');
+    }
+
+    //
+    public function preview()
+    {
+        $pdf = PDF::loadView('pdf');
+        return $pdf->download('CV.pdf');
     }
 }

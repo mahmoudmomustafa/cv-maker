@@ -34,3 +34,9 @@ export default {
   methods: {}
 };
 </script>
+<style lang="scss">
+.modal-content{
+    border-radius: 0;
+    box-shadow: 5px 4px 0 #34e181;
+  }
+</style>

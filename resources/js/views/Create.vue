@@ -258,12 +258,6 @@
                   </div>
                 </div>
               </SectionComp>
-              <!-- btn submit -->
-              <div class="form-group mb-0">
-                <div class="col-md-8 m-auto text-center">
-                  <button type="submit" class="btn btn-primary w-100 heartbeat">Create Cv</button>
-                </div>
-              </div>
             </div>
             <!-- right sec -->
             <div class="w-full md:w-1/2">
@@ -363,13 +357,20 @@
                 <div class="p-1" v-for="(val,key) in cv.educations" :key="key">
                   <div class="flex justify-between">
                     <h4 class="text-sm font-bold" v-if="val.degree_name" v-text="val.degree_name"></h4>
-                    <i
-                      class="fas fa-minus-circle text-xs"
-                      @click="deleteEdu(key)"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Remove"
-                    ></i>
+                    <div class="flex">
+                      <i
+                        class="fas fa-pen text-xs"
+                        data-toggle="modal"
+                        :data-target="'#add-edu-'+key"
+                      ></i>
+                      <i
+                        class="fas fa-minus-circle text-xs"
+                        @click="deleteEdu(key)"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Remove"
+                      ></i>
+                    </div>
                   </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
@@ -377,6 +378,82 @@
                     v-text="val.school_name"
                   ></h5>
                   <div class="inline" v-text="val.edu_start +'-'+ val.edu_end"></div>
+                  <!-- edit model -->
+                  <ModelComp model-head="Edit Education" :id="'add-edu-'+key">
+                    <template v-slot:body>
+                      <!-- dgree name -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="degree_name"
+                            type="text"
+                            class="form-control"
+                            name="degree_name"
+                            placeholder="Degree name"
+                            v-model="cv.educations[key].degree_name"
+                          />
+                        </div>
+                      </div>
+                      <!-- school -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="school_name"
+                            type="text"
+                            class="form-control"
+                            name="school_name"
+                            placeholder="School name"
+                            v-model="cv.educations[key].school_name"
+                          />
+                        </div>
+                      </div>
+                      <!-- descr -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <textarea
+                            placeholder="Education Description"
+                            class="form-control"
+                            id="edu-des"
+                            v-model="cv.educations[key].edu_des"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <!-- start date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="edu_end_date"
+                            type="text"
+                            class="form-control"
+                            name="edu_end_date"
+                            placeholder="Start date"
+                            autocomplete="none"
+                            v-model="cv.educations[key].edu_start"
+                          />
+                        </div>
+                      </div>
+                      <!-- end date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="edu_end_date"
+                            type="text"
+                            class="form-control"
+                            name="edu_end_date"
+                            placeholder="End date"
+                            autocomplete="none"
+                            v-model="cv.educations[key].edu_end"
+                          />
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:save>
+                      <button
+                        type="button"
+                        class="btn btn-primary bg-blue-500 border-0 text-sm"
+                      >Save</button>
+                    </template>
+                  </ModelComp>
                 </div>
                 <div class="add flex justify-end">
                   <span class="text-sm text-blue-400" data-toggle="modal" data-target="#add-edu">
@@ -469,13 +546,20 @@
                 <div class="p-1" v-for="(val ,key) in cv.experiences" :key="key">
                   <div class="flex justify-between">
                     <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
-                    <i
-                      class="fas fa-minus-circle text-xs"
-                      @click="deleteExp(key)"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Remove"
-                    ></i>
+                    <div class="flex">
+                      <i
+                        class="fas fa-pen text-xs"
+                        data-toggle="modal"
+                        :data-target="'#edit-exp-'+key"
+                      ></i>
+                      <i
+                        class="fas fa-minus-circle text-xs"
+                        @click="deleteExp(key)"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Remove"
+                      ></i>
+                    </div>
                   </div>
                   <h5
                     class="text-sm font-bold text-gray-700 inline"
@@ -483,6 +567,84 @@
                     v-text="val.company"
                   ></h5>
                   <div class="inline text-sm" v-text="val.start_date +'-'+ val.end_date"></div>
+                  <!-- edit model -->
+                  <ModelComp model-head="Edit Experience" :id="'edit-exp-'+key">
+                    <template v-slot:body>
+                      <!-- job title -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="job_title"
+                            type="text"
+                            class="form-control"
+                            name="job_title"
+                            placeholder="Job title"
+                            autocomplete="none"
+                            v-model="cv.experiences[key].title"
+                          />
+                        </div>
+                      </div>
+                      <!-- company -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="company_name"
+                            type="text"
+                            class="form-control"
+                            name="company_name"
+                            placeholder="Company"
+                            autocomplete="none"
+                            v-model="cv.experiences[key].company"
+                          />
+                        </div>
+                      </div>
+                      <!-- job descr -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <textarea
+                            placeholder="Job Description"
+                            class="form-control"
+                            id="job-des"
+                            v-model="cv.experiences[key].desc"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <!-- start date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="job_start_date"
+                            type="text"
+                            class="form-control"
+                            name="job_start_date"
+                            placeholder="Start date"
+                            autocomplete="none"
+                            v-model="cv.experiences[key].start_date"
+                          />
+                        </div>
+                      </div>
+                      <!-- end date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="job_end_date"
+                            type="text"
+                            class="form-control"
+                            name="job_end_date"
+                            placeholder="End date"
+                            autocomplete="none"
+                            v-model="cv.experiences[key].end_date"
+                          />
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:save>
+                      <button
+                        type="button"
+                        class="btn btn-primary bg-blue-500 border-0 text-sm"
+                      >Save</button>
+                    </template>
+                  </ModelComp>
                 </div>
                 <!-- add -->
                 <div class="add flex justify-end">
@@ -516,6 +678,12 @@
                   ></i>
                 </div>
               </SectionComp>
+            </div>
+          </div>
+          <!-- btn submit -->
+          <div class="form-group m-2">
+            <div class>
+              <button type="submit" class="btn btn-primary">Create Cv</button>
             </div>
           </div>
         </form>
@@ -686,18 +854,35 @@ main {
     font-size: 0.95rem;
     resize: none;
   }
+  .btn-primary {
+    border: none;
+    cursor: pointer;
+    transition: 500ms ease;
+    background: #34e181;
+    margin: 0.5rem;
+    padding: 0.5rem 2rem;
+    box-shadow: 5px 4px 0px #33c674;
+    &:hover {
+      box-shadow: none;
+    }
+  }
   .p-1 {
     border-bottom: 1px solid #ebebeb;
     margin-bottom: 3px;
   }
+  i.fas.fa-pen,
   i.fas.fa-minus-circle.text-xs {
     color: #e1e1e1;
     transition: 500ms ease;
     cursor: pointer;
+    margin-left: 0.5rem;
     &:hover {
       color: #f35a5a;
       transform: scale(1.03);
     }
+  }
+  i.fas.fa-pen:hover {
+    color: rgb(71, 255, 178);
   }
   .add {
     margin: 0.5rem;

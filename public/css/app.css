@@ -38,7 +38,7 @@
 
 .contain .form .header h3 {
   font-size: 1.9rem;
-  color: #fe494c;
+  color: #735c87;
   font-family: "Merienda One", cursive;
 }
 
@@ -99,15 +99,17 @@
   background-color: #fe494c;
 }
 
-.contain .form .body .form-group .btn-primary {
-  border: 0;
-  font-weight: 800;
-  background: #fe494c;
+.contain .form .body .form-group .btn {
+  border: none;
+  cursor: pointer;
   -webkit-transition: 500ms ease;
   transition: 500ms ease;
+  background: #735c87;
+  box-shadow: 5px 4px 0px #735c87;
 }
 
-.contain .form .body .form-group .btn-primary:hover {
+.contain .form .body .form-group .btn:hover {
+  box-shadow: none;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }

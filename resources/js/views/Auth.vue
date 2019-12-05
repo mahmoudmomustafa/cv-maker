@@ -91,7 +91,7 @@ export default {
   .heading {
     width: 100%;
     height: 100%;
-    background: #fe494c73;
+    background: #735c8770;
     display: flex;
     justify-content: center;
     align-items: center;

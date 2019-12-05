@@ -44,7 +44,7 @@ body {
         .header {
             h3 {
                 font-size: 1.9rem;
-                color: #fe494c;
+                color: #735c87;
                 font-family: 'Merienda One', cursive;
             }
         }
@@ -112,16 +112,17 @@ body {
                     background-color: #fe494c;
                 }
 
-                .btn-primary {
-                    border: 0;
-                    font-weight: 800;
-                    background: #fe494c;
+                .btn {
+                    border: none;
+                    cursor: pointer;
                     transition: 500ms ease;
-
+                    background: #735c87;
+                    box-shadow: 5px 4px 0px #735c87;
                     &:hover {
-                        transform: scale(0.9);
+                      box-shadow: none;
+                      transform: scale(0.9);
                     }
-                }
+                  }
             }
 
             .section {

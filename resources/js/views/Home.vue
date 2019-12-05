@@ -5,7 +5,7 @@
     <!-- main page -->
     <main>
       <div class="container">
-        <header>
+        <header class="mt-5">
           <div class="m-4 flex shadow">
             <div class="w-full md:w-1/2">
               <div class="p-3 welcome">
@@ -77,10 +77,9 @@ header {
       transition: 500ms ease;
       background: #735c87;
       padding: 0.7rem 2rem;
-      box-shadow: 5px 4px 0px #673ab7;
+      box-shadow: 5px 4px 0px #735c87;
       &:hover {
         box-shadow: none;
-        // transform: scale(0.98);
       }
     }
   }

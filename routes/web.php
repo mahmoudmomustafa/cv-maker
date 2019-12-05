@@ -11,11 +11,12 @@ Route::post('/logout', 'AuthController@logout');
 
 Route::get('/cvs', 'CvController@index');
 Route::post('/cvs/create', 'CvController@create');
-// Route::post('/cvs/{cv}', 'CvController@preview');
-Route::get('/cvs/{cv}', 'CvController@update');
-Route::put('/cvs/{cv}/edit', 'CvController@edit');
+Route::put('/cvs/{cv}/edit', 'CvController@update');
+Route::get('/cvs/{cv}/edit', 'CvController@edit');
 Route::delete('/cvs/{cv}', 'CvController@destroy');
 
-Route::delete('/cvs/{cv}/edu/{edu}', 'CvController@deleteEducation');
-Route::delete('/cvs/{cv}/exp/{edu}', 'CvController@deleteEXp');
-Route::delete('/cvs/{cv}/sec/{sec}', 'CvController@deleteSection');
+Route::delete('/cvs/{cv}/edu/{education}', 'CvController@deleteEducation');
+Route::delete('/cvs/{cv}/exp/{experience}', 'CvController@deleteEXp');
+Route::delete('/cvs/{cv}/sec/{section}', 'CvController@deleteSection');
+
+Route::get('/cvs/{cv}/pdf', 'CvController@preview');
