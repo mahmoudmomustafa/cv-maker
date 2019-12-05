@@ -73,48 +73,51 @@ class CvController extends Controller
         $cv->update($data['info']);
         // create exp
         foreach ($data['experiences'] as $experience) {
-            $exp = new Experience;
-            foreach ($experience as $key => $value) {
-                $exp->$key = $value;
-            }
-            $exp->cv_id = $cv->id;
-            $exp->save();
+            // $exp = new Experience;
+            // foreach ($experience as $key => $value) {
+            //     $exp->$key = $value;
+            // }
+            // $exp->cv_id = $cv->id;
+            // $exp->save();
+            $cv->experiences()->updateOrCreate($experience);
         }
         // create educations
         foreach ($data['educations'] as $education) {
-            $edu = new Education;
-            foreach ($education as $key => $value) {
-                $edu->$key = $value;
-            }
-            $edu->cv_id = $cv->id;
-            $edu->save();
+            // $edu = new Education;
+            // foreach ($education as $key => $value) {
+            //     $edu->$key = $value;
+            // }
+            // $edu->cv_id = $cv->id;
+            // $edu->save();
+            $cv->educations()->updateOrCreate($education);
         }
         // create sections
         foreach ($data['sections'] as $section) {
-            $sec = new Section;
-            foreach ($section as $key => $value) {
-                $sec->$key = $value;
-            }
-            $sec->cv_id = $cv->id;
-            $sec->save();
+            // $sec = new Section;
+            // foreach ($section as $key => $value) {
+            //     $sec->$key = $value;
+            // }
+            // $sec->cv_id = $cv->id;
+            // $sec->save();
+            $cv->sections()->updateOrCreate($section);
         }
         // create dated sections
         return response()->json("Cv is Updated");
     }
     // deleteEducation
-    public function deleteEducation(Education $education)
+    public function deleteEducation(Cv $cv,Education $education)
     {
         $education->delete();
         return response()->json('delete');
     }
     // deleteEducation
-    public function deleteExp(Experience $experience)
+    public function deleteExp(Cv $cv,Experience $experience)
     {
         $experience->delete();
         return response()->json('delete');
     }
     // delete section
-    public function deleteSection(Section $section)
+    public function deleteSection(Cv $cv,Section $section)
     {
         $section->delete();
         return response()->json('delete');

@@ -4091,6 +4091,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4122,8 +4130,8 @@ __webpack_require__.r(__webpack_exports__);
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       },
       job: {
         title: "",
@@ -4166,8 +4174,8 @@ __webpack_require__.r(__webpack_exports__);
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       };
     },
     // adding new job
@@ -4206,7 +4214,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
-        console.log(response.data);
         _this.cv = response.data;
       })["catch"](function (error) {
         console.log(error.response);
@@ -4220,8 +4227,6 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$router.push({
           name: "cvs"
         });
-
-        console.log(response);
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -4231,8 +4236,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
-        console.log(response.data);
-
         _this3.$delete(_this3.cv.educations, key);
       })["catch"](function (error) {
         console.log(error.response);
@@ -4243,8 +4246,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
-        console.log(response.data);
-
         _this4.$delete(_this4.cv.experiences, key);
       })["catch"](function (error) {
         console.log(error.response);
@@ -4255,8 +4256,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
-        console.log(response.data);
-
         _this5.$delete(_this5.cv.sections, key);
       })["catch"](function (error) {
         console.log(error.response);
@@ -20771,8 +20770,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.edu.edu_start_date,
-                                              expression: "edu.edu_start_date"
+                                              value: _vm.edu.edu_start,
+                                              expression: "edu.edu_start"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -20784,7 +20783,7 @@ var render = function() {
                                             autocomplete: "none"
                                           },
                                           domProps: {
-                                            value: _vm.edu.edu_start_date
+                                            value: _vm.edu.edu_start
                                           },
                                           on: {
                                             input: function($event) {
@@ -20793,7 +20792,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.edu,
-                                                "edu_start_date",
+                                                "edu_start",
                                                 $event.target.value
                                               )
                                             }
@@ -20813,8 +20812,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.edu.edu_end_date,
-                                              expression: "edu.edu_end_date"
+                                              value: _vm.edu.edu_end,
+                                              expression: "edu.edu_end"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -20825,9 +20824,7 @@ var render = function() {
                                             placeholder: "End date",
                                             autocomplete: "none"
                                           },
-                                          domProps: {
-                                            value: _vm.edu.edu_end_date
-                                          },
+                                          domProps: { value: _vm.edu.edu_end },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -20835,7 +20832,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.edu,
-                                                "edu_end_date",
+                                                "edu_end",
                                                 $event.target.value
                                               )
                                             }
@@ -22007,40 +22004,58 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Save")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: {
-                      type: "button",
-                      "data-toggle": "tooltip",
-                      "data-placement": "right",
-                      title: "Delete"
+              _c(
+                "div",
+                { staticClass: "form-group flex align-items-center flex-wrap" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
                     },
-                    on: { click: _vm.deleteCV }
-                  },
-                  [_vm._v("Delete CV")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "/cvs/" + this.$route.params.cvId + "/pdf",
-                      target: "_blank",
-                      rel: "noopener noreferrer"
-                    }
-                  },
-                  [_vm._v("PDF")]
-                )
-              ])
+                    [_vm._v("Save Changes")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "tooltip",
+                        "data-placement": "right",
+                        title: "Delete"
+                      },
+                      on: { click: _vm.deleteCV }
+                    },
+                    [_vm._v("Delete CV")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "inline ml-2",
+                      attrs: {
+                        href: "/cvs/" + this.$route.params.cvId + "/pdf",
+                        target: "_blank",
+                        "data-toggle": "tooltip",
+                        "data-placement": "right",
+                        title: "Download PDF"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src: "/imgs/pdf.svg",
+                          alt: "download-cv",
+                          width: "40"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
             ]
           )
         ])

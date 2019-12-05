@@ -328,7 +328,7 @@
                           name="edu_end_date"
                           placeholder="Start date"
                           autocomplete="none"
-                          v-model="edu.edu_start_date"
+                          v-model="edu.edu_start"
                         />
                       </div>
                     </div>
@@ -342,7 +342,7 @@
                           name="edu_end_date"
                           placeholder="End date"
                           autocomplete="none"
-                          v-model="edu.edu_end_date"
+                          v-model="edu.edu_end"
                         />
                       </div>
                     </div>
@@ -683,8 +683,8 @@
             </div>
           </div>
           <!-- btn submit -->
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Save</button>
+          <div class="form-group flex align-items-center flex-wrap">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
             <button
               type="button"
               class="btn btn-danger"
@@ -693,8 +693,16 @@
               data-placement="right"
               title="Delete"
             >Delete CV</button>
-
-            <a :href="'/cvs/'+this.$route.params.cvId +'/pdf'" target="_blank" rel="noopener noreferrer">PDF</a>
+            <a
+              :href="'/cvs/'+this.$route.params.cvId +'/pdf'"
+              class="inline ml-2"
+              target="_blank"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Download PDF"
+            >
+              <img src="/imgs/pdf.svg" alt="download-cv" width="40" />
+            </a>
           </div>
         </form>
       </div>
@@ -735,8 +743,8 @@ export default {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       },
       job: {
         title: "",
@@ -779,8 +787,8 @@ export default {
         degree_name: "",
         school_name: "",
         edu_des: "",
-        edu_start_date: "",
-        edu_end_date: ""
+        edu_start: "",
+        edu_end: ""
       };
     },
     // adding new job
@@ -819,7 +827,6 @@ export default {
       axios
         .get("/cvs/" + this.$route.params.cvId + "/edit")
         .then(response => {
-          console.log(response.data);
           this.cv = response.data;
         })
         .catch(error => {
@@ -832,7 +839,6 @@ export default {
         .put("/cvs/" + this.$route.params.cvId + "/edit", this.cv)
         .then(response => {
           this.$router.push({ name: "cvs" });
-          console.log(response);
         })
         .catch(error => {
           console.log(error.response);
@@ -843,7 +849,6 @@ export default {
       axios
         .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id)
         .then(response => {
-          console.log(response.data);
           this.$delete(this.cv.educations, key);
         })
         .catch(error => {
@@ -855,7 +860,6 @@ export default {
       axios
         .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id)
         .then(response => {
-          console.log(response.data);
           this.$delete(this.cv.experiences, key);
         })
         .catch(error => {
@@ -867,7 +871,6 @@ export default {
       axios
         .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
         .then(response => {
-          console.log(response.data);
           this.$delete(this.cv.sections, key);
         })
         .catch(error => {
