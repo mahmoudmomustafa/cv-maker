@@ -23,7 +23,7 @@
                   <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">ID : {{cv.id}}</div>
                     <p class="text-black text-3xl font-bold" v-text="cv.title"></p>
-                    <p class="text-gray-700 text-xs font-bold mt-3">Updated at : {{cv.updated_at}}</p>
+                    <p class="text-gray-700 text-xs font-bold mt-3">Last updated : {{cv.updated_at | formatDate}}</p>
                   </div>
                 </router-link>
               </div>
@@ -74,7 +74,8 @@ export default {
           console.log(error.response);
         });
     }
-  }
+  },
+  
 };
 </script>
 

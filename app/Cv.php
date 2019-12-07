@@ -28,4 +28,9 @@ class Cv extends Model
     {
         return $this->hasMany(Section::class);
     }
+    // cv has many dated sections
+    public function datedSections()
+    {
+        return $this->hasMany(DatedSection::class);
+    }
 }

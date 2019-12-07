@@ -61,17 +61,8 @@ export default {
       user: []
     };
   },
-  created() {
-    axios
-      .get("/init", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      })
-      .then(response => {
-        this.user = response.data;
-      })
-      .catch(error => {});
+  mounted() {
+    this.get;
   },
   methods: {
     logout() {
@@ -79,13 +70,26 @@ export default {
       store.commit("logoutUser");
       this.$router.push({ name: "auth" });
     }
+  },
+  computed: {
+    get() {
+      axios
+        .get("/init", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(response => {
+          this.user = response.data;
+        })
+        .catch(error => {});
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
 nav {
-  // background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background: white;
   padding-top: 0;
   padding-bottom: 0;

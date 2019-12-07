@@ -680,6 +680,213 @@
                   ></i>
                 </div>
               </SectionComp>
+              <!-- dated section -->
+              <SectionComp
+                v-for="(vals, keys) in cv.datedSections"
+                :key="keys"
+                v-bind:section-head="vals.datedHeading"
+              >
+                <!-- dated model -->
+                <ModelComp model-head="Add custom date" :id="'add-dated-'+keys">
+                  <template v-slot:body>
+                    <!-- dgree name -->
+                    <div class="form-group">
+                      <div class="md:w-4/5 w-full m-auto">
+                        <input
+                          id="degree_name"
+                          type="text"
+                          class="form-control"
+                          name="datedTitle"
+                          placeholder="Title"
+                          autocomplete="none"
+                          v-model="data.datedTitle"
+                        />
+                      </div>
+                    </div>
+                    <!-- school -->
+                    <div class="form-group">
+                      <div class="md:w-4/5 w-full m-auto">
+                        <input
+                          id="school_name"
+                          type="text"
+                          class="form-control"
+                          name="DatedOrg"
+                          placeholder="Orgnization"
+                          autocomplete="none"
+                          v-model="data.datedOrg"
+                        />
+                      </div>
+                    </div>
+                    <!-- descr -->
+                    <div class="form-group">
+                      <div class="md:w-4/5 w-full m-auto">
+                        <textarea
+                          placeholder="Education Description"
+                          class="form-control"
+                          id="dated-des"
+                          v-model="data.datedDesc"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <!-- start date -->
+                    <div class="form-group">
+                      <div class="md:w-4/5 w-full m-auto">
+                        <input
+                          id="edu_end_date"
+                          type="text"
+                          class="form-control"
+                          name="edu_end_date"
+                          placeholder="Start date"
+                          autocomplete="none"
+                          v-model="data.startDate"
+                        />
+                      </div>
+                    </div>
+                    <!-- end date -->
+                    <div class="form-group">
+                      <div class="md:w-4/5 w-full m-auto">
+                        <input
+                          id="edu_end_date"
+                          type="text"
+                          class="form-control"
+                          name="edu_end_date"
+                          placeholder="End date"
+                          autocomplete="none"
+                          v-model="data.endDate"
+                        />
+                      </div>
+                    </div>
+                  </template>
+                  <template v-slot:save>
+                    <button
+                      type="button"
+                      class="btn btn-primary bg-blue-500 border-0 text-sm"
+                      @click="addDate(keys)"
+                    >Save</button>
+                  </template>
+                </ModelComp>
+                <!-- dated div -->
+                <div class="p-1" v-for="(val ,key) in cv.datedSections[keys].data" :key="key">
+                  <div class="flex justify-between">
+                    <h4 class="text-sm font-bold" v-if="val.datedTitle" v-text="val.datedTitle"></h4>
+                    <div class="flex">
+                      <i
+                        class="fas fa-pen text-xs"
+                        data-toggle="modal"
+                        :data-target="'#edit-dated-'+keys+key"
+                      ></i>
+                      <i
+                        class="fas fa-minus-circle text-xs"
+                        @click="deleteDated(keys,key)"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Remove"
+                      ></i>
+                    </div>
+                  </div>
+                  <h5
+                    class="text-sm font-bold text-gray-700 inline"
+                    v-if="val.datedOrg"
+                    v-text="val.datedOrg"
+                  ></h5>
+                  <div class="inline text-sm" v-text="val.startDate +'-'+ val.endDate"></div>
+                  <!-- edit  -->
+                  <ModelComp model-head="Edit custom date" :id="'edit-dated-'+keys+key">
+                    <template v-slot:body>
+                      <!-- dgree name -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="degree_name"
+                            type="text"
+                            class="form-control"
+                            name="datedTitle"
+                            placeholder="Title"
+                            autocomplete="none"
+                            v-model="val.datedTitle"
+                          />
+                        </div>
+                      </div>
+                      <!-- school -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="school_name"
+                            type="text"
+                            class="form-control"
+                            name="DatedOrg"
+                            placeholder="Orgnization"
+                            autocomplete="none"
+                            v-model="val.datedOrg"
+                          />
+                        </div>
+                      </div>
+                      <!-- descr -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <textarea
+                            placeholder="Education Description"
+                            class="form-control"
+                            id="dated-des"
+                            v-model="val.datedDesc"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <!-- start date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="edu_end_date"
+                            type="text"
+                            class="form-control"
+                            name="edu_end_date"
+                            placeholder="Start date"
+                            autocomplete="none"
+                            v-model="val.startDate"
+                          />
+                        </div>
+                      </div>
+                      <!-- end date -->
+                      <div class="form-group">
+                        <div class="md:w-4/5 w-full m-auto">
+                          <input
+                            id="edu_end_date"
+                            type="text"
+                            class="form-control"
+                            name="edu_end_date"
+                            placeholder="End date"
+                            autocomplete="none"
+                            v-model="val.endDate"
+                          />
+                        </div>
+                      </div>
+                    </template>
+                    <template v-slot:save>
+                      <button
+                        type="button"
+                        class="btn btn-primary bg-blue-500 border-0 text-sm"
+                      >Save</button>
+                    </template>
+                  </ModelComp>
+                </div>
+                <!-- add -->
+                <div class="add flex justify-end items-center">
+                  <span
+                    class="text-sm text-blue-400"
+                    data-toggle="modal"
+                    :data-target="'#add-dated-'+keys"
+                  >
+                    <i class="fas fa-plus"></i> Add
+                  </span>
+                  <i
+                    class="fas fa-minus-circle text-xs"
+                    @click="deleteDatedSec(keys)"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Remove"
+                  ></i>
+                </div>
+              </SectionComp>
             </div>
           </div>
           <!-- btn submit -->
@@ -737,8 +944,10 @@ export default {
         },
         experiences: [],
         educations: [],
-        sections: []
+        sections: [],
+        datedSections: []
       },
+      data:[],
       edu: {
         degree_name: "",
         school_name: "",
@@ -759,9 +968,12 @@ export default {
       },
       newDateSec: {
         datedHeading: "",
+        data: []
+      },
+      data: {
         datedTitle: "",
         datedOrg: "",
-        dateDesc: "",
+        datedDesc: "",
         startDate: "",
         endDate: ""
       }
@@ -812,12 +1024,18 @@ export default {
     },
     // add dated sections
     addDatedSec() {
-      this.datedSections.push(this.newDateSec);
+      this.cv.datedSections.push(this.newDateSec);
       this.newDateSec = {
         datedHeading: "",
+        data: []
+      };
+    },
+    addDate(bla) {
+      this.cv.datedSections[bla].data.push(this.data);
+      this.data = {
         datedTitle: "",
         datedOrg: "",
-        dateDesc: "",
+        datedDesc: "",
         startDate: "",
         endDate: ""
       };
@@ -872,6 +1090,26 @@ export default {
         .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
         .then(response => {
           this.$delete(this.cv.sections, key);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    deleteDateSec(key, id) {
+      axios
+        .delete("/cvs/" + this.$route.params.cvId + "/datedsec/" + id)
+        .then(response => {
+          this.$delete(this.cv.datedSections, key);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    deleteDated(sec, id) {
+      axios
+        .delete("/datedsec/" + sec + "/datedData/" + id)
+        .then(response => {
+          this.$delete(this.cv.datedSections[key].data, key);
         })
         .catch(error => {
           console.log(error.response);
