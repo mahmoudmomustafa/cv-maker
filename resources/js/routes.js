@@ -2,12 +2,11 @@ import './bootstrap'
 // import './app'
 import store from './store'
 import VueRouter from 'vue-router'
-import Auth from "./views/Auth.vue";
-import Home from "./views/Home.vue";
-import Cvs from "./views/CVS.vue";
-import Create from "./views/Create.vue";
-import Show from "./views/Show.vue";
-// import Preview from "./views/Preview.vue";
+const Auth = () => import('./views/Auth.vue')
+const Home = () => import('./views/Home.vue')
+const Cvs = () => import('./views/CVS.vue') 
+const Create = () => import('./views/Create.vue') 
+const Show = () => import('./views/Show.vue') 
 
 const routes = [{
         path: '/auth',

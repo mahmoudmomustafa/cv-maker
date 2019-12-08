@@ -89,7 +89,8 @@ section {
   .body {
     .create {
       min-height: 300px;
-      background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+      background-image: linear-gradient(135deg, #667eea 0%, #3F51B5 100%);
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -98,7 +99,7 @@ section {
 
       &:hover {
         transform: scale(1.03);
-        box-shadow: 5px 6px 0px #fda085 !important;
+        box-shadow: 5px 6px 0px #667eea  !important;
       }
     }
     .cv {

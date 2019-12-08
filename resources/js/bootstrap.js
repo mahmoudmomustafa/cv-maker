@@ -5,17 +5,17 @@ import jQuery from 'jquery'
 import VueRouter from 'vue-router'
 import 'tailwindcss/dist/tailwind.min.css'
 import moment from 'moment'
-
+import CKEditor from '@ckeditor/ckeditor5-vue';
 window.Vue = Vue;
 window.Vuex = Vuex;
 Vue.use(VueRouter)
 Vue.use(Vuex)
-
 Vue.filter('formatDate', function (value) {
     if (value) {
         return moment(String(value)).calendar();
     }
 })
+Vue.use( CKEditor );
 window.$ = window.jQuery = jQuery;
 window.axios = axios;
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

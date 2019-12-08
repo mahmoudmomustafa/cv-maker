@@ -48,12 +48,7 @@
                     <!-- desc -->
                     <div class="form-group">
                       <div class="m-auto w-full">
-                        <textarea
-                          placeholder="Section Description"
-                          class="form-control"
-                          id="section-des"
-                          v-model="newSec.secDesc"
-                        ></textarea>
+                        <ckeditor :editor="editor" v-model="newSec.secDesc" :config="editorConfig"></ckeditor>
                       </div>
                     </div>
                   </template>
@@ -198,12 +193,7 @@
               <SectionComp class="summary" section-head="Summary">
                 <div class="form-group">
                   <div class="m-auto w-full">
-                    <textarea
-                      placeholder="Summary Description"
-                      class="form-control"
-                      id="summary-des"
-                      v-model="cv.info.summary"
-                    ></textarea>
+                    <ckeditor :editor="editor" v-model="cv.info.summary" :config="editorConfig"></ckeditor>
                   </div>
                 </div>
               </SectionComp>
@@ -241,12 +231,7 @@
                     <!-- descr -->
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
-                        <textarea
-                          placeholder="Education Description"
-                          class="form-control"
-                          id="edu-des"
-                          v-model="edu.edu_des"
-                        ></textarea>
+                        <ckeditor :editor="editor" v-model="edu.edu_des" :config="editorConfig"></ckeditor>
                       </div>
                     </div>
                     <!-- start date -->
@@ -289,7 +274,15 @@
                 <!-- edu div -->
                 <div class="p-1" v-for="(val,key) in cv.educations" :key="key">
                   <div class="flex justify-between">
-                    <h4 class="text-sm font-bold" v-if="val.degree_name" v-text="val.degree_name"></h4>
+                    <div class="div">
+                      <h4 class="text-sm font-bold" v-if="val.degree_name" v-text="val.degree_name"></h4>
+                      <h5
+                        class="text-sm font-bold text-gray-700 inline"
+                        v-if="val.school_name"
+                        v-text="val.school_name"
+                      ></h5>
+                      <div class="inline" v-text="val.edu_start +'-'+ val.edu_end"></div>
+                    </div>
                     <div class="flex">
                       <i
                         class="fas fa-pen text-xs"
@@ -305,12 +298,6 @@
                       ></i>
                     </div>
                   </div>
-                  <h5
-                    class="text-sm font-bold text-gray-700 inline"
-                    v-if="val.school_name"
-                    v-text="val.school_name"
-                  ></h5>
-                  <div class="inline" v-text="val.edu_start +'-'+ val.edu_end"></div>
                   <!-- edit model -->
                   <ModelComp model-head="Edit Education" :id="'add-edu-'+key">
                     <template v-slot:body>
@@ -343,12 +330,11 @@
                       <!-- descr -->
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
-                          <textarea
-                            placeholder="Education Description"
-                            class="form-control"
-                            id="edu-des"
+                          <ckeditor
+                            :editor="editor"
                             v-model="cv.educations[key].edu_des"
-                          ></textarea>
+                            :config="editorConfig"
+                          ></ckeditor>
                         </div>
                       </div>
                       <!-- start date -->
@@ -430,12 +416,7 @@
                     <!-- job descr -->
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
-                        <textarea
-                          placeholder="Job Description"
-                          class="form-control"
-                          id="job-des"
-                          v-model="job.desc"
-                        ></textarea>
+                        <ckeditor :editor="editor" v-model="job.desc" :config="editorConfig"></ckeditor>
                       </div>
                     </div>
                     <!-- start date -->
@@ -478,7 +459,15 @@
                 <!-- exp div -->
                 <div class="p-1" v-for="(val ,key) in cv.experiences" :key="key">
                   <div class="flex justify-between">
-                    <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
+                    <div class="div">
+                      <h4 class="text-sm font-bold" v-if="val.title" v-text="val.title"></h4>
+                      <h5
+                        class="text-sm font-bold text-gray-700 inline"
+                        v-if="val.company"
+                        v-text="val.company"
+                      ></h5>
+                      <div class="inline text-sm" v-text="val.start_date +'-'+ val.end_date"></div>
+                    </div>
                     <div class="flex">
                       <i
                         class="fas fa-pen text-xs"
@@ -494,12 +483,6 @@
                       ></i>
                     </div>
                   </div>
-                  <h5
-                    class="text-sm font-bold text-gray-700 inline"
-                    v-if="val.company"
-                    v-text="val.company"
-                  ></h5>
-                  <div class="inline text-sm" v-text="val.start_date +'-'+ val.end_date"></div>
                   <!-- edit model -->
                   <ModelComp model-head="Edit Experience" :id="'edit-exp-'+key">
                     <template v-slot:body>
@@ -534,12 +517,11 @@
                       <!-- job descr -->
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
-                          <textarea
-                            placeholder="Job Description"
-                            class="form-control"
-                            id="job-des"
+                          <ckeditor
+                            :editor="editor"
                             v-model="cv.experiences[key].desc"
-                          ></textarea>
+                            :config="editorConfig"
+                          ></ckeditor>
                         </div>
                       </div>
                       <!-- start date -->
@@ -594,11 +576,7 @@
               >
                 <div class="form-group">
                   <div class="m-auto w-full">
-                    <textarea
-                      :placeholder="val.secHeading"
-                      class="form-control"
-                      v-model="val.secDesc"
-                    ></textarea>
+                    <ckeditor :editor="editor" v-model="val.secDesc" :config="editorConfig"></ckeditor>
                   </div>
                 </div>
                 <div class="flex justify-end">
@@ -651,12 +629,7 @@
                     <!-- descr -->
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
-                        <textarea
-                          placeholder="Education Description"
-                          class="form-control"
-                          id="dated-des"
-                          v-model="data.datedDesc"
-                        ></textarea>
+                        <ckeditor :editor="editor" v-model="data.datedDesc" :config="editorConfig"></ckeditor>
                       </div>
                     </div>
                     <!-- start date -->
@@ -755,12 +728,7 @@
                       <!-- descr -->
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
-                          <textarea
-                            placeholder="Education Description"
-                            class="form-control"
-                            id="dated-des"
-                            v-model="val.datedDesc"
-                          ></textarea>
+                          <ckeditor :editor="editor" v-model="val.datedDesc" :config="editorConfig"></ckeditor>
                         </div>
                       </div>
                       <!-- start date -->
@@ -836,7 +804,7 @@
 import NavComp from "../components/NavComp.vue";
 import ModelComp from "../components/ModelComp.vue";
 import SectionComp from "../components/SectionComp.vue";
-
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
   name: "create",
   components: {
@@ -890,6 +858,10 @@ export default {
         datedDesc: "",
         startDate: "",
         endDate: ""
+      },
+      editor: ClassicEditor,
+      editorConfig: {
+        // The configuration of the rich-text editor.
       }
     };
   },
@@ -987,6 +959,7 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+
 main {
   font-family: "Raleway", sans-serif;
   .add-sec span {

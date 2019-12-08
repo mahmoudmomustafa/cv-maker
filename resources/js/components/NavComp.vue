@@ -61,30 +61,20 @@ export default {
       user: []
     };
   },
-  mounted() {
-    this.get;
+  created() {
+    this.user = this.get();
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
       store.commit("logoutUser");
       this.$router.push({ name: "auth" });
+    },
+    get() {
+      var state = this.$store.state;
+      return state.user;
     }
   },
-  computed: {
-    get() {
-      axios
-        .get("/init", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(response => {
-          this.user = response.data;
-        })
-        .catch(error => {});
-    }
-  }
 };
 </script>
 
@@ -95,19 +85,19 @@ nav {
   padding-bottom: 0;
   .navbar-brand {
     font-family: "Merienda One", cursive;
-    color: #735c87;
+    color: #3f51b5;
     &:hover {
-      color: #735c87 !important;
+      color: #3f51b5 !important;
     }
   }
   .navbar-toggler {
-    color: #735c87 !important;
+    color: #3f51b5 !important;
     border-color: none;
     box-shadow: none;
     outline: none;
   }
   .nav-link {
-    color: #735c87 !important;
+    color: #3f51b5 !important;
     font-weight: 600;
     -webkit-transition: 500ms ease;
     transition: 500ms ease;
@@ -117,7 +107,7 @@ nav {
     padding: 0.3rem 1rem !important;
     box-shadow: 3px 3px;
     &:hover {
-      background: #c6a4e4;
+      background: #abb6f8;
       color: #2c2c2c !important;
       box-shadow: none;
     }

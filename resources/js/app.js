@@ -1,7 +1,6 @@
 import './bootstrap'
 import router from "./routes"
 import store from "./store"
-import NavComp from "./components/NavComp.vue";
 
 let app = new Vue({
     el: '#app',
@@ -12,7 +11,7 @@ let app = new Vue({
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }, ).then(response => {
-                store.commit('loginUser')
+                store.commit('loginUser', response.data)
             }).catch(error => {
                 if (error.response.status === 401 || error.response.status === 403) {
                     store.commit('logoutUser')

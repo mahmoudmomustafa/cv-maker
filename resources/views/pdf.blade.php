@@ -110,7 +110,7 @@
         <section>
             <fieldset>
                 <legend>Summary</legend>
-                <p>{{$cv->summary}}</p>
+                <p>{!!$cv->summary!!}</p>
             </fieldset>
         </section>
         @endif
@@ -130,7 +130,7 @@
                             <h3>{{$education->school_name}}</h3>
                             @endif
                             @if ($education->edu_des)
-                            <p>{{$education->edu_des}}</p>
+                            <p>{!!$education->edu_des!!}</p>
                             @endif
                         </div>
                         @if ($education->edu_start || $education->edu_end)
@@ -159,7 +159,7 @@
                             <h3>{{$experience->company}}</h3>
                             @endif
                             @if ($experience->desc)
-                            <p>{{$experience->desc}}</p>
+                            <p>{!!$experience->desc!!}</p>
                             @endif
                         </div>
                         @if ($experience->start_date || $experience->end_date)
@@ -179,7 +179,7 @@
         <section>
             <fieldset>
                 <legend>{{$section->secHeading}}</legend>
-                <p>{{$section->secDesc}}</p>
+                <p>{!!$section->secDesc!!}</p>
             </fieldset>
         </section>
         @endforeach

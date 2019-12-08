@@ -14,10 +14,11 @@ use PDF;
 
 class CvController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        // $this->middleware('auth');
+        $this->authorizeResource(Cv::class, 'cv');
+    }
     // show all cvs
     public function index()
     {
@@ -81,7 +82,11 @@ class CvController extends Controller
         $educations = $cv->educations()->get();
         $sections = $cv->sections()->get();
         $experiences = $cv->experiences()->get();
-        $datedSections = $cv->datedSections()->get();
+        $datedSectionssss = $cv->datedSections()->get();
+        $datedSections = [];
+        foreach ($datedSectionssss as $section) {
+            array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('id', $section->id)->get()]);
+        }
         return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
     }
     // update cv
@@ -93,7 +98,7 @@ class CvController extends Controller
         // create or update exp
         foreach ($data['experiences'] as $experience) {
             if (isset($experience['id'])) {
-                Experience::where('id',$experience['id'])->update($experience);
+                Experience::where('id', $experience['id'])->update($experience);
             } else {
                 $cv->experiences()->create($experience);
             }
@@ -101,7 +106,7 @@ class CvController extends Controller
         // create or update educations
         foreach ($data['educations'] as $education) {
             if (isset($education['id'])) {
-                Education::where('id',$education['id'])->update($education);
+                Education::where('id', $education['id'])->update($education);
             } else {
                 $cv->educations()->create($education);
             }
@@ -109,7 +114,7 @@ class CvController extends Controller
         // create or update sections
         foreach ($data['sections'] as $section) {
             if (isset($section['id'])) {
-                Section::where('id',$section['id'])->update($section);
+                Section::where('id', $section['id'])->update($section);
             } else {
                 $cv->sections()->create($section);
             }
@@ -117,9 +122,15 @@ class CvController extends Controller
         //create or update dated sections
         foreach ($data['datedSections'] as $dateSection) {
             if (isset($dateSection['id'])) {
-                DatedSection::where('id',$dateSection['id'])->update($dateSection);
+                DatedSection::where('id', $dateSection['id'])->update($dateSection);
+                foreach ($dateSection['data'] as $data) {
+                    $dateSection->data()->create();
+                }
             } else {
                 $cv->datedSections()->create($dateSection);
+                foreach ($dateSection['data'] as $data) {
+                    $dateSection->data()->create();
+                }
             }
         }
         // create dated sections
