@@ -85,7 +85,7 @@ class CvController extends Controller
         $datedSectionssss = $cv->datedSections()->get();
         $datedSections = [];
         foreach ($datedSectionssss as $section) {
-            array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('id', $section->id)->get()]);
+            array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('datedsection_id', $section->id)->get()]);
         }
         return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
     }
@@ -122,14 +122,27 @@ class CvController extends Controller
         //create or update dated sections
         foreach ($data['datedSections'] as $dateSection) {
             if (isset($dateSection['id'])) {
-                DatedSection::where('id', $dateSection['id'])->update($dateSection);
+                // $cv->datedSections()->create($dateSection);
+                // DatedSection::where('id', $dateSection['id'])->update($dateSection);
                 foreach ($dateSection['data'] as $data) {
-                    $dateSection->data()->create();
+                    if (!isset($data["id"])) {
+                        $dated = new DatedData;
+                        foreach ($data as $key => $value) {
+                            $dated->$key = $value;
+                        }
+                        $dated->datedsection_id = $dateSection["id"];
+                        $dated->save();
+                    }
                 }
             } else {
                 $cv->datedSections()->create($dateSection);
                 foreach ($dateSection['data'] as $data) {
-                    $dateSection->data()->create();
+                    $dated = new DatedData;
+                    foreach ($data as $key => $value) {
+                        $dated->$key = $value;
+                    }
+                    $dated->datedsection_id = $dateSection->id;
+                    $dated->save();
                 }
             }
         }
@@ -179,8 +192,9 @@ class CvController extends Controller
         $educations = $cv->educations()->get();
         $sections = $cv->sections()->get();
         $experiences = $cv->experiences()->get();
-        // $pdf = PDF::loadView('pdf', ['cv' => $cv , 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations]);
-        // return $pdf->stream('CV.pdf');
-        return view('pdf', compact('cv', 'educations', 'sections', 'experiences'));
+        $datedSections = $cv->datedSections()->get();
+        $pdf = PDF::loadView('pdf', ['cv' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations,'datedSections'=>$datedSections])->setPaper('a4');
+        return $pdf->stream('CV.pdf');
+        // return view('pdf', compact('cv', 'educations', 'sections', 'experiences'));
     }
 }

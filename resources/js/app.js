@@ -6,12 +6,12 @@ let app = new Vue({
     el: '#app',
     created() {
         if (localStorage.token) {
-            axios.get('/init', {
+            axios.get('/api/init', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }, ).then(response => {
-                store.commit('loginUser', response.data)
+                store.commit('loginUser')
             }).catch(error => {
                 if (error.response.status === 401 || error.response.status === 403) {
                     store.commit('logoutUser')

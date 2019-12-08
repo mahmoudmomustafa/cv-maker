@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
-    this.user = this.get();
+    this.getUser();
   },
   methods: {
     logout() {
@@ -70,11 +70,19 @@ export default {
       store.commit("logoutUser");
       this.$router.push({ name: "auth" });
     },
-    get() {
-      var state = this.$store.state;
-      return state.user;
+    getUser() {
+      axios
+        .get("/api/init", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(response => {
+          this.user = response.data;
+        })
+        .catch(error => {});
     }
-  },
+  }
 };
 </script>
 

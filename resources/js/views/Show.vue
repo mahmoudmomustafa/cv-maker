@@ -75,72 +75,6 @@
                         />
                       </div>
                     </div>
-                    <!-- dgree name -->
-                    <div class="form-group">
-                      <div class="md:w-4/5 w-full m-auto">
-                        <input
-                          id="degree_name"
-                          type="text"
-                          class="form-control"
-                          name="datedTitle"
-                          placeholder="Title"
-                          autocomplete="none"
-                          v-model="newDateSec.datedTitle"
-                        />
-                      </div>
-                    </div>
-                    <!-- school -->
-                    <div class="form-group">
-                      <div class="md:w-4/5 w-full m-auto">
-                        <input
-                          id="school_name"
-                          type="text"
-                          class="form-control"
-                          name="DatedOrg"
-                          placeholder="Orgnization"
-                          autocomplete="none"
-                          v-model="newDateSec.datedOrg"
-                        />
-                      </div>
-                    </div>
-                    <!-- descr -->
-                    <div class="form-group">
-                      <div class="md:w-4/5 w-full m-auto">
-                        <ckeditor
-                          :editor="editor"
-                          v-model="newDateSec.datedDesc"
-                          :config="editorConfig"
-                        ></ckeditor>
-                      </div>
-                    </div>
-                    <!-- start date -->
-                    <div class="form-group">
-                      <div class="md:w-4/5 w-full m-auto">
-                        <input
-                          id="edu_end_date"
-                          type="text"
-                          class="form-control"
-                          name="edu_end_date"
-                          placeholder="Start date"
-                          autocomplete="none"
-                          v-model="newDateSec.startDate"
-                        />
-                      </div>
-                    </div>
-                    <!-- end date -->
-                    <div class="form-group">
-                      <div class="md:w-4/5 w-full m-auto">
-                        <input
-                          id="edu_end_date"
-                          type="text"
-                          class="form-control"
-                          name="edu_end_date"
-                          placeholder="End date"
-                          autocomplete="none"
-                          v-model="newDateSec.endDate"
-                        />
-                      </div>
-                    </div>
                   </template>
                   <template v-slot:save>
                     <button
@@ -621,19 +555,19 @@
               </SectionComp>
               <!-- new sections -->
               <SectionComp
-                v-for="(val, key) in cv.sections"
-                :key="key"
-                v-bind:section-head="val.secHeading"
+                v-for="(value, keey) in cv.sections"
+                :key="'sec'+keey"
+                v-bind:section-head="value.secHeading"
               >
                 <div class="form-group">
                   <div class="m-auto w-full">
-                    <ckeditor :editor="editor" v-model="val.secDesc" :config="editorConfig"></ckeditor>
+                    <ckeditor :editor="editor" v-model="value.secDesc" :config="editorConfig"></ckeditor>
                   </div>
                 </div>
                 <div class="flex justify-end">
                   <i
                     class="fas fa-minus-circle text-xs"
-                    @click="deleteSec(key,val.id)"
+                    @click="deleteSec(keey,value.id)"
                     data-toggle="tooltip"
                     data-placement="bottom"
                     title="Remove"
@@ -643,7 +577,7 @@
               <!-- dated section -->
               <SectionComp
                 v-for="(vals, keys) in cv.datedSections"
-                :key="keys"
+                :key="'dated-'+keys"
                 v-bind:section-head="vals.datedHeading"
               >
                 <!-- dated model -->
@@ -941,56 +875,71 @@ export default {
     },
     // delete ducation
     deleteEdu(key, id) {
-      axios
-        .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id)
-        .then(response => {
-          this.$delete(this.cv.educations, key);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$delete(this.cv.educations, key);
+      if (id) {
+        axios
+          .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id)
+          .then(response => {
+            this.$delete(this.cv.educations, key);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
     },
     // delete experince
     deleteExp(key, id) {
-      axios
-        .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id)
-        .then(response => {
-          this.$delete(this.cv.experiences, key);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$delete(this.cv.experiences, key);
+      if (id) {
+        axios
+          .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id)
+          .then(response => {
+            this.$delete(this.cv.experiences, key);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
     },
     // delete section
     deleteSec(key, id) {
-      axios
-        .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
-        .then(response => {
-          this.$delete(this.cv.sections, key);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$delete(this.cv.sections, key);
+      if (id) {
+        axios
+          .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
+          .then(response => {
+            this.$delete(this.cv.sections, key);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
     },
     deleteDateSec(key, id) {
-      axios
-        .delete("/cvs/" + this.$route.params.cvId + "/datedsec/" + id)
-        .then(response => {
-          this.$delete(this.cv.datedSections, key);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$delete(this.cv.datedSections, key);
+      if (id) {
+        axios
+          .delete("/cvs/" + this.$route.params.cvId + "/datedsec/" + id)
+          .then(response => {
+            this.$delete(this.cv.datedSections, key);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
     },
     deleteDated(DataSecID, dataId, keys, key) {
-      axios
-        .delete("/datedsec/" + sec + "/datedData/" + dataId)
-        .then(response => {
-          this.$delete(this.cv.datedSections[keys].data, key);
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$delete(this.cv.datedSections[keys].data, key);
+      if (dataId) {
+        axios
+          .delete("/datedsec/" + DataSecID + "/datedData/" + dataId)
+          .then(response => {
+            this.$delete(this.cv.datedSections[keys].data, key);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
     },
     // delete cv
     deleteCV() {

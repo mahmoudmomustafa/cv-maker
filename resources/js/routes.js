@@ -4,9 +4,9 @@ import store from './store'
 import VueRouter from 'vue-router'
 const Auth = () => import('./views/Auth.vue')
 const Home = () => import('./views/Home.vue')
-const Cvs = () => import('./views/CVS.vue') 
-const Create = () => import('./views/Create.vue') 
-const Show = () => import('./views/Show.vue') 
+const Cvs = () => import('./views/CVS.vue')
+const Create = () => import('./views/Create.vue')
+const Show = () => import('./views/Show.vue')
 
 const routes = [{
         path: '/auth',
@@ -14,7 +14,7 @@ const routes = [{
         component: Auth
     }, {
         path: '*',
-        redirect: '/dashboard'
+        redirect: '/dashboard',
     }, {
         path: '/dashboard',
         name: "dashboard",

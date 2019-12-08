@@ -115,7 +115,7 @@
         </section>
         @endif
         {{-- education --}}
-        @if ($educations)
+        @if ($cv->educations())
         <section>
             <fieldset>
                 <legend>Education</legend>
@@ -144,7 +144,7 @@
         </section>
         @endif
         {{-- experiencese --}}
-        @if ($experiences)
+        @if (!empty($cv->experiences()))
         <section>
             <fieldset>
                 <legend>Experiences</legend>
@@ -173,8 +173,40 @@
             </fieldset>
         </section>
         @endif
+        {{-- datasection --}}
+        @if ($datedSections)
+        @foreach ($datedSections as $datedSection)
+        <section>
+            <fieldset>
+                <legend>{{$datedSection->datedHeading}}</legend>
+                @foreach (DB::table('dateddata')->where('datedsection_id',$datedSection->id)->get() as $data)
+                <div>
+                    <div class="head">
+                        <div class="data">
+                            @if ($data->datedTitle)
+                            <h3>{{$data->datedTitle}}</h3>
+                            @endif
+                            @if ($data->datedOrg)
+                            <h3>{{$data->datedOrg}}</h3>
+                            @endif
+                            @if ($data->datedDesc)
+                            <p>{!!$data->datedDesc!!}</p>
+                            @endif
+                        </div>
+                        @if ($data->startDate || $data->endDate)
+                        <div class="date"><span>{{$data->startDate}}</span> -
+                            <span>{{$data->endDate}}</span>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            </fieldset>
+        </section>
+        @endforeach
+        @endif
         {{-- sections --}}
-        @if ($sections)
+        @if ($cv->sections())
         @foreach ($sections as $section)
         <section>
             <fieldset>

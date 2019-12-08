@@ -41,16 +41,21 @@ export default {
     };
   },
   created() {
-    axios
-      .get("/init", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      })
-      .then(response => {
-        this.user = response.data;
-      })
-      .catch(error => {});
+    this.getUser();
+  },
+  methods: {
+    getUser() {
+      axios
+        .get("/api/init", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(response => {
+          this.user = response.data;
+        })
+        .catch(error => {});
+    }
   }
 };
 </script>
