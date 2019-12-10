@@ -2,9 +2,9 @@
   <div class="container-md">
     <div class="contain">
       <!-- {{-- form --}} -->
-      <div class="w-full m-5 shadow bg:white flex">
+      <div class="w-full m-5 bg:white flex justify-content-center">
         <!-- left-side -->
-        <div class="hidden md:block md:w-2/4 log-img">
+        <div class="hidden md:w-2/4 log-img">
           <div class="heading">
             <h2 class="text-white text-5xl mb-2">LoKi</h2>
             <span class="text-white text-2xl inline my-2">Create your Resume</span>

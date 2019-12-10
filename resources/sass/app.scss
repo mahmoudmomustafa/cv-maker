@@ -22,6 +22,9 @@ body {
         background: white;
         font-family: 'Raleway';
         transition: 500ms ease;
+        // background-image: url('https://image.freepik.com/free-vector/green-shapes-green-background_23-2148358212.jpg');
+        background-image: url('../imgs/3209512.jpg');
+        background-size: cover;
 
         // register
         nav {
@@ -44,7 +47,8 @@ body {
         .header {
             h3 {
                 font-size: 1.9rem;
-                color: #735c87;
+                // color: #3F51B5;
+                color: white;
                 font-family: 'Merienda One', cursive;
             }
         }
@@ -67,11 +71,6 @@ body {
                 span {
                     padding: 0 10px;
                 }
-            }
-
-            .social-active {
-                color: white !important;
-                background: #178ce9;
             }
 
             .or span {
@@ -108,16 +107,12 @@ body {
                     background: #f2f2f2;
                 }
 
-                .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-                    background-color: #fe494c;
-                }
-
                 .btn {
                     border: none;
                     cursor: pointer;
                     transition: 500ms ease;
-                    background: #735c87;
-                    box-shadow: 5px 4px 0px #735c87;
+                    background: rgb(255, 255, 255);
+                    // box-shadorgb(255, 255, 255)4px 0px #735c87;
                     &:hover {
                       box-shadow: none;
                       transform: scale(0.9);
@@ -131,26 +126,6 @@ body {
 
             .show {
                 display: block;
-            }
-
-            .arrows {
-                .arrow {
-                    cursor: pointer;
-
-                    i {
-                        background: #e7e7e7;
-                        box-shadow: 0 0 5px #80808085;
-                        padding: .5rem .8rem;
-                        font-size: 1.4rem;
-                        border-radius: 50px;
-                        transition: 500ms ease;
-
-                        &:hover {
-                            color: white;
-                            background: #fe494c;
-                        }
-                    }
-                }
             }
         }
     }

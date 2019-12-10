@@ -3,6 +3,8 @@ import './bootstrap'
 let store = new Vuex.Store({
     state: {
         isLoggedIn: !!localStorage.getItem('token'),
+        user:[],
+        cvs:[]
     },
     mutations: {
         loginUser(state,res) {

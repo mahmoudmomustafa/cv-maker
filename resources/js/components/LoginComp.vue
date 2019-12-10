@@ -4,18 +4,18 @@
       <!-- {{-- register --}} -->
       <nav class="pb-2">
         <div
-          class="float-right wow slideInDown text-gray-700 text-xs"
+          class="float-right wow slideInDown text-white text-xs"
           data-wow-duration="3s"
           data-wow-delay="0s"
         >
           Not member ?
-          <a
-            class="text-sm"
+          <span
+            class="text-sm text-gray-200"
             data-toggle="tooltip"
             data-placement="bottom"
             title="Register"
             @click="reg"
-          >Create an account</a>
+          >Create an account</span>
         </div>
       </nav>
       <!-- {{-- form login --}} -->
@@ -29,7 +29,7 @@
           <!-- email  -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="email" class="text-gray-800 text-sm font-bold">
+              <label for="email" class="text-white text-sm font-bold">
                 Email
                 Address
               </label>
@@ -48,7 +48,7 @@
           <!-- password  -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="password" class="text-gray-800 text-sm font-bold">Password</label>
+              <label for="password" class="text-white text-sm font-bold">Password</label>
               <input
                 id="password"
                 type="password"
