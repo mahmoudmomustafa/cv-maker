@@ -18,7 +18,7 @@
   font-family: "Raleway";
   -webkit-transition: 500ms ease;
   transition: 500ms ease;
-  background-image: url(/images/3209512.jpg?d49d510b1e90b76d0641f9509721d17f);
+  background-image: url(/images/log.jpg?8ac683ee799698e6ee5cef695386486c);
   background-size: cover;
 }
 
@@ -98,6 +98,8 @@
   -webkit-transition: 500ms ease;
   transition: 500ms ease;
   background: white;
+  background: #005116;
+  box-shadow: 0 0 5px #005318;
 }
 
 .contain .form .body .form-group .btn:hover {

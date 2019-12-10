@@ -959,12 +959,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/cvs/create", this.cv).then(function (response) {
-        // this.$router.replace("/dashboard");
         _this.$router.push({
           name: "cvs"
         });
-
-        console.log(response);
       })["catch"](function (error) {
         console.log(error.response);
       });

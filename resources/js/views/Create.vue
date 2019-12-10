@@ -945,9 +945,7 @@ export default {
       axios
         .post("/cvs/create", this.cv)
         .then(response => {
-          // this.$router.replace("/dashboard");
           this.$router.push({ name: "cvs" });
-          console.log(response);
         })
         .catch(error => {
           console.log(error.response);

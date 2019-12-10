@@ -47330,7 +47330,7 @@ var app = new Vue({
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then(function (response) {
-        _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('loginUser');
+        _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('loginUser', response.data);
       })["catch"](function (error) {
         if (error.response.status === 401 || error.response.status === 403) {
           _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('logoutUser');
@@ -47419,23 +47419,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Auth = function Auth() {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Auth.vue */ "./resources/js/views/Auth.vue"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Auth.vue */ "./resources/js/views/Auth.vue"));
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var Cvs = function Cvs() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/CVS.vue */ "./resources/js/views/CVS.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/CVS.vue */ "./resources/js/views/CVS.vue"));
 };
 
 var Create = function Create() {
-  return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/Create.vue */ "./resources/js/views/Create.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(5), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Create.vue */ "./resources/js/views/Create.vue"));
 };
 
 var Show = function Show() {
-  return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/Show.vue */ "./resources/js/views/Show.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(5), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Show.vue */ "./resources/js/views/Show.vue"));
 };
 
 var routes = [{
@@ -47511,6 +47511,8 @@ router.beforeEach(function (to, from, next) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+var _this = undefined;
+
 
 var store = new Vuex.Store({
   state: {
@@ -47521,9 +47523,69 @@ var store = new Vuex.Store({
   mutations: {
     loginUser: function loginUser(state, res) {
       state.isLoggedIn = true;
+      state.user = res;
     },
     logoutUser: function logoutUser(state) {
       state.isLoggedIn = false;
+      state.user = [], state.cvs = [];
+    },
+    getCVS: function getCVS(state, cvs) {
+      state.cvs = cvs;
+    }
+  },
+  actions: {
+    // logout user
+    AUTH_LOGOUT: function AUTH_LOGOUT(_ref) {
+      var commit = _ref.commit,
+          dispatch = _ref.dispatch;
+      return new Promise(function (resolve, reject) {
+        commit("logoutUser");
+        localStorage.removeItem('token'); // clear your user's token from localstorage
+        // delete axios.defaults.headers.common['Authorization']
+
+        resolve();
+      });
+    },
+    GET_USER: function GET_USER(_ref2) {
+      var commit = _ref2.commit,
+          dispatch = _ref2.dispatch;
+      return new Promise(function (resolve, reject) {
+        axios.get("/api/init", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }).then(function (response) {
+          commit('loginUser', response.data);
+        })["catch"](function (error) {
+          if (error.response.status === 401 || error.response.status === 403) {
+            commit('logoutUser');
+            localStorage.setItem('token', '');
+
+            _this.$router.push({
+              name: 'auth'
+            });
+          }
+        });
+        resolve();
+      });
+    },
+    GET_CVS: function GET_CVS(_ref3) {
+      var commit = _ref3.commit,
+          dispatch = _ref3.dispatch;
+      return new Promise(function (resolve, reject) {
+        axios.get("/cvs").then(function (response) {
+          commit('getCVS', response.data);
+        })["catch"](function (error) {});
+        resolve();
+      });
+    }
+  },
+  getters: {
+    cvs: function cvs(state) {
+      return state.cvs;
+    },
+    user: function user(state) {
+      return state.user;
     }
   }
 });

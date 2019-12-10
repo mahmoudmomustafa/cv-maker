@@ -891,49 +891,69 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     deleteEdu: function deleteEdu(key, id) {
       var _this3 = this;
 
-      axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
-        _this3.$delete(_this3.cv.educations, key);
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+      this.$delete(this.cv.educations, key);
+
+      if (id) {
+        axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
+          _this3.$delete(_this3.cv.educations, key);
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
     },
     // delete experince
     deleteExp: function deleteExp(key, id) {
       var _this4 = this;
 
-      axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
-        _this4.$delete(_this4.cv.experiences, key);
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+      this.$delete(this.cv.experiences, key);
+
+      if (id) {
+        axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
+          _this4.$delete(_this4.cv.experiences, key);
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
     },
     // delete section
     deleteSec: function deleteSec(key, id) {
       var _this5 = this;
 
-      axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
-        _this5.$delete(_this5.cv.sections, key);
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+      this.$delete(this.cv.sections, key);
+
+      if (id) {
+        axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
+          _this5.$delete(_this5.cv.sections, key);
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
     },
     deleteDateSec: function deleteDateSec(key, id) {
       var _this6 = this;
 
-      axios["delete"]("/cvs/" + this.$route.params.cvId + "/datedsec/" + id).then(function (response) {
-        _this6.$delete(_this6.cv.datedSections, key);
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+      this.$delete(this.cv.datedSections, key);
+
+      if (id) {
+        axios["delete"]("/cvs/" + this.$route.params.cvId + "/datedsec/" + id).then(function (response) {
+          _this6.$delete(_this6.cv.datedSections, key);
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
     },
     deleteDated: function deleteDated(DataSecID, dataId, keys, key) {
       var _this7 = this;
 
-      axios["delete"]("/datedsec/" + DataSecID + "/datedData/" + dataId).then(function (response) {
-        _this7.$delete(_this7.cv.datedSections[keys].data, key);
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
+      this.$delete(this.cv.datedSections[keys].data, key);
+
+      if (dataId) {
+        axios["delete"]("/datedsec/" + DataSecID + "/datedData/" + dataId).then(function (response) {
+          _this7.$delete(_this7.cv.datedSections[keys].data, key);
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
     },
     // delete cv
     deleteCV: function deleteCV() {

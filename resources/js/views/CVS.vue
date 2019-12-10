@@ -8,7 +8,7 @@
         <!-- cvs -->
         <section>
           <div class="header">
-            <div class="p-4">
+            <div class="px-4 pt-4">
               <h2 class="text-2xl">Your Resumes</h2>
             </div>
           </div>
@@ -23,7 +23,9 @@
                   <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">ID : {{cv.id}}</div>
                     <p class="text-black text-3xl font-bold" v-text="cv.title"></p>
-                    <p class="text-gray-700 text-xs font-bold mt-3">Last updated : {{cv.updated_at | formatDate}}</p>
+                    <p
+                      class="text-gray-700 text-xs font-bold mt-3"
+                    >Last updated : {{cv.updated_at | formatDate}}</p>
                   </div>
                 </router-link>
               </div>
@@ -48,7 +50,7 @@
 
 <script>
 import NavComp from "../components/NavComp.vue";
-
+import { mapGetters } from "vuex";
 export default {
   name: "cvs",
   components: {
@@ -56,7 +58,7 @@ export default {
   },
   data() {
     return {
-      cvs: []
+      // cvs: {}
     };
   },
   created() {
@@ -65,17 +67,14 @@ export default {
   methods: {
     // get all user cvs
     getCvs() {
-      axios
-        .get("/cvs")
-        .then(response => {
-          this.cvs = response.data;
-        })
-        .catch(error => {
-          console.log(error.response);
-        });
+      this.$store.dispatch("GET_CVS");
     }
   },
-  
+  computed: {
+    ...mapGetters({
+      cvs: "cvs"
+    })
+  }
 };
 </script>
 
@@ -89,7 +88,8 @@ section {
   .body {
     .create {
       min-height: 300px;
-      background-image: linear-gradient(135deg, #667eea 0%, #3F51B5 100%);
+      background-image: linear-gradient(135deg, #667eea 0%, #3f51b5 100%);
+      // background-image: url('/imgs/create.jpg');
       color: white;
       display: flex;
       justify-content: center;
@@ -99,7 +99,7 @@ section {
 
       &:hover {
         transform: scale(1.03);
-        box-shadow: 5px 6px 0px #667eea  !important;
+        box-shadow: 5px 6px 0px #667eea !important;
       }
     }
     .cv {

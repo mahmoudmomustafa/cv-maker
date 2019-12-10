@@ -80,14 +80,17 @@ export default {
     log() {
       this.log = !this.log;
     }
+  },
+  created(){
+    this.$store.commit('logoutUser');
   }
 };
 </script>
 <style lang="scss">
 .log-img {
-  position: relative;
-  background-image: url("/imgs/log.jpeg");
-  background-size: cover;
+  // position: relative;
+  // background-image: url("/imgs/log.jpeg");
+  // background-size: cover;
   .heading {
     width: 100%;
     height: 100%;
@@ -96,7 +99,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: "Merienda One", cursive;
+    // font-family: "Merienda One", cursive;
   }
 }
 </style>

@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import 'tailwindcss/dist/tailwind.min.css'
 import moment from 'moment'
 import CKEditor from '@ckeditor/ckeditor5-vue';
+
 window.Vue = Vue;
 window.Vuex = Vuex;
 Vue.use(VueRouter)

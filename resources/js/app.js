@@ -11,7 +11,7 @@ let app = new Vue({
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }, ).then(response => {
-                store.commit('loginUser')
+                store.commit('loginUser', response.data)
             }).catch(error => {
                 if (error.response.status === 401 || error.response.status === 403) {
                     store.commit('logoutUser')
@@ -20,7 +20,6 @@ let app = new Vue({
                         name: 'auth'
                     })
                 }
-
             });
         }
     },

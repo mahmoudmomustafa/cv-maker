@@ -1,7 +1,7 @@
 <template>
   <nav id="navbar" class="navbar navbar-expand-md navbar-dark shadow-sm">
     <div class="container">
-      <a class="navbar-brand">Loki</a>
+      <a class="navbar-brand">Cv Maker</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -53,46 +53,38 @@
 
 <script>
 import store from "../store";
+import { mapGetters } from "vuex";
 
 export default {
   name: "navbar",
   data() {
     return {
-      user: []
+      // user: []
     };
-  },
-  created() {
-    this.getUser();
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
-      store.commit("logoutUser");
-      this.$router.push({ name: "auth" });
-    },
-    getUser() {
-      axios
-        .get("/api/init", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(response => {
-          this.user = response.data;
-        })
-        .catch(error => {});
+      this.$store.dispatch("AUTH_LOGOUT").then(() => {
+        this.$router.push({ name: "auth" });
+      });
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: "user"
+    })
   }
 };
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
 nav {
   background: white;
-  padding-top: 0;
-  padding-bottom: 0;
   .navbar-brand {
-    font-family: "Merienda One", cursive;
+    // font-family: "Merienda One", cursive
+    font-family: 'Pacifico', cursive;
     color: #3f51b5;
     &:hover {
       color: #3f51b5 !important;

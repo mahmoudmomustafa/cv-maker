@@ -23,7 +23,7 @@ body {
         font-family: 'Raleway';
         transition: 500ms ease;
         // background-image: url('https://image.freepik.com/free-vector/green-shapes-green-background_23-2148358212.jpg');
-        background-image: url('../imgs/3209512.jpg');
+        background-image: url('../imgs/log.jpg');
         background-size: cover;
 
         // register
@@ -112,6 +112,8 @@ body {
                     cursor: pointer;
                     transition: 500ms ease;
                     background: rgb(255, 255, 255);
+                    background: #005116;
+    box-shadow: 0 0 5px #005318;
                     // box-shadorgb(255, 255, 255)4px 0px #735c87;
                     &:hover {
                       box-shadow: none;
