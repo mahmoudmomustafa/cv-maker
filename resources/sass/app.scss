@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway|Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Philosopher|Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Merienda+One&display=swap');
+
 $fontColor:#3f4253;
 $aColor:#0053a9;
 $aColorHover:#32759c;
@@ -102,7 +103,7 @@ body {
             .form-group {
 
                 .form-control {
-                    border: 0;
+                    // border: 0;
                     background: #f2f2f2;
                 }
 

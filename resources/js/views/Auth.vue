@@ -3,13 +3,6 @@
     <div class="contain">
       <!-- {{-- form --}} -->
       <div class="w-full m-5 bg:white flex justify-content-center">
-        <!-- left-side -->
-        <div class="hidden md:w-2/4 log-img">
-          <div class="heading">
-            <h2 class="text-white text-5xl mb-2">LoKi</h2>
-            <span class="text-white text-2xl inline my-2">Create your Resume</span>
-          </div>
-        </div>
         <!-- forms -->
         <div class="w-full md:w-2/4 form p-3">
           <LoginComp v-if="login"></LoginComp>
@@ -81,16 +74,13 @@ export default {
       this.log = !this.log;
     }
   },
-  created(){
-    this.$store.commit('logoutUser');
+  created() {
+    this.$store.commit("logoutUser");
   }
 };
 </script>
 <style lang="scss">
 .log-img {
-  // position: relative;
-  // background-image: url("/imgs/log.jpeg");
-  // background-size: cover;
   .heading {
     width: 100%;
     height: 100%;
@@ -99,7 +89,10 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    // font-family: "Merienda One", cursive;
   }
+}
+.navbar-brand {
+  // font-family: "Merienda One", cursive
+  font-family: "Pacifico", cursive;
 }
 </style>

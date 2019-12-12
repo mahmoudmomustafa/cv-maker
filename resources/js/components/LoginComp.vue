@@ -34,10 +34,9 @@
                 Address
               </label>
               <input
-                id="email"
+                @keydown="close()"
                 type="email"
                 class="form-control"
-                name="email"
                 placeholder="Email address"
                 required
                 autocomplete="none"
@@ -50,26 +49,18 @@
             <div class="md:w-4/5 w-full m-auto">
               <label for="password" class="text-white text-sm font-bold">Password</label>
               <input
-                id="password"
+                @keydown="close()"
                 type="password"
                 class="form-control"
                 placeholder="Password"
-                name="password"
                 autocomplete="none"
                 v-model="password"
               />
             </div>
           </div>
           <!-- errors -->
-          <div
-            class="alert alert-danger alert-dismissible fade show border-0"
-            role="alert"
-            v-if="errors"
-          >
+          <div class="relative text-red-500 text-center mb-3" role="alert" v-if="errors">
             <strong v-text="errors"></strong>
-            <button type="button" class="close">
-              <span aria-hidden="true" @click="close">&times;</span>
-            </button>
           </div>
           <!-- submit btn-->
           <div class="form-group mb-0">
@@ -113,7 +104,7 @@ export default {
           store.commit("loginUser", response.data);
           localStorage.setItem("token", response.data.access_token);
           this.$store.dispatch("GET_USER");
-          this.$router.replace("dashboard");
+          this.$router.push({ name: "dashboard" });
         })
         .catch(error => {
           this.errors = error.response.data.error;

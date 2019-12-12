@@ -832,7 +832,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getCv: function getCv() {
       var _this = this;
 
-      axios.get("/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
+      axios.get("/api/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
         _this.cv = response.data;
       })["catch"](function (error) {
         console.log(error.response);
@@ -842,7 +842,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateCv: function updateCv() {
       var _this2 = this;
 
-      axios.put("/cvs/" + this.$route.params.cvId + "/edit", this.cv).then(function (response) {
+      axios.put("/cvs/" + this.$route.params.cvId, this.cv).then(function (response) {
         _this2.$router.push({
           name: "cvs"
         });

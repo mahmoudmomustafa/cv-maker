@@ -10,8 +10,8 @@ Route::post('/logout', 'AuthController@logout');
 
 Route::get('/api/cvs', 'CvController@index');
 Route::post('/cvs/create', 'CvController@create');
-Route::put('/cvs/{cv}/edit', 'CvController@update');
-Route::get('/cvs/{cv}/edit', 'CvController@edit');
+Route::put('/cvs/{cv}', 'CvController@update');
+Route::get('/api/cvs/{cv}/edit', 'CvController@edit');
 Route::delete('/cvs/{cv}', 'CvController@destroy');
 
 Route::delete('/cvs/{cv}/edu/{education}', 'CvController@deleteEducation');

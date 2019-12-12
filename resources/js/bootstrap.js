@@ -26,7 +26,8 @@ $.ajaxSetup({
     }
 });
 const instance = axios.create({
-    baseURL: '/api'
+    baseURL: '/'
+    // process.env.BASE_URL
   })
   
   // before a request is made start the nprogress

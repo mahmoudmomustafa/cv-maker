@@ -817,7 +817,7 @@ export default {
     // get cv data
     getCv() {
       axios
-        .get("/cvs/" + this.$route.params.cvId + "/edit")
+        .get("/api/cvs/" + this.$route.params.cvId + "/edit")
         .then(response => {
           this.cv = response.data;
         })
@@ -828,7 +828,7 @@ export default {
     //uodate cv
     updateCv() {
       axios
-        .put("/cvs/" + this.$route.params.cvId + "/edit", this.cv)
+        .put("/cvs/" + this.$route.params.cvId , this.cv)
         .then(response => {
           this.$router.push({ name: "cvs" });
         })

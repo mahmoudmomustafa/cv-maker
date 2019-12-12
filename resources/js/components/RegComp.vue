@@ -5,18 +5,18 @@
       <!-- {{-- login --}} -->
       <nav class="pb-2">
         <div
-          class="float-right wow slideInDown text-gray-700 text-xs"
+          class="float-right wow slideInDown text-gray-200 text-xs"
           data-wow-duration="3s"
           data-wow-delay="0s"
         >
-          A member ?
-          <a
-            class="text-sm"
+          already a member ?
+          <span
+            class="text-sm text-gray-200"
             data-toggle="tooltip"
             data-placement="bottom"
             title="Login"
             @click="log"
-          >Have an account</a>
+          >Have an account</span>
         </div>
       </nav>
       <!-- {{-- header --}} -->
@@ -29,12 +29,12 @@
           <!-- {{-- name --}} -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="name" class="text-gray-800 text-sm font-bold">Full Name</label>
+              <label for="name" class="text-white text-sm font-bold">Full Name</label>
               <input
-                id="name"
+                @keydown="close()"
                 type="text"
                 class="form-control"
-                name="name"
+                :class="[errors.name ? 'border-1 border-red-600':'border-0']"
                 placeholder="Full Name"
                 required
                 autocomplete="none"
@@ -45,15 +45,15 @@
           <!-- {{-- email --}} -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="email" class="text-gray-800 text-sm font-bold">
+              <label for="email" class="text-white text-sm font-bold">
                 Email
                 Address
               </label>
               <input
-                id="email"
+                @keydown="close()"
                 type="email"
                 class="form-control"
-                name="email"
+                :class="[errors.email ? 'border-1 border-red-600':'border-0']"
                 placeholder="Email address"
                 required
                 autocomplete="none"
@@ -61,31 +61,24 @@
               />
             </div>
           </div>
-          <!-- {{-- password --}} -->
+          <!--  password  -->
           <div class="form-group">
             <div class="md:w-4/5 w-full m-auto">
-              <label for="password" class="text-gray-800 text-sm font-bold">Password</label>
+              <label for="password" class="text-white text-sm font-bold">Password</label>
               <input
-                id="password"
+                @keydown="close()"
                 type="password"
                 class="form-control"
+                :class="[errors.password ? 'border-1 border-red-600':'border-0']"
                 placeholder="Password"
-                name="password"
                 autocomplete="none"
                 v-model="password"
               />
             </div>
           </div>
           <!-- errors -->
-          <div
-            class="alert alert-danger alert-dismissible fade show border-0"
-            role="alert"
-            v-if="errors"
-          >
-            <strong v-text="errors"></strong>
-            <button type="button" class="close">
-              <span aria-hidden="true" @click="close">&times;</span>
-            </button>
+          <div class="relative text-red-500 text-center mb-3" role="alert" v-if="error">
+            <strong v-text="error"></strong>
           </div>
           <!-- {{-- submit btn --}} -->
           <div class="form-group mb-0">
@@ -110,7 +103,8 @@ export default {
       name: "",
       email: "",
       password: "",
-      errors: ""
+      error: "",
+      errors: []
     };
   },
   methods: {
@@ -118,7 +112,8 @@ export default {
       this.$parent.login = !this.$parent.login;
     },
     close() {
-      this.errors = "";
+      this.errors = [];
+      this.error = "";
     },
     register() {
       axios
@@ -127,10 +122,11 @@ export default {
           store.commit("loginUser", response.data);
           localStorage.setItem("token", response.data.access_token);
           this.$store.dispatch("GET_USER");
-          this.$router.replace("dashboard");
+          this.$router.push({ name: "dashboard" });
         })
         .catch(error => {
-          this.errors = error.response.data.message;
+          this.errors = error.response.data.errors;
+          this.error = error.response.data.message;
         });
     }
   }
