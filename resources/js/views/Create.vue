@@ -91,10 +91,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="name"
                       type="text"
                       class="form-control"
-                      name="name"
                       placeholder="Full Name"
                       autocomplete="none"
                       v-model="cv.info.name"
@@ -105,10 +103,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="email"
                       type="email"
                       class="form-control"
-                      name="email"
                       placeholder="Email Address"
                       autocomplete="none"
                       v-model="cv.info.email"
@@ -119,10 +115,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="number"
                       type="text"
                       class="form-control"
-                      name="number"
                       placeholder="Phone Number"
                       autocomplete="none"
                       v-model="cv.info.number"
@@ -133,10 +127,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="location"
                       type="text"
                       class="form-control"
-                      name="location"
                       placeholder="Location"
                       autocomplete="none"
                       v-model="cv.info.location"
@@ -147,10 +139,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="title"
                       type="text"
                       class="form-control"
-                      name="title"
                       placeholder="Headline / current title"
                       autocomplete="none"
                       v-model="cv.info.title"
@@ -161,10 +151,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="website"
                       type="text"
                       class="form-control"
-                      name="website"
                       placeholder="Personal Website"
                       autocomplete="none"
                       v-model="cv.info.website"
@@ -175,10 +163,8 @@
                 <div class="form-group">
                   <div class="md:w-4/5 w-full m-auto">
                     <input
-                      id="website2"
                       type="text"
                       class="form-control"
-                      name="website2"
                       placeholder="Personal Website"
                       autocomplete="none"
                       v-model="cv.info.website2"
@@ -206,10 +192,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="degree_name"
                           type="text"
                           class="form-control"
-                          name="degree_name"
                           placeholder="Degree name"
                           v-model="edu.degree_name"
                         />
@@ -219,10 +203,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="school_name"
                           type="text"
                           class="form-control"
-                          name="school_name"
                           placeholder="School name"
                           v-model="edu.school_name"
                         />
@@ -238,10 +220,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="edu_end_date"
                           type="text"
                           class="form-control"
-                          name="edu_end_date"
                           placeholder="Start date"
                           autocomplete="none"
                           v-model="edu.edu_start"
@@ -252,10 +232,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="edu_end_date"
                           type="text"
                           class="form-control"
-                          name="edu_end_date"
                           placeholder="End date"
                           autocomplete="none"
                           v-model="edu.edu_end"
@@ -305,10 +283,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="degree_name"
                             type="text"
                             class="form-control"
-                            name="degree_name"
                             placeholder="Degree name"
                             v-model="cv.educations[key].degree_name"
                           />
@@ -318,10 +294,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="school_name"
                             type="text"
                             class="form-control"
-                            name="school_name"
                             placeholder="School name"
                             v-model="cv.educations[key].school_name"
                           />
@@ -341,10 +315,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="edu_end_date"
                             type="text"
                             class="form-control"
-                            name="edu_end_date"
                             placeholder="Start date"
                             autocomplete="none"
                             v-model="cv.educations[key].edu_start"
@@ -355,10 +327,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="edu_end_date"
                             type="text"
                             class="form-control"
-                            name="edu_end_date"
                             placeholder="End date"
                             autocomplete="none"
                             v-model="cv.educations[key].edu_end"
@@ -403,10 +373,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="company_name"
                           type="text"
                           class="form-control"
-                          name="company_name"
                           placeholder="Company"
                           autocomplete="none"
                           v-model="job.company"
@@ -423,10 +391,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="job_start_date"
                           type="text"
                           class="form-control"
-                          name="job_start_date"
                           placeholder="Start date"
                           autocomplete="none"
                           v-model="job.start_date"
@@ -437,10 +403,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="job_end_date"
                           type="text"
                           class="form-control"
-                          name="job_end_date"
                           placeholder="End date"
                           autocomplete="none"
                           v-model="job.end_date"
@@ -490,10 +454,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="job_title"
                             type="text"
                             class="form-control"
-                            name="job_title"
                             placeholder="Job title"
                             autocomplete="none"
                             v-model="cv.experiences[key].title"
@@ -504,10 +466,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="company_name"
                             type="text"
                             class="form-control"
-                            name="company_name"
                             placeholder="Company"
                             autocomplete="none"
                             v-model="cv.experiences[key].company"
@@ -528,10 +488,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="job_start_date"
                             type="text"
                             class="form-control"
-                            name="job_start_date"
                             placeholder="Start date"
                             autocomplete="none"
                             v-model="cv.experiences[key].start_date"
@@ -542,10 +500,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="job_end_date"
                             type="text"
                             class="form-control"
-                            name="job_end_date"
                             placeholder="End date"
                             autocomplete="none"
                             v-model="cv.experiences[key].end_date"
@@ -602,10 +558,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="degree_name"
                           type="text"
                           class="form-control"
-                          name="datedTitle"
                           placeholder="Title"
                           autocomplete="none"
                           v-model="data.datedTitle"
@@ -616,10 +570,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="school_name"
                           type="text"
                           class="form-control"
-                          name="DatedOrg"
                           placeholder="Orgnization"
                           autocomplete="none"
                           v-model="data.datedOrg"
@@ -636,10 +588,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="edu_end_date"
                           type="text"
                           class="form-control"
-                          name="edu_end_date"
                           placeholder="Start date"
                           autocomplete="none"
                           v-model="data.startDate"
@@ -650,10 +600,8 @@
                     <div class="form-group">
                       <div class="md:w-4/5 w-full m-auto">
                         <input
-                          id="edu_end_date"
                           type="text"
                           class="form-control"
-                          name="edu_end_date"
                           placeholder="End date"
                           autocomplete="none"
                           v-model="data.endDate"
@@ -701,10 +649,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="degree_name"
                             type="text"
                             class="form-control"
-                            name="datedTitle"
                             placeholder="Title"
                             autocomplete="none"
                             v-model="val.datedTitle"
@@ -715,10 +661,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="school_name"
                             type="text"
                             class="form-control"
-                            name="DatedOrg"
                             placeholder="Orgnization"
                             autocomplete="none"
                             v-model="val.datedOrg"
@@ -735,10 +679,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="edu_end_date"
                             type="text"
                             class="form-control"
-                            name="edu_end_date"
                             placeholder="Start date"
                             autocomplete="none"
                             v-model="val.startDate"
@@ -749,10 +691,8 @@
                       <div class="form-group">
                         <div class="md:w-4/5 w-full m-auto">
                           <input
-                            id="edu_end_date"
                             type="text"
                             class="form-control"
-                            name="edu_end_date"
                             placeholder="End date"
                             autocomplete="none"
                             v-model="val.endDate"

@@ -22,9 +22,9 @@
                 <router-link :to="{ name: 'cv', params:  {cvId:cv.id} }" class="link">
                   <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">ID : {{cv.id}}</div>
-                    <p class="text-black text-3xl font-bold" v-text="cv.title"></p>
+                    <p class="text-white text-3xl font-bold" v-text="cv.title"></p>
                     <p
-                      class="text-gray-700 text-xs font-bold mt-3"
+                      class="text-white text-xs font-bold mt-3"
                     >Last updated : {{cv.updated_at | formatDate}}</p>
                   </div>
                 </router-link>
@@ -88,27 +88,30 @@ section {
   .body {
     .create {
       min-height: 300px;
-      background-image: linear-gradient(135deg, #667eea 0%, #3f51b5 100%);
-      // background-image: url('/imgs/create.jpg');
+      background-image: url("/imgs/bla.jpg");
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: 500ms ease;
       margin: 0.5rem;
-
+      background-size: cover;
+      background-position: left;
       &:hover {
         transform: scale(1.03);
-        box-shadow: 5px 6px 0px #667eea !important;
+        background-position: right;
       }
     }
     .cv {
       transition: 500ms ease;
       margin: 0.5rem;
-
+      background-image: url("/imgs/cv.jpg");
+      background-size: cover;
+      background-position: left;
+      color: white;
       &:hover {
         transform: scale(1.03);
-        box-shadow: 5px 6px 0px #8d8d8d !important;
+        background-position: right;
       }
       .px-6 {
         display: flex;
@@ -119,7 +122,7 @@ section {
     }
   }
   a:hover {
-    color: #252525;
+    color: #ffffff;
     text-decoration: none;
   }
 }

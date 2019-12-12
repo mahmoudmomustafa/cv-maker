@@ -54,7 +54,7 @@
             padding-right: 1rem;
             font-weight: 600;
             font-size: 1.3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.6rem;
             margin-left: -1rem;
             padding-left: 1rem;
         }
@@ -83,7 +83,7 @@
 <body>
     <div id="app">
         <header>
-            <h1 style="font-size:2.8rem">{{$cv->name}}</h1>
+            <h1 style="font-size:3rem">{{$cv->name}}</h1>
             <h3>{{$cv->title}}</h3>
             <div class="flex flex-row">
                 @if ($cv->location)
@@ -115,7 +115,7 @@
         </section>
         @endif
         {{-- education --}}
-        @if ($cv->educations())
+        @if (!empty($education) > 0)
         <section>
             <fieldset>
                 <legend>Education</legend>
@@ -144,7 +144,7 @@
         </section>
         @endif
         {{-- experiencese --}}
-        @if (!empty($cv->experiences()))
+        @if (!empty($experiences) > 0)
         <section>
             <fieldset>
                 <legend>Experiences</legend>

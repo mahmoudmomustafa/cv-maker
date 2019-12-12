@@ -3,11 +3,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::post('/logout', 'AuthController@logout');
 
-Route::get('/cvs', 'CvController@index');
+Route::get('/api/cvs', 'CvController@index');
 Route::post('/cvs/create', 'CvController@create');
 Route::put('/cvs/{cv}/edit', 'CvController@update');
 Route::get('/cvs/{cv}/edit', 'CvController@edit');

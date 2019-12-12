@@ -11,7 +11,7 @@ use App\DatedData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
-
+use App\Http\Requests\CvReq;
 class CvController extends Controller
 {
     public function __construct()
@@ -122,8 +122,6 @@ class CvController extends Controller
         //create or update dated sections
         foreach ($data['datedSections'] as $dateSection) {
             if (isset($dateSection['id'])) {
-                // $cv->datedSections()->create($dateSection);
-                // DatedSection::where('id', $dateSection['id'])->update($dateSection);
                 foreach ($dateSection['data'] as $data) {
                     if (!isset($data["id"])) {
                         $dated = new DatedData;
@@ -185,7 +183,6 @@ class CvController extends Controller
         $cv->delete();
         return response()->json('delete');
     }
-
     //
     public function preview(Cv $cv)
     {

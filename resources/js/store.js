@@ -65,7 +65,7 @@ let store = new Vuex.Store({
         }) => {
             return new Promise((resolve, reject) => {
                 axios
-                    .get("/cvs")
+                    .get("/api/cvs")
                     .then(response => {
                         commit('getCVS', response.data)
                     })

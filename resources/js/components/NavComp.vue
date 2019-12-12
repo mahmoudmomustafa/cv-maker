@@ -85,19 +85,19 @@ nav {
   .navbar-brand {
     // font-family: "Merienda One", cursive
     font-family: 'Pacifico', cursive;
-    color: #3f51b5;
+    color: #0f2119;
     &:hover {
-      color: #3f51b5 !important;
+      color: #0f2119 !important;
     }
   }
   .navbar-toggler {
-    color: #3f51b5 !important;
+    color: #49ab82  !important;
     border-color: none;
     box-shadow: none;
     outline: none;
   }
   .nav-link {
-    color: #3f51b5 !important;
+    color: #49ab82  !important;
     font-weight: 600;
     -webkit-transition: 500ms ease;
     transition: 500ms ease;
@@ -105,11 +105,26 @@ nav {
     margin: 0.5rem;
     background: aliceblue;
     padding: 0.3rem 1rem !important;
-    box-shadow: 3px 3px;
-    &:hover {
-      background: #abb6f8;
-      color: #2c2c2c !important;
+    // box-shadow: 3px 3px;
+    position:relative;
+    &:hover::after {
+      // background: #49ab82;
+      // color: #2c2c2c !important;
       box-shadow: none;
+      width: 100%;
+    }
+    &::after{
+    content: '';
+    position: absolute;
+    background: #56b188;
+    width: 0px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 500ms ease;
+    &:hover{
+width:100%
+    }
     }
   }
 }
