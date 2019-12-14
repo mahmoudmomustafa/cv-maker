@@ -1,9 +1,8 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import jQuery from 'jquery'
 import VueRouter from 'vue-router'
-import 'tailwindcss/dist/tailwind.min.css'
 import moment from 'moment'
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
@@ -27,7 +26,6 @@ $.ajaxSetup({
 });
 const instance = axios.create({
     baseURL: '/'
-    // process.env.BASE_URL
   })
   
   // before a request is made start the nprogress

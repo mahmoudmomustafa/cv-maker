@@ -12,7 +12,7 @@
                 <h2 class="text-5xl font-bold m-1 px-2 py-3">Welcome {{user.name}}</h2>
                 <h3 class="text-2xl font-bold m-1 p-3 text-white">Build your own Cv by one tap ..</h3>
                 <p class="text-lg font-bold m-1 p-3 text-white">Easy, Right !</p>
-                <router-link to="/cvs/create">
+                <router-link to="/cv/create">
                   <button class="btn btn-primary m-3 shadow">Get started</button>
                 </router-link>
               </div>

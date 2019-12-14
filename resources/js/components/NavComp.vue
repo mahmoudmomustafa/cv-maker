@@ -24,7 +24,7 @@
             <router-link class="nav-link" to="/cvs">Your Cvs</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/cvs/create">Create</router-link>
+            <router-link class="nav-link" to="/cv/create">Create</router-link>
           </li>
         </ul>
         <!-- Right Side Of Navbar -->

@@ -24,14 +24,14 @@ class CvReq extends FormRequest
     public function rules()
     {
         return [
-            'info.name' => 'bail|alpha|max:255',
-            'info.email' => 'email',
-            'info.number' => 'numeric',
-            'info.title' => 'alpha|max:100',
-            'info.location' => 'alpha|max:100',
-            'info.website' => 'url',
-            'info.website2' => 'url',
-            'info.summary' => 'max:800',
+            'info.name' => 'required|string|max:255',
+            'info.email' => 'required|string|email',
+            'info.number' => 'required|numeric|starts_with:01',
+            'info.title' => 'nullable|string|max:255',
+            'info.location' => 'nullable|max:255',
+            'info.website' => 'nullable|url',
+            'info.website2' => 'nullable|url',
+            'info.summary' => 'nullable|max:8000',
         ];
     }
 }

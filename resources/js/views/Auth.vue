@@ -80,6 +80,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.form {
+  background-image: url("/imgs/log.jpg") !important;
+}
 .log-img {
   .heading {
     width: 100%;
@@ -92,7 +95,6 @@ export default {
   }
 }
 .navbar-brand {
-  // font-family: "Merienda One", cursive
   font-family: "Pacifico", cursive;
 }
 </style>

@@ -26,7 +26,7 @@ class CvController extends Controller
         return response()->json($cvs);
     }
     // create cv
-    public function create(Request $request)
+    public function create(CvReq $request)
     {
         $data = $request->all();
         // creating cv
@@ -90,9 +90,9 @@ class CvController extends Controller
         return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
     }
     // update cv
-    public function update(CV $cv)
+    public function update(CvReq $request,CV $cv)
     {
-        $data = request()->all();
+        $data = $request->all();
         // update cv
         $cv->update($data['info']);
         // create or update exp

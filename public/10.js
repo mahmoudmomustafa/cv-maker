@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[10],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14,8 +14,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SectionComp_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SectionComp.vue */ "./resources/js/components/SectionComp.vue");
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -746,16 +776,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "edit",
+  name: "create",
   components: {
     NavComp: _components_NavComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ModelComp: _components_ModelComp_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     SectionComp: _components_SectionComp_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       cv: {
         info: {
           name: "",
@@ -772,7 +800,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sections: [],
         datedSections: []
       },
-      data: [],
       edu: {
         degree_name: "",
         school_name: "",
@@ -794,28 +821,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       newDateSec: {
         datedHeading: "",
         data: []
-      }
-    }, _defineProperty(_ref, "data", {
-      datedTitle: "",
-      datedOrg: "",
-      datedDesc: "",
-      startDate: "",
-      endDate: ""
-    }), _defineProperty(_ref, "editor", _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default.a), _defineProperty(_ref, "editorConfig", {// The configuration of the rich-text editor.
-    }), _ref;
+      },
+      data: {
+        datedTitle: "",
+        datedOrg: "",
+        datedDesc: "",
+        startDate: "",
+        endDate: ""
+      },
+      editor: _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default.a,
+      editorConfig: {// The configuration of the rich-text editor.
+      },
+      errors: []
+    };
   },
   mounted: function mounted() {
     // hide add section
     $(".dropmenu").slideUp();
   },
-  created: function created() {
-    // get cv data
-    this.getCv();
-  },
   methods: {
     // show dropmenu
     drop: function drop() {
       $(".dropmenu").slideToggle();
+    },
+    clear: function clear(index) {
+      this.errors[index] = '';
     },
     // add education
     addEdu: function addEdu() {
@@ -865,106 +895,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         endDate: ""
       };
     },
-    // get cv data
-    getCv: function getCv() {
-      var _this = this;
-
-      axios.get("/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
-        _this.cv = response.data;
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
-    },
-    //uodate cv
-    updateCv: function updateCv() {
-      var _this2 = this;
-
-      axios.put("/cvs/" + this.$route.params.cvId + "/edit", this.cv).then(function (response) {
-        _this2.$router.push({
-          name: "cvs"
-        });
-      })["catch"](function (error) {
-        console.log(error.response);
-      });
-    },
-    // delete ducation
-    deleteEdu: function deleteEdu(key, id) {
-      var _this3 = this;
-
+    // delete education
+    deleteEdu: function deleteEdu(key) {
       this.$delete(this.cv.educations, key);
-
-      if (id) {
-        axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
-          _this3.$delete(_this3.cv.educations, key);
-        })["catch"](function (error) {
-          console.log(error.response);
-        });
-      }
     },
     // delete experince
-    deleteExp: function deleteExp(key, id) {
-      var _this4 = this;
-
+    deleteExp: function deleteExp(key) {
       this.$delete(this.cv.experiences, key);
-
-      if (id) {
-        axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
-          _this4.$delete(_this4.cv.experiences, key);
-        })["catch"](function (error) {
-          console.log(error.response);
-        });
-      }
     },
-    // delete section
-    deleteSec: function deleteSec(key, id) {
-      var _this5 = this;
-
+    // delete experince
+    deleteSec: function deleteSec(key) {
       this.$delete(this.cv.sections, key);
-
-      if (id) {
-        axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
-          _this5.$delete(_this5.cv.sections, key);
-        })["catch"](function (error) {
-          console.log(error.response);
-        });
-      }
     },
-    deleteDateSec: function deleteDateSec(key, id) {
-      var _this6 = this;
-
+    deleteDated: function deleteDated(bla, key) {
+      this.$delete(this.cv.datedSections[bla].data, key);
+    },
+    deleteDatedSec: function deleteDatedSec(key) {
       this.$delete(this.cv.datedSections, key);
-
-      if (id) {
-        axios["delete"]("/cvs/" + this.$route.params.cvId + "/datedsec/" + id).then(function (response) {
-          _this6.$delete(_this6.cv.datedSections, key);
-        })["catch"](function (error) {
-          console.log(error.response);
-        });
-      }
     },
-    deleteDated: function deleteDated(DataSecID, dataId, keys, key) {
-      var _this7 = this;
+    // submit cv
+    createCv: function createCv() {
+      var _this = this;
 
-      this.$delete(this.cv.datedSections[keys].data, key);
-
-      if (dataId) {
-        axios["delete"]("/datedsec/" + DataSecID + "/datedData/" + dataId).then(function (response) {
-          _this7.$delete(_this7.cv.datedSections[keys].data, key);
-        })["catch"](function (error) {
-          console.log(error.response);
-        });
-      }
-    },
-    // delete cv
-    deleteCV: function deleteCV() {
-      var _this8 = this;
-
-      axios["delete"]("/cvs/" + this.$route.params.cvId).then(function (response) {
-        _this8.$router.push({
+      axios.post("/cvs/create", this.cv).then(function (response) {
+        _this.$router.push({
           name: "cvs"
         });
       })["catch"](function (error) {
-        console.log(error.response);
+        _this.errors = error.response.data.errors;
       });
     }
   }
@@ -972,10 +930,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -984,22 +942,22 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-523c17c8],\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "main[data-v-08197cdb] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-08197cdb] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-08197cdb]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .form-control[data-v-08197cdb] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .btn-primary[data-v-08197cdb] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-primary[data-v-08197cdb]:hover {\n  box-shadow: none;\n}\nmain .p-1[data-v-08197cdb] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-08197cdb],\nmain i.fas.fa-minus-circle.text-xs[data-v-08197cdb] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-08197cdb]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-08197cdb]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-08197cdb]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-08197cdb] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-08197cdb] {\n  cursor: pointer;\n}\nmain .fa-times-circle[data-v-08197cdb] {\n  position: absolute;\n  top: 30%;\n  right: 10px;\n  color: #f54f4f;\n}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -1021,10 +979,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1052,7 +1010,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.updateCv($event)
+                  return _vm.createCv($event)
                 }
               }
             },
@@ -1271,248 +1229,374 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.name,
-                                  expression: "cv.info.name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "name",
-                                type: "text",
-                                placeholder: "Full Name",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.name,
+                                    expression: "cv.info.name"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "name",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Full Name",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.name },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.name")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.name"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.name"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.email,
-                                  expression: "cv.info.email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "email",
-                                type: "email",
-                                placeholder: "Email Address",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.email,
+                                    expression: "cv.info.email"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "email",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "email",
+                                  placeholder: "Email Address",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.email },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.email")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.email"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.email"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.number,
-                                  expression: "cv.info.number"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "number",
-                                type: "text",
-                                placeholder: "Phone Number",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.number },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.number,
+                                    expression: "cv.info.number"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "number",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Phone Number",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.number },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.number")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "number",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.number"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.number"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.location,
-                                  expression: "cv.info.location"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "location",
-                                type: "text",
-                                placeholder: "Location",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.location },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.location,
+                                    expression: "cv.info.location"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "location",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Location",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.location },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.location")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "location",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.location"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.location"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.title,
-                                  expression: "cv.info.title"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "title",
-                                type: "text",
-                                placeholder: "Headline / current title",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.title },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.title,
+                                    expression: "cv.info.title"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "title",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Headline / current title",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.title },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.title")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "title",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.title"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.title"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.website,
-                                  expression: "cv.info.website"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "website",
-                                type: "text",
-                                placeholder: "Personal Website",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.website },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.website,
+                                    expression: "cv.info.website"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Personal Website",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.website },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.website")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "website",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.website"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.website"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.website2,
-                                  expression: "cv.info.website2"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "website2",
-                                type: "text",
-                                placeholder: "Personal Website",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.website2 },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.website2,
+                                    expression: "cv.info.website2"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website2",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Personal Website",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.website2 },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.website2")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "website2",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.website2"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.website2"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ])
                       ]
                     )
@@ -1534,12 +1618,17 @@ var render = function() {
                         _c("div", { staticClass: "form-group" }, [
                           _c(
                             "div",
-                            { staticClass: "m-auto w-full" },
+                            { staticClass: "m-auto w-full relative" },
                             [
                               _c("ckeditor", {
                                 attrs: {
                                   editor: _vm.editor,
                                   config: _vm.editorConfig
+                                },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.summary")
+                                  }
                                 },
                                 model: {
                                   value: _vm.cv.info.summary,
@@ -1548,7 +1637,20 @@ var render = function() {
                                   },
                                   expression: "cv.info.summary"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.summary"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    staticStyle: { top: "45px" },
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.summary"][0]
+                                    }
+                                  })
+                                : _vm._e()
                             ],
                             1
                           )
@@ -1590,8 +1692,7 @@ var render = function() {
                                           staticClass: "form-control",
                                           attrs: {
                                             type: "text",
-                                            placeholder: "Degree name",
-                                            autocomplete: "none"
+                                            placeholder: "Degree name"
                                           },
                                           domProps: {
                                             value: _vm.edu.degree_name
@@ -1630,8 +1731,7 @@ var render = function() {
                                           staticClass: "form-control",
                                           attrs: {
                                             type: "text",
-                                            placeholder: "school_name",
-                                            autocomplete: "none"
+                                            placeholder: "School name"
                                           },
                                           domProps: {
                                             value: _vm.edu.school_name
@@ -1822,7 +1922,7 @@ var render = function() {
                                       staticClass: "fas fa-pen text-xs",
                                       attrs: {
                                         "data-toggle": "modal",
-                                        "data-target": "#edit-edu-" + key
+                                        "data-target": "#add-edu-" + key
                                       }
                                     }),
                                     _vm._v(" "),
@@ -1836,7 +1936,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.deleteEdu(key, val.id)
+                                          return _vm.deleteEdu(key)
                                         }
                                       }
                                     })
@@ -1847,7 +1947,7 @@ var render = function() {
                               _c("ModelComp", {
                                 attrs: {
                                   "model-head": "Edit Education",
-                                  id: "edit-edu-" + key
+                                  id: "add-edu-" + key
                                 },
                                 scopedSlots: _vm._u(
                                   [
@@ -1880,9 +1980,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "degree_name",
                                                       type: "text",
-                                                      name: "degree_name",
                                                       placeholder: "Degree name"
                                                     },
                                                     domProps: {
@@ -1938,9 +2036,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "school_name",
                                                       type: "text",
-                                                      name: "school_name",
                                                       placeholder: "School name"
                                                     },
                                                     domProps: {
@@ -2035,9 +2131,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "edu_end_date",
                                                       type: "text",
-                                                      name: "edu_end_date",
                                                       placeholder: "Start date",
                                                       autocomplete: "none"
                                                     },
@@ -2094,9 +2188,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "edu_end_date",
                                                       type: "text",
-                                                      name: "edu_end_date",
                                                       placeholder: "End date",
                                                       autocomplete: "none"
                                                     },
@@ -2211,7 +2303,9 @@ var render = function() {
                                           ],
                                           staticClass: "form-control",
                                           attrs: {
+                                            id: "job_title",
                                             type: "text",
+                                            name: "job_title",
                                             placeholder: "Job title",
                                             autocomplete: "none"
                                           },
@@ -2454,7 +2548,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.deleteExp(key, val.id)
+                                          return _vm.deleteExp(key)
                                         }
                                       }
                                     })
@@ -2499,9 +2593,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "job_title",
                                                       type: "text",
-                                                      name: "job_title",
                                                       placeholder: "Job title",
                                                       autocomplete: "none"
                                                     },
@@ -2559,9 +2651,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "company_name",
                                                       type: "text",
-                                                      name: "company_name",
                                                       placeholder: "Company",
                                                       autocomplete: "none"
                                                     },
@@ -2658,9 +2748,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "job_start_date",
                                                       type: "text",
-                                                      name: "job_start_date",
                                                       placeholder: "Start date",
                                                       autocomplete: "none"
                                                     },
@@ -2718,9 +2806,7 @@ var render = function() {
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
-                                                      id: "job_end_date",
                                                       type: "text",
-                                                      name: "job_end_date",
                                                       placeholder: "End date",
                                                       autocomplete: "none"
                                                     },
@@ -2802,13 +2888,10 @@ var render = function() {
                       2
                     ),
                     _vm._v(" "),
-                    _vm._l(_vm.cv.sections, function(value, keey) {
+                    _vm._l(_vm.cv.sections, function(val, key) {
                       return _c(
                         "SectionComp",
-                        {
-                          key: "sec" + keey,
-                          attrs: { "section-head": value.secHeading }
-                        },
+                        { key: key, attrs: { "section-head": val.secHeading } },
                         [
                           _c("div", { staticClass: "form-group" }, [
                             _c(
@@ -2821,11 +2904,11 @@ var render = function() {
                                     config: _vm.editorConfig
                                   },
                                   model: {
-                                    value: value.secDesc,
+                                    value: val.secDesc,
                                     callback: function($$v) {
-                                      _vm.$set(value, "secDesc", $$v)
+                                      _vm.$set(val, "secDesc", $$v)
                                     },
-                                    expression: "value.secDesc"
+                                    expression: "val.secDesc"
                                   }
                                 })
                               ],
@@ -2843,7 +2926,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.deleteSec(keey, value.id)
+                                  return _vm.deleteSec(key)
                                 }
                               }
                             })
@@ -2856,7 +2939,7 @@ var render = function() {
                       return _c(
                         "SectionComp",
                         {
-                          key: "dated-" + keys,
+                          key: keys,
                           attrs: { "section-head": vals.datedHeading }
                         },
                         [
@@ -2890,9 +2973,7 @@ var render = function() {
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
-                                                id: "degree_name",
                                                 type: "text",
-                                                name: "datedTitle",
                                                 placeholder: "Title",
                                                 autocomplete: "none"
                                               },
@@ -2935,9 +3016,7 @@ var render = function() {
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
-                                                id: "school_name",
                                                 type: "text",
-                                                name: "DatedOrg",
                                                 placeholder: "Orgnization",
                                                 autocomplete: "none"
                                               },
@@ -3010,9 +3089,7 @@ var render = function() {
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
-                                                id: "edu_end_date",
                                                 type: "text",
-                                                name: "edu_end_date",
                                                 placeholder: "Start date",
                                                 autocomplete: "none"
                                               },
@@ -3055,9 +3132,7 @@ var render = function() {
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
-                                                id: "edu_end_date",
                                                 type: "text",
-                                                name: "edu_end_date",
                                                 placeholder: "End date",
                                                 autocomplete: "none"
                                               },
@@ -3116,63 +3191,364 @@ var render = function() {
                             val,
                             key
                           ) {
-                            return _c("div", { key: key, staticClass: "p-1" }, [
-                              _c(
-                                "div",
-                                { staticClass: "flex justify-between" },
-                                [
-                                  val.datedTitle
-                                    ? _c("h4", {
-                                        staticClass: "text-sm font-bold",
-                                        domProps: {
-                                          textContent: _vm._s(val.datedTitle)
+                            return _c(
+                              "div",
+                              { key: key, staticClass: "p-1" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "flex justify-between" },
+                                  [
+                                    val.datedTitle
+                                      ? _c("h4", {
+                                          staticClass: "text-sm font-bold",
+                                          domProps: {
+                                            textContent: _vm._s(val.datedTitle)
+                                          }
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex" }, [
+                                      _c("i", {
+                                        staticClass: "fas fa-pen text-xs",
+                                        attrs: {
+                                          "data-toggle": "modal",
+                                          "data-target":
+                                            "#edit-dated-" + keys + key
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass:
+                                          "fas fa-minus-circle text-xs",
+                                        attrs: {
+                                          "data-toggle": "tooltip",
+                                          "data-placement": "bottom",
+                                          title: "Remove"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteDated(keys, key)
+                                          }
                                         }
                                       })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "flex" }, [
-                                    _c("i", {
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                val.datedOrg
+                                  ? _c("h5", {
                                       staticClass:
-                                        "fas fa-minus-circle text-xs",
-                                      attrs: {
-                                        "data-toggle": "tooltip",
-                                        "data-placement": "bottom",
-                                        title: "Remove"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteDated(
-                                            vals.id,
-                                            val.id,
-                                            keys,
-                                            key
-                                          )
-                                        }
+                                        "text-sm font-bold text-gray-700 inline",
+                                      domProps: {
+                                        textContent: _vm._s(val.datedOrg)
                                       }
                                     })
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              val.datedOrg
-                                ? _c("h5", {
-                                    staticClass:
-                                      "text-sm font-bold text-gray-700 inline",
-                                    domProps: {
-                                      textContent: _vm._s(val.datedOrg)
-                                    }
-                                  })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("div", {
-                                staticClass: "inline text-sm",
-                                domProps: {
-                                  textContent: _vm._s(
-                                    val.startDate + "-" + val.endDate
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass: "inline text-sm",
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      val.startDate + "-" + val.endDate
+                                    )
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("ModelComp", {
+                                  attrs: {
+                                    "model-head": "Edit custom date",
+                                    id: "edit-dated-" + keys + key
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "body",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "md:w-4/5 w-full m-auto"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: val.datedTitle,
+                                                          expression:
+                                                            "val.datedTitle"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "form-control",
+                                                      attrs: {
+                                                        type: "text",
+                                                        placeholder: "Title",
+                                                        autocomplete: "none"
+                                                      },
+                                                      domProps: {
+                                                        value: val.datedTitle
+                                                      },
+                                                      on: {
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            val,
+                                                            "datedTitle",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "md:w-4/5 w-full m-auto"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: val.datedOrg,
+                                                          expression:
+                                                            "val.datedOrg"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "form-control",
+                                                      attrs: {
+                                                        type: "text",
+                                                        placeholder:
+                                                          "Orgnization",
+                                                        autocomplete: "none"
+                                                      },
+                                                      domProps: {
+                                                        value: val.datedOrg
+                                                      },
+                                                      on: {
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            val,
+                                                            "datedOrg",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "md:w-4/5 w-full m-auto"
+                                                  },
+                                                  [
+                                                    _c("ckeditor", {
+                                                      attrs: {
+                                                        editor: _vm.editor,
+                                                        config: _vm.editorConfig
+                                                      },
+                                                      model: {
+                                                        value: val.datedDesc,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            val,
+                                                            "datedDesc",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "val.datedDesc"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "md:w-4/5 w-full m-auto"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: val.startDate,
+                                                          expression:
+                                                            "val.startDate"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "form-control",
+                                                      attrs: {
+                                                        type: "text",
+                                                        placeholder:
+                                                          "Start date",
+                                                        autocomplete: "none"
+                                                      },
+                                                      domProps: {
+                                                        value: val.startDate
+                                                      },
+                                                      on: {
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            val,
+                                                            "startDate",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "md:w-4/5 w-full m-auto"
+                                                  },
+                                                  [
+                                                    _c("input", {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value: val.endDate,
+                                                          expression:
+                                                            "val.endDate"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "form-control",
+                                                      attrs: {
+                                                        type: "text",
+                                                        placeholder: "End date",
+                                                        autocomplete: "none"
+                                                      },
+                                                      domProps: {
+                                                        value: val.endDate
+                                                      },
+                                                      on: {
+                                                        input: function(
+                                                          $event
+                                                        ) {
+                                                          if (
+                                                            $event.target
+                                                              .composing
+                                                          ) {
+                                                            return
+                                                          }
+                                                          _vm.$set(
+                                                            val,
+                                                            "endDate",
+                                                            $event.target.value
+                                                          )
+                                                        }
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      },
+                                      {
+                                        key: "save",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-primary bg-blue-500 border-0 text-sm",
+                                                attrs: { type: "button" }
+                                              },
+                                              [_vm._v("Save")]
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    true
                                   )
-                                }
-                              })
-                            ])
+                                })
+                              ],
+                              1
+                            )
                           }),
                           _vm._v(" "),
                           _c(
@@ -3205,7 +3581,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.deleteDateSec(keys, vals.id)
+                                    return _vm.deleteDatedSec(keys)
                                   }
                                 }
                               })
@@ -3220,58 +3596,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group flex align-items-center flex-wrap" },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("Save Changes")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "tooltip",
-                        "data-placement": "right",
-                        title: "Delete"
-                      },
-                      on: { click: _vm.deleteCV }
-                    },
-                    [_vm._v("Delete CV")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "inline ml-2",
-                      attrs: {
-                        href: "/cvs/" + this.$route.params.cvId + "/pdf",
-                        target: "_blank",
-                        "data-toggle": "tooltip",
-                        "data-placement": "right",
-                        title: "Download PDF"
-                      }
-                    },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src: "/imgs/pdf.svg",
-                          alt: "download-cv",
-                          width: "40"
-                        }
-                      })
-                    ]
-                  )
-                ]
-              )
+              _vm._m(1)
             ]
           )
         ])
@@ -3310,6 +3635,20 @@ var staticRenderFns = [
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group m-2" }, [
+      _c("div", {}, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Create Cv")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -3318,18 +3657,18 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/Show.vue":
-/*!*************************************!*\
-  !*** ./resources/js/views/Show.vue ***!
-  \*************************************/
+/***/ "./resources/js/views/Create.vue":
+/*!***************************************!*\
+  !*** ./resources/js/views/Create.vue ***!
+  \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Show.vue?vue&type=template&id=523c17c8&scoped=true& */ "./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&");
-/* harmony import */ var _Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Show.vue?vue&type=script&lang=js& */ "./resources/js/views/Show.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
+/* harmony import */ var _Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=08197cdb&scoped=true& */ "./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./resources/js/views/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& */ "./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -3340,66 +3679,66 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "523c17c8",
+  "08197cdb",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/Show.vue"
+component.options.__file = "resources/js/views/Create.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/Show.vue?vue&type=script&lang=js&":
-/*!**************************************************************!*\
-  !*** ./resources/js/views/Show.vue?vue&type=script&lang=js& ***!
-  \**************************************************************/
+/***/ "./resources/js/views/Create.vue?vue&type=script&lang=js&":
+/*!****************************************************************!*\
+  !*** ./resources/js/views/Create.vue?vue&type=script&lang=js& ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=style&index=0&id=523c17c8&scoped=true&lang=scss&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_style_index_0_id_523c17c8_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=style&index=0&id=08197cdb&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_id_08197cdb_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true& ***!
-  \********************************************************************************/
+/***/ "./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Show.vue?vue&type=template&id=523c17c8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Show.vue?vue&type=template&id=523c17c8&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=08197cdb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Create.vue?vue&type=template&id=08197cdb&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_523c17c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_08197cdb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

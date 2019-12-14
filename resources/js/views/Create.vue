@@ -89,86 +89,100 @@
               <SectionComp class="inf" section-head="Personal info.">
                 <!-- name -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Full Name"
                       autocomplete="none"
                       v-model="cv.info.name"
+                      @keydown="clear('info.name')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.name']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.name'][0]"></i>
                   </div>
                 </div>
                 <!-- email -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="email"
                       class="form-control"
                       placeholder="Email Address"
                       autocomplete="none"
                       v-model="cv.info.email"
+                      @keydown="clear('info.email')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.email']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.email'][0]"></i>
                   </div>
                 </div>
                 <!-- number -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Phone Number"
                       autocomplete="none"
                       v-model="cv.info.number"
+                      @keydown="clear('info.number')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.number']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.number'][0]"></i>
                   </div>
                 </div>
                 <!-- location -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Location"
                       autocomplete="none"
                       v-model="cv.info.location"
+                      @keydown="clear('info.location')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.location']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.location'][0]"></i>
                   </div>
                 </div>
                 <!-- title -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Headline / current title"
                       autocomplete="none"
                       v-model="cv.info.title"
+                      @keydown="clear('info.title')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.title']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.title'][0]"></i>
                   </div>
                 </div>
                 <!-- website -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Personal Website"
                       autocomplete="none"
                       v-model="cv.info.website"
+                      @keydown="clear('info.website')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.website']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.website'][0]"></i>
                   </div>
                 </div>
                 <!-- website2 -->
                 <div class="form-group">
-                  <div class="md:w-4/5 w-full m-auto">
+                  <div class="md:w-4/5 w-full m-auto relative">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Personal Website"
                       autocomplete="none"
                       v-model="cv.info.website2"
+                      @keydown="clear('info.website2')"
                     />
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.website2']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.website2'][0]"></i>
                   </div>
                 </div>
               </SectionComp>
@@ -178,8 +192,9 @@
               <!-- summary -->
               <SectionComp class="summary" section-head="Summary">
                 <div class="form-group">
-                  <div class="m-auto w-full">
-                    <ckeditor :editor="editor" v-model="cv.info.summary" :config="editorConfig"></ckeditor>
+                  <div class="m-auto w-full relative">
+                    <ckeditor :editor="editor" v-model="cv.info.summary" :config="editorConfig" @keydown="clear('info.summary')"></ckeditor>
+                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.summary']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.summary'][0]" style="top:45px"></i>
                   </div>
                 </div>
               </SectionComp>
@@ -802,7 +817,8 @@ export default {
       editor: ClassicEditor,
       editorConfig: {
         // The configuration of the rich-text editor.
-      }
+      },
+      errors:[],
     };
   },
   mounted() {
@@ -813,6 +829,9 @@ export default {
     // show dropmenu
     drop() {
       $(".dropmenu").slideToggle();
+    },
+    clear(index){
+      this.errors[index] = ''
     },
     // add education
     addEdu() {
@@ -888,7 +907,7 @@ export default {
           this.$router.push({ name: "cvs" });
         })
         .catch(error => {
-          console.log(error.response);
+          this.errors = error.response.data.errors
         });
     }
   }
@@ -955,6 +974,12 @@ main {
     span {
       cursor: pointer;
     }
+  }
+  .fa-times-circle{
+    position: absolute;
+        top: 30%;
+    right: 10px;
+    color: #f54f4f;
   }
 }
 </style>

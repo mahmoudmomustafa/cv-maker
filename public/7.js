@@ -704,6 +704,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -765,7 +834,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       startDate: "",
       endDate: ""
     }), _defineProperty(_ref, "editor", _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default.a), _defineProperty(_ref, "editorConfig", {// The configuration of the rich-text editor.
-    }), _ref;
+    }), _defineProperty(_ref, "errors", []), _ref;
   },
   mounted: function mounted() {
     // hide add section
@@ -779,6 +848,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // show dropmenu
     drop: function drop() {
       $(".dropmenu").slideToggle();
+    },
+    clear: function clear(index) {
+      this.errors[index] = "";
     },
     // add education
     addEdu: function addEdu() {
@@ -847,7 +919,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           name: "cvs"
         });
       })["catch"](function (error) {
-        console.log(error.response);
+        _this2.errors = error.response.data.errors;
       });
     },
     // delete ducation
@@ -947,7 +1019,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-523c17c8],\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-523c17c8],\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}\nmain .fa-times-circle[data-v-523c17c8] {\n  position: absolute;\n  top: 30%;\n  right: 10px;\n  color: #f54f4f;\n}", ""]);
 
 // exports
 
@@ -1234,241 +1306,374 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.name,
-                                  expression: "cv.info.name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Full Name",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.name,
+                                    expression: "cv.info.name"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "name",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Full Name",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.name },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.name")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.name"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.name"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.email,
-                                  expression: "cv.info.email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "email",
-                                placeholder: "Email Address",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.email,
+                                    expression: "cv.info.email"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "email",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "email",
+                                  placeholder: "Email Address",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.email },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.email")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.email"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.email"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.number,
-                                  expression: "cv.info.number"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Phone Number",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.number },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.number,
+                                    expression: "cv.info.number"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "number",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Phone Number",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.number },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.number")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "number",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.number"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.number"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.location,
-                                  expression: "cv.info.location"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Location",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.location },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.location,
+                                    expression: "cv.info.location"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "location",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Location",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.location },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.location")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "location",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.location"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.location"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.title,
-                                  expression: "cv.info.title"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Headline / current title",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.title },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.title,
+                                    expression: "cv.info.title"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "title",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Headline / current title",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.title },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.title")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "title",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.title"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.title"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.website,
-                                  expression: "cv.info.website"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Personal Website",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.website },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.website,
+                                    expression: "cv.info.website"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Personal Website",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.website },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.website")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "website",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.website"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.website"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "md:w-4/5 w-full m-auto" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.cv.info.website2,
-                                  expression: "cv.info.website2"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Personal Website",
-                                autocomplete: "none"
-                              },
-                              domProps: { value: _vm.cv.info.website2 },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c(
+                            "div",
+                            { staticClass: "md:w-4/5 w-full m-auto relative" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.cv.info.website2,
+                                    expression: "cv.info.website2"
                                   }
-                                  _vm.$set(
-                                    _vm.cv.info,
-                                    "website2",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Personal Website",
+                                  autocomplete: "none"
+                                },
+                                domProps: { value: _vm.cv.info.website2 },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.website2")
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.cv.info,
+                                      "website2",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            })
-                          ])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.website2"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.website2"][0]
+                                    }
+                                  })
+                                : _vm._e()
+                            ]
+                          )
                         ])
                       ]
                     )
@@ -1497,6 +1702,11 @@ var render = function() {
                                   editor: _vm.editor,
                                   config: _vm.editorConfig
                                 },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.clear("info.summary")
+                                  }
+                                },
                                 model: {
                                   value: _vm.cv.info.summary,
                                   callback: function($$v) {
@@ -1504,7 +1714,20 @@ var render = function() {
                                   },
                                   expression: "cv.info.summary"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.errors["info.summary"]
+                                ? _c("i", {
+                                    staticClass:
+                                      "fas fa-times-circle absolute text-sm",
+                                    staticStyle: { top: "45px" },
+                                    attrs: {
+                                      "data-toggle": "tooltip",
+                                      "data-placement": "bottom",
+                                      title: _vm.errors["info.summary"][0]
+                                    }
+                                  })
+                                : _vm._e()
                             ],
                             1
                           )

@@ -38,7 +38,7 @@ const routes = [{
         },
     },
     {
-        path: '/cvs/create',
+        path: '/cv/create',
         component: Create,
         name: "create",
         meta: {
