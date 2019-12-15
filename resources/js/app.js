@@ -3,7 +3,7 @@ import router from "./routes"
 import store from "./store"
 
 let app = new Vue({
-    el: '#app',
+    el:'#app',
     created() {
         if (localStorage.token) {
             axios.get('/api/init', {
@@ -23,6 +23,6 @@ let app = new Vue({
             });
         }
     },
+    store,
     router,
-    store
 });

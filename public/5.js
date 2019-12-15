@@ -186,7 +186,10 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { staticClass: "nav-link", attrs: { to: "/dashboard" } },
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: "{ name: 'dashboard'}" }
+                    },
                     [_vm._v("Dashboard")]
                   )
                 ],

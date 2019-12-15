@@ -18,7 +18,7 @@
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto flex flex-row">
           <li class="nav-item">
-            <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
+            <router-link class="nav-link" to="{ name: 'dashboard'}">Dashboard</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/cvs">Your Cvs</router-link>

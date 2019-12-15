@@ -895,7 +895,7 @@ export default {
           this.cv = response.data;
         })
         .catch(error => {
-          console.log(error.response);
+          // console.log(error.response);
         });
     },
     //uodate cv
@@ -919,7 +919,7 @@ export default {
             this.$delete(this.cv.educations, key);
           })
           .catch(error => {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }
     },
@@ -933,7 +933,7 @@ export default {
             this.$delete(this.cv.experiences, key);
           })
           .catch(error => {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }
     },
@@ -947,7 +947,7 @@ export default {
             this.$delete(this.cv.sections, key);
           })
           .catch(error => {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }
     },
@@ -960,7 +960,7 @@ export default {
             this.$delete(this.cv.datedSections, key);
           })
           .catch(error => {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }
     },
@@ -973,7 +973,7 @@ export default {
             this.$delete(this.cv.datedSections[keys].data, key);
           })
           .catch(error => {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }
     },
@@ -985,7 +985,7 @@ export default {
           this.$router.push({ name: "cvs" });
         })
         .catch(error => {
-          console.log(error.response);
+          // console.log(error.response);
         });
     }
   }
@@ -1062,6 +1062,10 @@ main {
     top: 30%;
     right: 10px;
     color: #f54f4f;
+  }
+  .dropdown,.dropmenu{
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

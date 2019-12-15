@@ -906,8 +906,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.get("/api/cvs/" + this.$route.params.cvId + "/edit").then(function (response) {
         _this.cv = response.data;
-      })["catch"](function (error) {
-        console.log(error.response);
+      })["catch"](function (error) {// console.log(error.response);
       });
     },
     //uodate cv
@@ -931,8 +930,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (id) {
         axios["delete"]("/cvs/" + this.$route.params.cvId + "/edu/" + id).then(function (response) {
           _this3.$delete(_this3.cv.educations, key);
-        })["catch"](function (error) {
-          console.log(error.response);
+        })["catch"](function (error) {// console.log(error.response);
         });
       }
     },
@@ -945,8 +943,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (id) {
         axios["delete"]("/cvs/" + this.$route.params.cvId + "/exp/" + id).then(function (response) {
           _this4.$delete(_this4.cv.experiences, key);
-        })["catch"](function (error) {
-          console.log(error.response);
+        })["catch"](function (error) {// console.log(error.response);
         });
       }
     },
@@ -959,8 +956,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (id) {
         axios["delete"]("/cvs/" + this.$route.params.cvId + "/sec/" + id).then(function (response) {
           _this5.$delete(_this5.cv.sections, key);
-        })["catch"](function (error) {
-          console.log(error.response);
+        })["catch"](function (error) {// console.log(error.response);
         });
       }
     },
@@ -972,8 +968,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (id) {
         axios["delete"]("/cvs/" + this.$route.params.cvId + "/datedsec/" + id).then(function (response) {
           _this6.$delete(_this6.cv.datedSections, key);
-        })["catch"](function (error) {
-          console.log(error.response);
+        })["catch"](function (error) {// console.log(error.response);
         });
       }
     },
@@ -985,8 +980,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (dataId) {
         axios["delete"]("/datedsec/" + DataSecID + "/datedData/" + dataId).then(function (response) {
           _this7.$delete(_this7.cv.datedSections[keys].data, key);
-        })["catch"](function (error) {
-          console.log(error.response);
+        })["catch"](function (error) {// console.log(error.response);
         });
       }
     },
@@ -998,8 +992,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this8.$router.push({
           name: "cvs"
         });
-      })["catch"](function (error) {
-        console.log(error.response);
+      })["catch"](function (error) {// console.log(error.response);
       });
     }
   }
@@ -1019,7 +1012,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);", ""]);
 
 // module
-exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-523c17c8],\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}\nmain .fa-times-circle[data-v-523c17c8] {\n  position: absolute;\n  top: 30%;\n  right: 10px;\n  color: #f54f4f;\n}", ""]);
+exports.push([module.i, "main[data-v-523c17c8] {\n  font-family: \"Raleway\", sans-serif;\n}\nmain .add-sec span[data-v-523c17c8] {\n  width: 100%;\n  color: #131313;\n  font-size: medium;\n  font-weight: 600;\n  padding: 0.8rem 1.5rem;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n}\nmain .add-sec span[data-v-523c17c8]:hover {\n  color: #585858;\n  background: #f7f7f7;\n}\nmain .btn-danger[data-v-523c17c8],\nmain .btn-primary[data-v-523c17c8] {\n  border: none;\n  cursor: pointer;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  background: #34e181;\n  margin: 0.5rem;\n  padding: 0.5rem 2rem;\n  box-shadow: 5px 4px 0px #33c674;\n}\nmain .btn-danger[data-v-523c17c8]:hover,\nmain .btn-primary[data-v-523c17c8]:hover {\n  box-shadow: none;\n}\nmain .btn-danger[data-v-523c17c8] {\n  background: #ff4545;\n  box-shadow: 5px 3px 0 #f54646;\n}\nmain .form-control[data-v-523c17c8] {\n  border: 0;\n  background: #f4f4f4;\n  box-shadow: 0 0 3px #e7e7e7;\n  font-size: 0.95rem;\n  resize: none;\n}\nmain .p-1[data-v-523c17c8] {\n  border-bottom: 1px solid #ebebeb;\n  margin-bottom: 3px;\n}\nmain i.fas.fa-pen[data-v-523c17c8],\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8] {\n  color: #e1e1e1;\n  -webkit-transition: 500ms ease;\n  transition: 500ms ease;\n  cursor: pointer;\n  margin-left: 0.5rem;\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover,\nmain i.fas.fa-minus-circle.text-xs[data-v-523c17c8]:hover {\n  color: #f35a5a;\n  -webkit-transform: scale(1.03);\n          transform: scale(1.03);\n}\nmain i.fas.fa-pen[data-v-523c17c8]:hover {\n  color: #47ffb2;\n}\nmain .add[data-v-523c17c8] {\n  margin: 0.5rem;\n}\nmain .add span[data-v-523c17c8] {\n  cursor: pointer;\n}\nmain .fa-times-circle[data-v-523c17c8] {\n  position: absolute;\n  top: 30%;\n  right: 10px;\n  color: #f54f4f;\n}\nmain .dropdown[data-v-523c17c8], main .dropmenu[data-v-523c17c8] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}", ""]);
 
 // exports
 

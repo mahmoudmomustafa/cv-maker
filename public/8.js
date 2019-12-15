@@ -257,15 +257,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/register", this.$data).then(function (response) {
-        store.commit("loginUser", response.data);
+        _this.$store.commit("loginUser", response.data);
+
         localStorage.setItem("token", response.data.access_token);
 
         _this.$store.dispatch("GET_USER");
 
-        _this.$router.push({
-          name: "dashboard"
-        });
+        _this.$router.push('/dashboard');
       })["catch"](function (error) {
+        console.log(error);
         _this.errors = error.response.data.errors;
         _this.error = error.response.data.message;
       });

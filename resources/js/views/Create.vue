@@ -981,5 +981,9 @@ main {
     right: 10px;
     color: #f54f4f;
   }
+  .dropdown,.dropmenu{
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

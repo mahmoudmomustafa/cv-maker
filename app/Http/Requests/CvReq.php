@@ -26,7 +26,7 @@ class CvReq extends FormRequest
         return [
             'info.name' => 'required|string|max:255',
             'info.email' => 'required|string|email',
-            'info.number' => 'required|numeric|starts_with:01',
+            'info.number' => 'required|starts_with:01|numeric|min:11|max:13',
             'info.title' => 'nullable|string|max:255',
             'info.location' => 'nullable|max:255',
             'info.website' => 'nullable|url',
