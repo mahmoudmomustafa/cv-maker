@@ -31,7 +31,7 @@
               </div>
             </div>
             <!-- create new cv -->
-            <router-link to="/cvs/create">
+            <router-link to="/cv/create">
               <div class="w-64 bg-white rounded overflow-hidden shadow create">
                 <div class="px-6 py-4 text-center">
                   <div class="font-bold text-xl font-bold mb-2">New Cv</div>

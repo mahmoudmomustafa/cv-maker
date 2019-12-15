@@ -22171,19 +22171,19 @@ var Auth = function Auth() {
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(5), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(5), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var Cvs = function Cvs() {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(5), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/CVS.vue */ "./resources/js/views/CVS.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(5), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/CVS.vue */ "./resources/js/views/CVS.vue"));
 };
 
 var Create = function Create() {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(11), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Create.vue */ "./resources/js/views/Create.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(6), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Create.vue */ "./resources/js/views/Create.vue"));
 };
 
 var Show = function Show() {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(11), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./views/Show.vue */ "./resources/js/views/Show.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(0), __webpack_require__.e(5), __webpack_require__.e(6), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./views/Show.vue */ "./resources/js/views/Show.vue"));
 };
 
 var routes = [{
