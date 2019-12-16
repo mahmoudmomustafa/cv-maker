@@ -190,8 +190,8 @@ class CvController extends Controller
         $sections = $cv->sections()->get();
         $experiences = $cv->experiences()->get();
         $datedSections = $cv->datedSections()->get();
-        $pdf = PDF::loadView('pdf', ['cv' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations,'datedSections'=>$datedSections])->setPaper('a4');
+        $pdf = PDF::loadView('pdf', ['cv' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations,'datedSections'=>$datedSections]);
         return $pdf->stream('CV.pdf');
-        // return view('pdf', compact('cv', 'educations', 'sections', 'experiences'));
+        // return view('pdf', compact('cv','educations', 'sections', 'experiences','datedSections'));
     }
 }

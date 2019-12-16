@@ -21,9 +21,9 @@
         <router-view />
     </div>
     {{-- js files --}}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex"></script>
-    <script src="https://vuejs.org/js/vue.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
+    {{-- <script src="https://vuejs.org/js/vue.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>

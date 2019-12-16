@@ -24,7 +24,6 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'bearer',
             ], $this->successStatus);
-            // return response()->json(Auth::user(), 200);
         } else {
             return response()->json(['error' => 'These Candritles are not correct'], 401);
         }
@@ -48,7 +47,6 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
         ], $this->successStatus);
-        // return response()->json($user, 200);
     }
     public function logout()
     {

@@ -6,8 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>CV</title>
+    {{-- <link rel="stylesheet" href="{{public_path('css/cv.css')}}"> --}}
     <style>
         body {
             margin: 0;
@@ -46,7 +49,10 @@
         fieldset {
             border: 0;
             border-top: 1px solid #d4d4d4;
-            margin-top: 1.5rem;
+            margin-top: 2.5rem;
+            /* padding-top: 2rem; */
+            overflow: auto;
+            clear: both;
         }
 
         legend {
@@ -54,20 +60,16 @@
             padding-right: 1rem;
             font-weight: 600;
             font-size: 1.3rem;
-            margin-bottom: 1.6rem;
+            margin-top: .2rem;
             margin-left: -1rem;
             padding-left: 1rem;
         }
 
         .head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .head {
-            overflow: auto
+            /* padding: 1rem; */
+            margin: 1.5rem;
+            overflow: auto;
+            clear: both;
         }
 
         .data {
@@ -76,6 +78,11 @@
 
         .date {
             float: right
+        }
+
+        .section {
+            margin-top: .5rem;
+            padding: 1rem
         }
     </style>
 </head>
@@ -110,7 +117,7 @@
         <section>
             <fieldset>
                 <legend>Summary</legend>
-                <p>{!!$cv->summary!!}</p>
+                <div class="head">{!!$cv->summary!!}</div>
             </fieldset>
         </section>
         @endif
@@ -120,7 +127,7 @@
             <fieldset>
                 <legend>Education</legend>
                 @foreach ($educations as $education)
-                <div>
+                <div class="section">
                     <div class="head">
                         <div class="data">
                             @if ($education->degree_name)
@@ -130,11 +137,12 @@
                             <h3>{{$education->school_name}}</h3>
                             @endif
                             @if ($education->edu_des)
-                            <p>{!!$education->edu_des!!}</p>
+                            <div>{!!$education->edu_des!!}</div>
                             @endif
                         </div>
                         @if ($education->edu_start || $education->edu_end)
-                        <div class="date"><span>{{$education->edu_start}}</span> - <span>{{$education->edu_end}}</span>
+                        <div class="date"><span>{{$education->edu_start}}</span> -
+                            <span>{{$education->edu_end}}</span>
                         </div>
                         @endif
                     </div>
@@ -149,7 +157,7 @@
             <fieldset>
                 <legend>Experiences</legend>
                 @foreach ($experiences as $experience)
-                <div>
+                <div class="section">
                     <div class="head">
                         <div class="data">
                             @if ($experience->title)
@@ -159,7 +167,7 @@
                             <h3>{{$experience->company}}</h3>
                             @endif
                             @if ($experience->desc)
-                            <p>{!!$experience->desc!!}</p>
+                            <div>{!!$experience->desc!!}</div>
                             @endif
                         </div>
                         @if ($experience->start_date || $experience->end_date)
@@ -180,7 +188,7 @@
             <fieldset>
                 <legend>{{$datedSection->datedHeading}}</legend>
                 @foreach (DB::table('dateddata')->where('datedsection_id',$datedSection->id)->get() as $data)
-                <div>
+                <div class="section">
                     <div class="head">
                         <div class="data">
                             @if ($data->datedTitle)
@@ -190,7 +198,7 @@
                             <h3>{{$data->datedOrg}}</h3>
                             @endif
                             @if ($data->datedDesc)
-                            <p>{!!$data->datedDesc!!}</p>
+                            <div>{!!$data->datedDesc!!}</div>
                             @endif
                         </div>
                         @if ($data->startDate || $data->endDate)
@@ -208,12 +216,14 @@
         {{-- sections --}}
         @if ($cv->sections())
         @foreach ($sections as $section)
-        <section>
-            <fieldset>
-                <legend>{{$section->secHeading}}</legend>
-                <p>{!!$section->secDesc!!}</p>
-            </fieldset>
-        </section>
+        <div class="section">
+            <section>
+                <fieldset>
+                    <legend>{{$section->secHeading}}</legend>
+                    <div class="head">{!!$section->secDesc!!}</div>
+                </fieldset>
+            </section>
+        </div>
         @endforeach
         @endif
     </div>
