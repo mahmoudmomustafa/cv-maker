@@ -101,12 +101,14 @@ export default {
       axios
         .post("/login", this.$data)
         .then(response => {
-          store.commit("loginUser", response.data);
+          this.$store.commit("loginUser", response.data);
           localStorage.setItem("token", response.data.access_token);
           this.$store.dispatch("GET_USER");
           this.$router.push({ name: "dashboard" });
+          // console.log(response);
         })
         .catch(error => {
+          console.log(error);
           this.errors = error.response.data.error;
         });
     }

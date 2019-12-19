@@ -10,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>CV</title>
-    {{-- <link rel="stylesheet" href="{{public_path('css/cv.css')}}"> --}}
     <style>
         body {
             margin: 0;
@@ -60,7 +59,7 @@
             padding-right: 1rem;
             font-weight: 600;
             font-size: 1.3rem;
-            margin-top: .2rem;
+            /* margin-top: .2rem; */
             margin-left: -1rem;
             padding-left: 1rem;
         }
@@ -68,6 +67,7 @@
         .head {
             /* padding: 1rem; */
             margin: 1.5rem;
+            margin-bottom: 0;
             overflow: auto;
             clear: both;
         }
@@ -90,7 +90,7 @@
 <body>
     <div id="app">
         <header>
-            <h1 style="font-size:3rem">{{$cv->name}}</h1>
+            <h1 style="font-size:2.5rem">{{$cv->name}}</h1>
             <h3>{{$cv->title}}</h3>
             <div class="flex flex-row">
                 @if ($cv->location)
@@ -122,10 +122,10 @@
         </section>
         @endif
         {{-- education --}}
-        @if (!empty($education) > 0)
-        <section>
+        @if (!empty($educations) > 0)
+        <section style="padding-top: .5rem">
             <fieldset>
-                <legend>Education</legend>
+                <legend style="padding-buttom:.3rem">Education</legend>
                 @foreach ($educations as $education)
                 <div class="section">
                     <div class="head">
@@ -137,7 +137,8 @@
                             <h3>{{$education->school_name}}</h3>
                             @endif
                             @if ($education->edu_des)
-                            <div>{!!$education->edu_des!!}</div>
+                            <div class="font-weight:100;font-size:smaller"><small>{!!$education->edu_des!!}</small>
+                            </div>
                             @endif
                         </div>
                         @if ($education->edu_start || $education->edu_end)
@@ -153,9 +154,9 @@
         @endif
         {{-- experiencese --}}
         @if (!empty($experiences) > 0)
-        <section>
+        <section style="padding-top: .5rem">
             <fieldset>
-                <legend>Experiences</legend>
+                <legend style="padding-buttom:.3rem">Experiences</legend>
                 @foreach ($experiences as $experience)
                 <div class="section">
                     <div class="head">
@@ -167,7 +168,8 @@
                             <h3>{{$experience->company}}</h3>
                             @endif
                             @if ($experience->desc)
-                            <div>{!!$experience->desc!!}</div>
+                            <div class="font-weight:100;font-size:.5rem">
+                                <small> {!!$experience->desc!!}</small></div>
                             @endif
                         </div>
                         @if ($experience->start_date || $experience->end_date)
@@ -184,25 +186,26 @@
         {{-- datasection --}}
         @if ($datedSections)
         @foreach ($datedSections as $datedSection)
-        <section>
+        <section style="padding-top: .5rem">
             <fieldset>
-                <legend>{{$datedSection->datedHeading}}</legend>
+                <legend style="padding-buttom:.3rem">{{$datedSection->datedHeading}}</legend>
                 @foreach (DB::table('dateddata')->where('datedsection_id',$datedSection->id)->get() as $data)
-                <div class="section">
-                    <div class="head">
-                        <div class="data">
+                <div class="sectiona" style="padding:1rem">
+                    <div class="heada" style="padding-buttom:.5rem;">
+                        <div class="dataa">
                             @if ($data->datedTitle)
-                            <h3>{{$data->datedTitle}}</h3>
+                            <h3 style="width:fit-content">{{$data->datedTitle}}</h3>
                             @endif
                             @if ($data->datedOrg)
                             <h3>{{$data->datedOrg}}</h3>
                             @endif
                             @if ($data->datedDesc)
-                            <div>{!!$data->datedDesc!!}</div>
+                            <div style="width:80%">{!!$data->datedDesc!!}</div>
                             @endif
                         </div>
                         @if ($data->startDate || $data->endDate)
-                        <div class="date"><span>{{$data->startDate}}</span> -
+                        <div class="date">
+                            <span>{{$data->startDate}}</span> -
                             <span>{{$data->endDate}}</span>
                         </div>
                         @endif
@@ -216,14 +219,12 @@
         {{-- sections --}}
         @if ($cv->sections())
         @foreach ($sections as $section)
-        <div class="section">
-            <section>
-                <fieldset>
-                    <legend>{{$section->secHeading}}</legend>
-                    <div class="head">{!!$section->secDesc!!}</div>
-                </fieldset>
-            </section>
-        </div>
+        <section style="padding-top:.5rem">
+            <fieldset style="padding-buttom:0">
+                <legend style="padding-buttom:.3rem">{{$section->secHeading}}</legend>
+                <div class="head" style="padding-buttom:0">{!!$section->secDesc!!}</div>
+            </fieldset>
+        </section>
         @endforeach
         @endif
     </div>

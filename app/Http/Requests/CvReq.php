@@ -11,10 +11,10 @@ class CvReq extends FormRequest
      *
      * @return bool
      */
-    // public function authorize()
-    // {
-    //     return false;
-    // }
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,7 +26,7 @@ class CvReq extends FormRequest
         return [
             'info.name' => 'required|string|max:255',
             'info.email' => 'required|string|email',
-            'info.number' => 'nullable|starts_with:01|numeric|min:11|max:13',
+            'info.number' => 'nullable|starts_with:01|numeric',
             'info.title' => 'nullable|string|max:255',
             'info.location' => 'nullable|max:255',
             'info.website' => 'nullable|url',

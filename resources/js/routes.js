@@ -2,8 +2,8 @@ import './bootstrap'
 // import './app'
 import store from './store'
 import VueRouter from 'vue-router'
-const Auth = () => import('./views/Auth.vue')
-const Home = () => import('./views/Home.vue')
+import Auth from './views/Auth.vue'
+import Home from './views/Home.vue'
 const Cvs = () => import('./views/CVS.vue')
 const Create = () => import('./views/Create.vue')
 const Show = () => import('./views/Show.vue')
@@ -48,7 +48,7 @@ const routes = [{
 ]
 
 let router = new VueRouter({
-    mode: "history",
+    // mode: "history",
     base: process.env.BASE_URL,
     routes
 })

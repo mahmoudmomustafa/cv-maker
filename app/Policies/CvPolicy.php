@@ -30,7 +30,7 @@ class CvPolicy
      */
     public function view(User $user, Cv $cv)
     {
-        return $user->id === $cv->user_id;
+        return abort_unless($user->id === $cv->user_id ,403);
     }
 
     /**
@@ -53,7 +53,7 @@ class CvPolicy
      */
     public function update(User $user, Cv $cv)
     {
-        return $user->id === $cv->user_id;
+        return $user->id == $cv->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class CvPolicy
      */
     public function delete(User $user, Cv $cv)
     {
-        return $user->id === $cv->user_id;
+        return $user->id == $cv->user_id;
     }
 
     /**
@@ -89,6 +89,9 @@ class CvPolicy
      */
     public function forceDelete(User $user, Cv $cv)
     {
-        return $user->id === $cv->user_id;
+        return $user->id == $cv->user_id;
+    }
+    public function pdf(User $user, Cv $cv){
+        abort_unless($user->id == $cv->user_id ,403);
     }
 }

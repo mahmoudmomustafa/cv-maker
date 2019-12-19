@@ -14,7 +14,7 @@ let store = new Vuex.Store({
         logoutUser(state) {
             state.isLoggedIn = false;
             state.user = [],
-            state.cvs = []
+                state.cvs = []
         },
         getCVS(state, cvs) {
             state.cvs = cvs
@@ -65,7 +65,11 @@ let store = new Vuex.Store({
         }) => {
             return new Promise((resolve, reject) => {
                 axios
-                    .get("/api/cvs")
+                    .get("/api/cvs", {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("token")
+                        }
+                    })
                     .then(response => {
                         commit('getCVS', response.data)
                     })

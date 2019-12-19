@@ -11,11 +11,13 @@ let app = new Vue({
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             }, ).then(response => {
-                store.commit('loginUser', response.data)
+                // console.log(localStorage.getItem('token'))
+                this.$store.commit('loginUser', response.data)
             }).catch(error => {
                 if (error.response.status === 401 || error.response.status === 403) {
+                    
                     store.commit('logoutUser')
-                    localStorage.setItem('token', '')
+                    localStorage.setItem('token', ' ')
                     this.$router.push({
                         name: 'auth'
                     })

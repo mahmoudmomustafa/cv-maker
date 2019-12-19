@@ -16,8 +16,8 @@ class CvController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
-        $this->authorizeResource(Cv::class, 'cv');
+        // $this->middleware('auth:api');
+        // $this->authorizeResource(Cv::class, 'cv');
     }
     // show all cvs
     public function index()
@@ -28,6 +28,7 @@ class CvController extends Controller
     // create cv
     public function create(CvReq $request)
     {
+        $this->authorize('create' ,Cv::class);
         $data = $request->all();
         // creating cv
         $cv = $request->user()->cvs()->create($data['info']);
@@ -79,19 +80,26 @@ class CvController extends Controller
     // edit cv
     public function edit(Cv $cv)
     {
-        $educations = $cv->educations()->get();
-        $sections = $cv->sections()->get();
-        $experiences = $cv->experiences()->get();
-        $datedSectionssss = $cv->datedSections()->get();
-        $datedSections = [];
-        foreach ($datedSectionssss as $section) {
-            array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('datedsection_id', $section->id)->get()]);
+        // $this->authorize('view',$cv);
+        if(auth()->user()->id == $cv->user_id){
+            $educations = $cv->educations()->get();
+            $sections = $cv->sections()->get();
+            $experiences = $cv->experiences()->get();
+            $datedSectionssss = $cv->datedSections()->get();
+            $datedSections = [];
+            foreach ($datedSectionssss as $section) {
+                array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('datedsection_id', $section->id)->get()]);
+            }
+            return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
+        }else{
+            return abort(403);
         }
-        return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
     }
     // update cv
     public function update(CvReq $request,CV $cv)
     {
+        $this->authorize('update',$cv);
+
         $data = $request->all();
         // update cv
         $cv->update($data['info']);
@@ -180,18 +188,8 @@ class CvController extends Controller
     //delete cv
     public function destroy(Cv $cv)
     {
+        $this->authorize('delete' ,$cv);
         $cv->delete();
         return response()->json('delete');
-    }
-    //
-    public function preview(Cv $cv)
-    {
-        $educations = $cv->educations()->get();
-        $sections = $cv->sections()->get();
-        $experiences = $cv->experiences()->get();
-        $datedSections = $cv->datedSections()->get();
-        $pdf = PDF::loadView('pdf', ['cv' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations,'datedSections'=>$datedSections]);
-        return $pdf->stream('CV.pdf');
-        // return view('pdf', compact('cv','educations', 'sections', 'experiences','datedSections'));
     }
 }

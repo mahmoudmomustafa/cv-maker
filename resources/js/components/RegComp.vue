@@ -123,6 +123,7 @@ export default {
           localStorage.setItem("token", response.data.access_token);
           this.$store.dispatch("GET_USER");
           this.$router.push('/dashboard');
+          // console.log(response);
         })
         .catch(error => {
           console.log(error);

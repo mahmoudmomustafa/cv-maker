@@ -98,7 +98,13 @@
                       v-model="cv.info.name"
                       @keydown="clear('info.name')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.name']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.name'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.name']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.name'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- email -->
@@ -112,7 +118,13 @@
                       v-model="cv.info.email"
                       @keydown="clear('info.email')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.email']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.email'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.email']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.email'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- number -->
@@ -126,7 +138,13 @@
                       v-model="cv.info.number"
                       @keydown="clear('info.number')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.number']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.number'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.number']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.number'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- location -->
@@ -140,7 +158,13 @@
                       v-model="cv.info.location"
                       @keydown="clear('info.location')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.location']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.location'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.location']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.location'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- title -->
@@ -154,7 +178,13 @@
                       v-model="cv.info.title"
                       @keydown="clear('info.title')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.title']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.title'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.title']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.title'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- website -->
@@ -168,7 +198,13 @@
                       v-model="cv.info.website"
                       @keydown="clear('info.website')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.website']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.website'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.website']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.website'][0]"
+                    ></i>
                   </div>
                 </div>
                 <!-- website2 -->
@@ -182,7 +218,13 @@
                       v-model="cv.info.website2"
                       @keydown="clear('info.website2')"
                     />
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.website2']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.website2'][0]"></i>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.website2']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.website2'][0]"
+                    ></i>
                   </div>
                 </div>
               </SectionComp>
@@ -193,8 +235,20 @@
               <SectionComp class="summary" section-head="Summary">
                 <div class="form-group">
                   <div class="m-auto w-full relative">
-                    <ckeditor :editor="editor" v-model="cv.info.summary" :config="editorConfig" @keydown="clear('info.summary')"></ckeditor>
-                    <i class="fas fa-times-circle absolute text-sm" v-if="errors['info.summary']" data-toggle="tooltip" data-placement="bottom" :title="errors['info.summary'][0]" style="top:45px"></i>
+                    <ckeditor
+                      :editor="editor"
+                      v-model="cv.info.summary"
+                      :config="editorConfig"
+                      @keydown="clear('info.summary')"
+                    ></ckeditor>
+                    <i
+                      class="fas fa-times-circle absolute text-sm"
+                      v-if="errors['info.summary']"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      :title="errors['info.summary'][0]"
+                      style="top:45px"
+                    ></i>
                   </div>
                 </div>
               </SectionComp>
@@ -563,7 +617,7 @@
               <!-- new date -->
               <SectionComp
                 v-for="(vals, keys) in cv.datedSections"
-                :key="keys"
+                :key="'dated-'+keys"
                 v-bind:section-head="vals.datedHeading"
               >
                 <!-- dated model -->
@@ -633,7 +687,7 @@
                   </template>
                 </ModelComp>
                 <!-- dated div -->
-                <div class="p-1" v-for="(val ,key) in cv.datedSections[keys].data" :key="key">
+                <div class="p-1" v-for="(val ,key) in cv.datedSections[keys].data" :key="'date'+key">
                   <div class="flex justify-between">
                     <h4 class="text-sm font-bold" v-if="val.datedTitle" v-text="val.datedTitle"></h4>
                     <div class="flex">
@@ -818,7 +872,7 @@ export default {
       editorConfig: {
         // The configuration of the rich-text editor.
       },
-      errors:[],
+      errors: []
     };
   },
   mounted() {
@@ -830,8 +884,8 @@ export default {
     drop() {
       $(".dropmenu").slideToggle();
     },
-    clear(index){
-      this.errors[index] = ''
+    clear(index) {
+      this.errors[index] = "";
     },
     // add education
     addEdu() {
@@ -902,12 +956,16 @@ export default {
     // submit cv
     createCv() {
       axios
-        .post("/cvs/create", this.cv)
+        .post("/api/cvs/create", this.cv, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
         .then(response => {
           this.$router.push({ name: "cvs" });
         })
         .catch(error => {
-          this.errors = error.response.data.errors
+          this.errors = error.response.data.errors;
         });
     }
   }
@@ -975,13 +1033,14 @@ main {
       cursor: pointer;
     }
   }
-  .fa-times-circle{
+  .fa-times-circle {
     position: absolute;
-        top: 30%;
+    top: 30%;
     right: 10px;
     color: #f54f4f;
   }
-  .dropdown,.dropmenu{
+  .dropdown,
+  .dropmenu {
     display: flex;
     flex-direction: column;
   }
