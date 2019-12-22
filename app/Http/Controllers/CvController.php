@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use App\Http\Requests\CvReq;
+
 class CvController extends Controller
 {
     public function __construct()
@@ -28,7 +29,7 @@ class CvController extends Controller
     // create cv
     public function create(CvReq $request)
     {
-        $this->authorize('create' ,Cv::class);
+        $this->authorize('create', Cv::class);
         $data = $request->all();
         // creating cv
         $cv = $request->user()->cvs()->create($data['info']);
@@ -81,7 +82,7 @@ class CvController extends Controller
     public function edit(Cv $cv)
     {
         // $this->authorize('view',$cv);
-        if(auth()->user()->id == $cv->user_id){
+        if (auth()->user()->id == $cv->user_id) {
             $educations = $cv->educations()->get();
             $sections = $cv->sections()->get();
             $experiences = $cv->experiences()->get();
@@ -91,69 +92,71 @@ class CvController extends Controller
                 array_push($datedSections, ['id' => $section->id, 'datedHeading' => $section->datedHeading, 'data' => DatedData::where('datedsection_id', $section->id)->get()]);
             }
             return response()->json(['info' => $cv, 'experiences' => $experiences, 'sections' => $sections, 'educations' => $educations, 'datedSections' => $datedSections]);
-        }else{
+        } else {
             return abort(403);
         }
     }
     // update cv
-    public function update(CvReq $request,CV $cv)
+    public function update(CvReq $request, CV $cv)
     {
-        $this->authorize('update',$cv);
-
-        $data = $request->all();
-        // update cv
-        $cv->update($data['info']);
-        // create or update exp
-        foreach ($data['experiences'] as $experience) {
-            if (isset($experience['id'])) {
-                Experience::where('id', $experience['id'])->update($experience);
-            } else {
-                $cv->experiences()->create($experience);
+        if (auth()->user()->id == $cv->user_id) {
+            $data = $request->all();
+            // update cv
+            $cv->update($data['info']);
+            // create or update exp
+            foreach ($data['experiences'] as $experience) {
+                if (isset($experience['id'])) {
+                    Experience::where('id', $experience['id'])->update($experience);
+                } else {
+                    $cv->experiences()->create($experience);
+                }
             }
-        }
-        // create or update educations
-        foreach ($data['educations'] as $education) {
-            if (isset($education['id'])) {
-                Education::where('id', $education['id'])->update($education);
-            } else {
-                $cv->educations()->create($education);
+            // create or update educations
+            foreach ($data['educations'] as $education) {
+                if (isset($education['id'])) {
+                    Education::where('id', $education['id'])->update($education);
+                } else {
+                    $cv->educations()->create($education);
+                }
             }
-        }
-        // create or update sections
-        foreach ($data['sections'] as $section) {
-            if (isset($section['id'])) {
-                Section::where('id', $section['id'])->update($section);
-            } else {
-                $cv->sections()->create($section);
+            // create or update sections
+            foreach ($data['sections'] as $section) {
+                if (isset($section['id'])) {
+                    Section::where('id', $section['id'])->update($section);
+                } else {
+                    $cv->sections()->create($section);
+                }
             }
-        }
-        //create or update dated sections
-        foreach ($data['datedSections'] as $dateSection) {
-            if (isset($dateSection['id'])) {
-                foreach ($dateSection['data'] as $data) {
-                    if (!isset($data["id"])) {
+            //create or update dated sections
+            foreach ($data['datedSections'] as $dateSection) {
+                if (isset($dateSection['id'])) {
+                    foreach ($dateSection['data'] as $data) {
+                        if (!isset($data["id"])) {
+                            $dated = new DatedData;
+                            foreach ($data as $key => $value) {
+                                $dated->$key = $value;
+                            }
+                            $dated->datedsection_id = $dateSection["id"];
+                            $dated->save();
+                        }
+                    }
+                } else {
+                    $cv->datedSections()->create($dateSection);
+                    foreach ($dateSection['data'] as $data) {
                         $dated = new DatedData;
                         foreach ($data as $key => $value) {
                             $dated->$key = $value;
                         }
-                        $dated->datedsection_id = $dateSection["id"];
+                        $dated->datedsection_id = $dateSection->id;
                         $dated->save();
                     }
                 }
-            } else {
-                $cv->datedSections()->create($dateSection);
-                foreach ($dateSection['data'] as $data) {
-                    $dated = new DatedData;
-                    foreach ($data as $key => $value) {
-                        $dated->$key = $value;
-                    }
-                    $dated->datedsection_id = $dateSection->id;
-                    $dated->save();
-                }
             }
+            // create dated sections
+            return response()->json("Cv is Updated");
+        } else {
+            return abort(403);
         }
-        // create dated sections
-        return response()->json("Cv is Updated");
     }
     // deleteEducation
     public function deleteEducation(Cv $cv, Education $education)
@@ -188,8 +191,11 @@ class CvController extends Controller
     //delete cv
     public function destroy(Cv $cv)
     {
-        $this->authorize('delete' ,$cv);
-        $cv->delete();
-        return response()->json('delete');
+        if (auth()->user()->id == $cv->user_id) {
+            $cv->delete();
+            return response()->json('delete');
+        } else {
+            return abort(403);
+        }
     }
 }

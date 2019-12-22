@@ -88,7 +88,8 @@ section {
   .body {
     .create {
       min-height: 300px;
-      background-image: url("/imgs/bla.jpg");
+      // background-image: url("/imgs/bla.jpg");
+      background-image: url('https://image.freepik.com/free-vector/geometric-abstract-green-background_23-2148380710.jpg');
       color: white;
       display: flex;
       justify-content: center;
@@ -105,7 +106,8 @@ section {
     .cv {
       transition: 500ms ease;
       margin: 0.5rem;
-      background-image: url("/imgs/cv.jpg");
+      // background-image: url("/imgs/cv.jpg");
+      background-image:url('https://image.freepik.com/free-vector/gradient-green-blue-abstract-geometric-background_23-2148362562.jpg');
       background-size: cover;
       background-position: left;
       color: white;

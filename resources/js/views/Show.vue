@@ -905,11 +905,7 @@ export default {
     //uodate cv
     updateCv() {
       axios
-        .put("/api/cvs/" + this.$route.params.cvId, this.cv, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
+        .put("/api/cvs/" + this.$route.params.cvId, this.cv)
         .then(response => {
           this.$router.push({ name: "cvs" });
         })
@@ -922,11 +918,7 @@ export default {
       this.$delete(this.cv.educations, key);
       if (id) {
         axios
-          .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          })
+          .delete("/cvs/" + this.$route.params.cvId + "/edu/" + id)
           .then(response => {
             this.$delete(this.cv.educations, key);
           })
@@ -940,11 +932,7 @@ export default {
       this.$delete(this.cv.experiences, key);
       if (id) {
         axios
-          .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          })
+          .delete("/cvs/" + this.$route.params.cvId + "/exp/" + id)
           .then(response => {
             this.$delete(this.cv.experiences, key);
           })
@@ -958,11 +946,7 @@ export default {
       this.$delete(this.cv.sections, key);
       if (id) {
         axios
-          .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          })
+          .delete("/cvs/" + this.$route.params.cvId + "/sec/" + id)
           .then(response => {
             this.$delete(this.cv.sections, key);
           })
@@ -975,11 +959,7 @@ export default {
       this.$delete(this.cv.datedSections, key);
       if (id) {
         axios
-          .delete("/cvs/" + this.$route.params.cvId + "/datedsec/" + id, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          })
+          .delete("/cvs/" + this.$route.params.cvId + "/datedsec/" + id)
           .then(response => {
             this.$delete(this.cv.datedSections, key);
           })
@@ -992,11 +972,7 @@ export default {
       this.$delete(this.cv.datedSections[keys].data, key);
       if (dataId) {
         axios
-          .delete("/datedsec/" + DataSecID + "/datedData/" + dataId, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          })
+          .delete("/datedsec/" + DataSecID + "/datedData/" + dataId)
           .then(response => {
             this.$delete(this.cv.datedSections[keys].data, key);
           })
@@ -1008,11 +984,7 @@ export default {
     // delete cv
     deleteCV() {
       axios
-        .delete("/cvs/" + this.$route.params.cvId, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
+        .delete("/cvs/" + this.$route.params.cvId)
         .then(response => {
           this.$router.push({ name: "cvs" });
         })

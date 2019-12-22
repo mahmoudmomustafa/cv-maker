@@ -1,4 +1,4 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import axios from 'axios'
 // import jQuery from 'jquery'
 import Vuex from 'vuex'
@@ -9,7 +9,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 window.Vue = Vue;
 window.Vuex = Vuex;
 // Vue.config.productionTip = false
-// Vue.config.devtools = false
+Vue.config.devtools = false
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.filter('formatDate', function (value) {
@@ -24,7 +24,7 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 $.ajaxSetup({
     headers: {
         'Accept': 'application/json',
-        // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         'Authorization': "Bearer " + localStorage.getItem("token")
     }
 });
